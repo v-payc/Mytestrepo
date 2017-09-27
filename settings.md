@@ -604,6 +604,22 @@ Here are the Fabric settings that you can customize:
 |MaxOperationRetryDelay |Time in seconds, default is 5| Specify timespan in seconds. The maximum delay for internal retries when failures are encountered. |
 |ReplicaSetCheckTimeoutRollbackOverride |Time in seconds, default is 1200 | Specify timespan in seconds. If ReplicaSetCheckTimeout is set to the maximum value of DWORD; then it's overridden with the value of this config for the purposes of rollback. The value used for rollforward is never overridden. |
 |ImageBuilderJobQueueThrottle |Int, default is 10 |Thread count throttle for Image Builder proxy job queue on application requests. |
+|MaxExponentialOperationRetryDelay|TimeSpan, default is Common::TimeSpan::FromSeconds(30) | Specify timespan in seconds. The maximum exponential delay for internal retries when failures are encountered repeatedly|
+      
+### Section Name: DefragmentationEmptyNodeDistributionPolicy
+| **Parameter** | **Allowed Values** | **Guidance or short Description** |
+| --- | --- | --- |
+|PropertyGroup|KeyIntegerValueMap, default is None|Specifies the policy defragmentation follows when emptying nodes. For a given metric 0 indicates that SF should try to defragment nodes evenly across UDs and FDs; 1 indicates only that the nodes must be defragmented |
+
+### Section Name: DefragmentationMetrics
+| **Parameter** | **Allowed Values** | **Guidance or short Description** |
+| --- | --- | --- |
+|PropertyGroup|KeyBoolValueMap, default is None|Determines the set of metrices that should be used for defragmentation and not for load balancing. |
+
+### Section Name: DefragmentationMetricsPercentOrNumberOfEmptyNodesTriggeringThreshold
+| **Parameter** | **Allowed Values** | **Guidance or short Description** |
+| --- | --- | --- |
+|PropertyGroup|KeyDoubleValueMap, default is None|Determines the number of free nodes which are needed to consider cluster defragmented by specifying either percent in range [0.0 - 1.0) or number of empty nodes as number >= 1.0 |
 
 ## Next steps
 Read these articles for more information on cluster management:
