@@ -82,8 +82,10 @@ Here are the Fabric settings that you can customize:
 | FabricDataRoot |String |Service Fabric data root directory. Default for Azure is d:\svcfab |
 | FabricLogRoot |String |Service fabric log root directory. This is where SF logs and traces are placed. |
 | ServiceRunAsAccountName |String |The account name under which to run fabric host service. |
-| ServiceStartupType |String |The startup type of the fabric host service. |
 | SkipFirewallConfiguration |Bool, default is false |Specifies if firewall settings need to be set by the system or not. This applies only if you are using windows firewall. If you are using third party firewalls, then you must open the ports for the system and applications to use |
+|NodesToBeRemoved|string,default is ""|The nodes which should be removed as part of configuration upgrade. (Only for Standalone Deployments)|
+|ContainerNetworkSetup|bool,default is FALSE|Whether to set up a container network.|
+|ContainerNetworkName|wstring,default is L""|The network name to use when setting up a container network.|
 
 ### Section Name: TransactionalReplicator
 | **Parameter** | **Allowed Values** | **Guidance or short Description** |
