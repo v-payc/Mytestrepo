@@ -445,31 +445,51 @@ Here are the Fabric settings that you can customize:
 ### Section Name: Security
 | **Parameter** | **Allowed Values** | **Guidance or short Description** |
 | --- | --- | --- |
-ClusterCredentialType|wstring,default is L"None"|Indicates the type of security credentials to use in order to secure the cluster. Valid values are "None/X509/Windows" |
-ServerAuthCredentialType|wstring,default is L"None"|Indicates the type of security credentials to use in order to secure the communication between FabricClient and the Cluster. Valid values are "None/X509/Windows" |
-ClientRoleEnabled|bool,default is FALSE|Indicates if client role is enabled; when set to true; clients are assigned roles based on their identities. For V2; enabling this means clients not in AdminClientCommonNames/AdminClientIdentities can only execute read-only operations. |
-ClusterCertThumbprints|wstring,default is L""|Thumbprints of certificates allowed to join the cluster; a comma separated name list. |
-ServerCertThumbprints|wstring,default is L""|Thumbprints of server certificates used by cluster to talk to clients; clients use this to authenticate the cluster. It is a comma separated name list. |
-ClientCertThumbprints|wstring,default is L""|Thumbprints of certificates used by clients to talk to the cluster; cluster uses this authorize incoming connection. It is a comma separated name list. |
-AdminClientCertThumbprints|wstring,default is L""|Thumbprints of certificates used by clients in admin role. It is a comma separated name list. |
-CrlCheckingFlag|uint,default is 0x40000000|Default certificate chain validation flag; may be overridden by component specific flag; e.g. Federation/X509CertChainFlags 0x10000000 CERT_CHAIN_REVOCATION_CHECK_END_CERT 0x20000000 CERT_CHAIN_REVOCATION_CHECK_CHAIN 0x40000000 CERT_CHAIN_REVOCATION_CHECK_CHAIN_EXCLUDE_ROOT 0x80000000 CERT_CHAIN_REVOCATION_CHECK_CACHE_ONLY Setting to 0 disables CRL checking Full list of supported values is documented by dwFlags of CertGetCertificateChain: http://msdn.microsoft.com/en-us/library/windows/desktop/aa376078(v=vs.85).aspx |
-IgnoreCrlOfflineError|bool,default is FALSE|Whether to ignore CRL offline error when server side verifies incoming client certifiates |
-IgnoreSvrCrlOfflineError|bool,default is TRUE|Whether to ignore CRL offline error when client side verifies incoming server certifiates; default to true. Attacks with revoked server certifidates require compromising DNS; harder than with revoked client certificates. |
-CrlDisablePeriod|TimeSpan,default is Common::TimeSpan::FromMinutes(15)|Specify timespan in seconds. How long CRL checking is disabled for a given certificate after encountering offline error; if CRL offline error can be ignored. |
-CrlOfflineHealthReportTtl|TimeSpan,default is Common::TimeSpan::FromMinutes(1440)|Specify timespan in seconds. |
-CertificateHealthReportingInterval|TimeSpan,default is Common::TimeSpan::FromSeconds(3600 * 8)|Specify timespan in seconds. Specify interval for certificate health reporting; default to 8 hours; setting to 0 disables certificate health reporting |
-CertificateExpirySafetyMargin|TimeSpan,default is Common::TimeSpan::FromMinutes(43200)|Specify timespan in seconds. Safety margin for certificate expiration; certificate health report status changes from OK to Warning when expiration is closer than this. Default is 30 days. |
-ClientClaimAuthEnabled|bool,default is FALSE|Indicates if claim based authentication is enabled on clients; setting this true implicitly sets ClientRoleEnabled. |
-ClientClaims|wstring,default is L""|All possible claims expected from clients for connecting to gateway. This is a 'OR' list: ClaimsEntry || ClaimsEntry || ClaimsEntry ... each ClaimsEntry is a "AND" list: ClaimType=ClaimValue && ClaimType=ClaimValue && ClaimType=ClaimValue ... |
-AdminClientClaims|wstring,default is L""|All possible claims expected from admin clients; the same format as ClientClaims; this list internally gets added to ClientClaims; so no need to also add the same entries to ClientClaims. |
-ClusterSpn|wstring,default is L""|Service principal name of the cluster; when fabric runs as a single domain user (gMSA/domain user account). It is the SPN of lease listeners and listeners in fabric.exe: federation listeners; internal replication listeners; runtime service listener and naming gateway listener. This should be left empty when fabric runs as machine accounts; in which case connecting side compute listener SPN from listener transport address. |
-ClusterIdentities|wstring,default is L""|Windows identities of cluster nodes; used for cluster membership authorization. It is a comma separated list; each entry is a domain account name or group name |
-ClientIdentities|wstring,default is L""|Windows identities of FabricClient; naming gateway uses this to authorize incoming connections. It is a comma separated list; each entry is a domain account name or group name. For convenience; the account that runs fabric.exe is automatically allowed; so are group ServiceFabricAllowedUsers and ServiceFabricAdministrators. |
-AdminClientIdentities|wstring,default is L""|Windows identities of fabric clients in admin role; used to authorize privileged fabric operations. It is a comma separated list; each entry is a domain account name or group name. For convenience; the account that runs fabric.exe is automatically assigned admin role; so is group ServiceFabricAdministrators. |
-AADTenantId|wstring,default is L""|Tenant ID (GUID) |
-AADClusterApplication|wstring,default is L""|Web API application name or ID representing the cluster |
-AADClientApplication|wstring,default is L""|Native Client application name or ID representing Fabric Clients |
-X509Folder|string,default is /var/lib/waagent|Folder where X509 certificates and private keys are located |
+|ClusterCredentialType|wstring,default is L"None"|Indicates the type of security credentials to use in order to secure the cluster. Valid values are "None/X509/Windows" |
+|ServerAuthCredentialType|wstring,default is L"None"|Indicates the type of security credentials to use in order to secure the communication between FabricClient and the Cluster. Valid values are "None/X509/Windows" |
+|ClientRoleEnabled|bool,default is FALSE|Indicates if client role is enabled; when set to true; clients are assigned roles based on their identities. For V2; enabling this means clients not in AdminClientCommonNames/AdminClientIdentities can only execute read-only operations. |
+|ClusterCertThumbprints|wstring,default is L""|Thumbprints of certificates allowed to join the cluster; a comma separated name list. |
+|ServerCertThumbprints|wstring,default is L""|Thumbprints of server certificates used by cluster to talk to clients; clients use this to authenticate the cluster. It is a comma separated name list. |
+|ClientCertThumbprints|wstring,default is L""|Thumbprints of certificates used by clients to talk to the cluster; cluster uses this authorize incoming connection. It is a comma separated name list. |
+|AdminClientCertThumbprints|wstring,default is L""|Thumbprints of certificates used by clients in admin role. It is a comma separated name list. |
+|CrlCheckingFlag|uint,default is 0x40000000|Default certificate chain validation flag; may be overridden by component specific flag; e.g. Federation/X509CertChainFlags 0x10000000 CERT_CHAIN_REVOCATION_CHECK_END_CERT 0x20000000 CERT_CHAIN_REVOCATION_CHECK_CHAIN 0x40000000 CERT_CHAIN_REVOCATION_CHECK_CHAIN_EXCLUDE_ROOT 0x80000000 CERT_CHAIN_REVOCATION_CHECK_CACHE_ONLY Setting to 0 disables CRL checking Full list of supported values is documented by dwFlags of CertGetCertificateChain: http://msdn.microsoft.com/en-us/library/windows/desktop/aa376078(v=vs.85).aspx |
+|IgnoreCrlOfflineError|bool,default is FALSE|Whether to ignore CRL offline error when server side verifies incoming client certifiates |
+|IgnoreSvrCrlOfflineError|bool,default is TRUE|Whether to ignore CRL offline error when client side verifies incoming server certifiates; default to true. Attacks with revoked server certifidates require compromising DNS; harder than with revoked client certificates. |
+|CrlDisablePeriod|TimeSpan,default is Common::TimeSpan::FromMinutes(15)|Specify timespan in seconds. How long CRL checking is disabled for a given certificate after encountering offline error; if CRL offline error can be ignored. |
+|CrlOfflineHealthReportTtl|TimeSpan,default is Common::TimeSpan::FromMinutes(1440)|Specify timespan in seconds. |
+|CertificateHealthReportingInterval|TimeSpan,default is Common::TimeSpan::FromSeconds(3600 * 8)|Specify timespan in seconds. Specify interval for certificate health reporting; default to 8 hours; setting to 0 disables certificate health reporting |
+|CertificateExpirySafetyMargin|TimeSpan,default is Common::TimeSpan::FromMinutes(43200)|Specify timespan in seconds. Safety margin for certificate expiration; certificate health report status changes from OK to Warning when expiration is closer than this. Default is 30 days. |
+|ClientClaimAuthEnabled|bool,default is FALSE|Indicates if claim based authentication is enabled on clients; setting this true implicitly sets ClientRoleEnabled. |
+|ClientClaims|wstring,default is L""|All possible claims expected from clients for connecting to gateway. This is a 'OR' list: ClaimsEntry || ClaimsEntry || ClaimsEntry ... each ClaimsEntry is a "AND" list: ClaimType=ClaimValue && ClaimType=ClaimValue && ClaimType=ClaimValue ... |
+|AdminClientClaims|wstring,default is L""|All possible claims expected from admin clients; the same format as ClientClaims; this list internally gets added to ClientClaims; so no need to also add the same entries to ClientClaims. |
+|ClusterSpn|wstring,default is L""|Service principal name of the cluster; when fabric runs as a single domain user (gMSA/domain user account). It is the SPN of lease listeners and listeners in fabric.exe: federation listeners; internal replication listeners; runtime service listener and naming gateway listener. This should be left empty when fabric runs as machine accounts; in which case connecting side compute listener SPN from listener transport address. |
+|ClusterIdentities|wstring,default is L""|Windows identities of cluster nodes; used for cluster membership authorization. It is a comma separated list; each entry is a domain account name or group name |
+|ClientIdentities|wstring,default is L""|Windows identities of FabricClient; naming gateway uses this to authorize incoming connections. It is a comma separated list; each entry is a domain account name or group name. For convenience; the account that runs fabric.exe is automatically allowed; so are group ServiceFabricAllowedUsers and ServiceFabricAdministrators. |
+|AdminClientIdentities|wstring,default is L""|Windows identities of fabric clients in admin role; used to authorize privileged fabric operations. It is a comma separated list; each entry is a domain account name or group name. For convenience; the account that runs fabric.exe is automatically assigned admin role; so is group ServiceFabricAdministrators. |
+|AADTenantId|wstring,default is L""|Tenant ID (GUID) |
+|AADClusterApplication|wstring,default is L""|Web API application name or ID representing the cluster |
+|AADClientApplication|wstring,default is L""|Native Client application name or ID representing Fabric Clients |
+|X509Folder|string,default is /var/lib/waagent|Folder where X509 certificates and private keys are located |
+
+### Section Name: Security/AdminClientX509Names
+| **Parameter** | **Allowed Values** | **Guidance or short Description** |
+| --- | --- | --- |
+|PropertyGroup|X509NameMap,default is None| |
+
+### Section Name: Security/ClientX509Names
+| **Parameter** | **Allowed Values** | **Guidance or short Description** |
+| --- | --- | --- |
+PropertyGroup|X509NameMap,default is None| |
+
+### Section Name: Security/ClusterX509Names
+| **Parameter** | **Allowed Values** | **Guidance or short Description** |
+| --- | --- | --- |
+PropertyGroup|X509NameMap,default is None| |
+
+### Section Name: Security/ServerX509Names
+| **Parameter** | **Allowed Values** | **Guidance or short Description** |
+| --- | --- | --- |
+PropertyGroup|X509NameMap,default is None| |
 
 ### Section Name: Security/ClientAccess
 | **Parameter** | **Allowed Values** | **Guidance or short Description** |
