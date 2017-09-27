@@ -673,6 +673,22 @@ Here are the Fabric settings that you can customize:
 | --- | --- | --- |
 |PropertyGroup|KeyDoubleValueMap,default is None|Node capacity percentage per metric name; used as a buffer in order to keep some free place on a node for the failover case. |
 
+### Section Name: Replication
+| **Parameter** | **Allowed Values** | **Guidance or short Description** |
+| --- | --- | --- |
+|MaxCopyQueueSize|uint,default is 1024|This is the maximum value defines the initial size for the queue which maintains replication operations.  Note that it must be a power of 2.  If during runtime the queue grows to this size operations will be throttled between the primary and secondary replicators.|
+|BatchAcknowledgementInterval|TimeSpan,default is Common::TimeSpan::FromMilliseconds(15)|Specify timespan in seconds. Determines the amount of time that the replicator waits after receiving an operation before sending back an acknowledgement. Other operations received during this time period will have their acknowledgements sent back in a single message-> reducing network traffic but potentially reducing the throughput of the replicator.|
+|MaxReplicationMessageSize|uint,default is 52428800|Maximum message size of replication operations. Default is 50MB.|
+|ReplicatorAddress|wstring,default is L"localhost:0"|The endpoint in form of a string -'IP:Port' which is used by the Windows Fabric Replicator to establish connections with other replicas in order to send/receive operations.|
+|ReplicatorListenAddress|wstring,default is L"localhost:0"|The endpoint in form of a string -'IP:Port' which is used by the Windows Fabric Replicator to receive operations from other replicas.|
+|ReplicatorPublishAddress|wstring,default is L"localhost:0"|The endpoint in form of a string -'IP:Port' which is used by the Windows Fabric Replicator to send operations to other replicas.|
+|MaxPrimaryReplicationQueueSize|uint,default is 1024|This is the maximum number of operations that could exist in the primary replication queue. Note that it must be a power of 2.|
+|MaxPrimaryReplicationQueueMemorySize|uint,default is 0|This is the maximum value of the primary replication queue in bytes.|
+|MaxSecondaryReplicationQueueSize|uint,default is 2048|This is the maximum number of operations that could exist in the secondary replication queue. Note that it must be a power of 2.|
+|MaxSecondaryReplicationQueueMemorySize|uint,default is 0|This is the maximum value of the secondary replication queue in bytes.|
+|QueueHealthMonitoringInterval|TimeSpan,default is Common::TimeSpan::FromSeconds(30)|Specify timespan in seconds. This value determines the time period used by the Replicator to monitor any warning/error health events in the replication operation queues. A value of '0' disables health monitoring |
+|QueueHealthWarningAtUsagePercent|uint,default is 80|This value determines the replication queue usage(in percentage) after which we report warning about high queue usage. We do so after a grace interval of QueueHealthMonitoringInterval. If the queue usage falls below this percentage in the grace interval|
+|RetryInterval|TimeSpan,default is Common::TimeSpan::FromSeconds(5)|Specify timespan in seconds. When an operation is lost or rejected this timer determines how often the replicator will retry sending the operation.	|
 
 ## Next steps
 Read these articles for more information on cluster management:
