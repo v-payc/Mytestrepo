@@ -741,6 +741,12 @@ PropertyGroup|X509NameMap,default is None| |
 |QueueHealthWarningAtUsagePercent|uint,default is 80|This value determines the replication queue usage(in percentage) after which we report warning about high queue usage. We do so after a grace interval of QueueHealthMonitoringInterval. If the queue usage falls below this percentage in the grace interval|
 |RetryInterval|TimeSpan,default is Common::TimeSpan::FromSeconds(5)|Specify timespan in seconds. When an operation is lost or rejected this timer determines how often the replicator will retry sending the operation.	|
 
+### Section Name: Transport
+| **Parameter** | **Allowed Values** | **Guidance or short Description** |
+| --- | --- | --- |
+|ResolveOption|wstring,default is L"unspecified"|Determines how FQDN are resolved.  Valid values are "unspecified/ipv4/ipv6". |
+|ConnectionOpenTimeout|TimeSpan,default is Common::TimeSpan::FromSeconds(60)|Specify timespan in seconds. Timeout for connection setup on both incoming and accepting side (including security negotiation in secure mode) |
+
 ## Next steps
 Read these articles for more information on cluster management:
 
