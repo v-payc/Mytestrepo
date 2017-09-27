@@ -333,6 +333,12 @@ Here are the Fabric settings that you can customize:
 | MaxPercentUnhealthyNodes | Int, default is 0 |Cluster health evaluation policy: maximum percent of unhealthy nodes allowed for the cluster to be healthy. |
 | MaxPercentUnhealthyApplications | Int, default is 0 |Cluster health evaluation policy: maximum percent of unhealthy applications allowed for the cluster to be healthy. |
 
+### Section Name: HealthManager/ClusterUpgradeHealthPolicy
+| **Parameter** | **Allowed Values** | **Guidance or short Description** |
+| --- | --- | --- |
+|MaxPercentDeltaUnhealthyNodes|int,default is 10| Cluster upgrade health evaluation policy: maximum percent of delta unhealthy nodes allowed for the cluster to be healthy |
+|MaxPercentUpgradeDomainDeltaUnhealthyNodes|int,default is 15| Cluster upgrade health evaluation policy: maximum percent of delta of unhealthy nodes in an upgrade domain allowed for the cluster to be healthy |
+
 ### Section Name: FaultAnalysisService
 | **Parameter** | **Allowed Values** | **Guidance or short Description** |
 | --- | --- | --- |
@@ -374,6 +380,13 @@ Here are the Fabric settings that you can customize:
 | SecondaryAccountNTLMX509StoreLocation | string, default is "LocalMachine" |The store location of the X509 certificate used to generate HMAC on the SecondaryAccountNTLMPasswordSecret  when using NTLM authentication. |
 | SecondaryAccountNTLMX509StoreName | string, default is "MY" |The store name of the X509 certificate used to generate HMAC on the SecondaryAccountNTLMPasswordSecret  when using NTLM authentication. |
 | SecondaryAccountNTLMX509Thumbprint | string, default is ""| The thumbprint of the X509 certificate used to generate HMAC on the SecondaryAccountNTLMPasswordSecret  when using NTLM authentication. |
+|CommonNameNtlmPasswordSecret|SecureString,default is Common::SecureString(L"")| The password secret which used as seed to generated same password when using NTLM authentication |
+|CommonName1Ntlmx509StoreLocation|wstring,default is L"LocalMachine"|The store location of the X509 certificate used to generate HMAC on the CommonName1NtlmPasswordSecret  when using NTLM authentication |
+|CommonName1Ntlmx509StoreName|wstring,default is L"MY"| The store name of the X509 certificate used to generate HMAC on the CommonName1NtlmPasswordSecret  when using NTLM authentication |
+|CommonName1Ntlmx509CommonName|wstring,default is L""| The common name of the X509 certificate used to generate HMAC on the CommonName1NtlmPasswordSecret  when using NTLM authentication |
+|CommonName2Ntlmx509StoreLocation|wstring,default is L"LocalMachine"| The store location of the X509 certificate used to generate HMAC on the CommonName2NtlmPasswordSecret  when using NTLM authentication |
+|CommonName2Ntlmx509StoreName|wstring,default is L"MY"| The store name of the X509 certificate used to generate HMAC on the CommonName2NtlmPasswordSecret  when using NTLM authentication |
+|CommonName2Ntlmx509CommonName|wstring,default is L""|The common name of the X509 certificate used to generate HMAC on the CommonName2NtlmPasswordSecret  when using NTLM authentication |
 
 ### Section Name: ImageStoreService
 | **Parameter** | **Allowed Values** | **Guidance or short Description** |
@@ -644,6 +657,22 @@ Here are the Fabric settings that you can customize:
 | --- | --- | --- |
 |IsEnabled|bool, default is FALSE| |
 |InstanceCount|int,default is -1|  |
+
+### Section Name: MetricActivityThresholds
+| **Parameter** | **Allowed Values** | **Guidance or short Description** |
+| --- | --- | --- |
+|PropertyGroup|KeyIntegerValueMap,default is None|Determines the set of MetricActivityThresholds for the metrics in the cluster. Balancing will work if maxNodeLoad is greater than MetricActivityThresholds. For deferag metrics it defines the amount of load equal to or below which Service Fabric will consider the node empty |
+
+### Section Name: MetricBalancingThresholds
+| **Parameter** | **Allowed Values** | **Guidance or short Description** |
+| --- | --- | --- |
+|PropertyGroup|KeyDoubleValueMap,default is None|Determines the set of MetricBalancingThresholds for the metrics in the cluster. Balancing will work if maxNodeLoad/minNodeLoad is greater than MetricBalancingThresholds. Defragmentation will work if maxNodeLoad/minNodeLoad in at least one FD or UD is smaller than MetricBalancingThresholds. |
+
+### Section Name: NodeBufferPercentage
+| **Parameter** | **Allowed Values** | **Guidance or short Description** |
+| --- | --- | --- |
+|PropertyGroup|KeyDoubleValueMap,default is None|Node capacity percentage per metric name; used as a buffer in order to keep some free place on a node for the failover case. |
+
 
 ## Next steps
 Read these articles for more information on cluster management:
