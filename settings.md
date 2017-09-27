@@ -255,10 +255,10 @@ Here are the Fabric settings that you can customize:
 ### Section Name: HttpGateway
 | **Parameter** | **Allowed Values** | **Guidance or short Description** |
 | --- | --- | --- |
-|IsEnabled|Bool, default is false | Enables/Disables the httpgateway. Httpgateway is disabled by default and this config needs to be set to enable it. |
+|IsEnabled|Bool, default is false | Enables/Disables the HttpGateway. HttpGateway is disabled by default. |
 |ActiveListeners |Uint, default is 50 | Number of reads to post to the http server queue. This controls the number of concurrent requests that can be satisfied by the HttpGateway. |
 |MaxEntityBodySize |Uint, default is 4194304 |  Gives the maximum size of the body that can be expected from a http request. Default value is 4MB. Httpgateway will fail a request if it has a body of size > this value. Minimum read chunk size is 4096 bytes. So this has to be >= 4096. |
-|HttpGatewayHealthReportSendInterval |Time in seconds, default is 30 | Specify timespan in seconds. The interval at which the Http Gateway sends accumulated health reports to Health Manager. |
+|HttpGatewayHealthReportSendInterval |Time in seconds, default is 30 | Specify timespan in seconds. The interval at which the Http Gateway sends accumulated health reports to the Health Manager. |
 
 ### Section Name: KtlLogger
 | **Parameter** | **Allowed Values** | **Guidance or short Description** |
@@ -284,6 +284,20 @@ Here are the Fabric settings that you can customize:
 |GatewayX509CertificateFindType |string, default is "FindByThumbprint" | Indicates how to search for certificate in the store specified by GatewayX509CertificateStoreName Supported value: FindByThumbprint; FindBySubjectName. |
 |GatewayX509CertificateFindValue | string, default is "" | Search filter value used to locate the http app gateway certificate. This certificate is configured on the https endpoint and can also be used to verify the identity of the app if needed by the services. FindValue is looked up first; and if that doesnt exist; FindValueSecondary is looked up. |
 |GatewayX509CertificateFindValueSecondary | string, default is "" |Search filter value used to locate the http app gateway certificate. This certificate is configured on the https endpoint and can also be used to verify the identity of the app if needed by the services. FindValue is looked up first; and if that doesnt exist; FindValueSecondary is looked up.|
+|HttpRequestConnectTimeout|TimeSpan, default is Common::TimeSpan::FromSeconds(5)|Specify timespan in seconds.  Gives the connect timeout for the http requests being sent from the http app gateway.  |
+|RemoveServiceResponseHeaders|wstring, default is L"Date;Server"|Semi colon/ comma separated list of response headers that will be removed from the service response; before forwarding it to the client. If this is set to empty string; pass all the headers returned by the service as-is. i.e do not overwrite the Date and Server |
+|ApplicationCertificateValidationPolicy|wstring, default is L"None"| ApplicationCertificateValidationPolicy: None: Do not validate server certificate; succeed the request. ServiceCertificateThumbprints: Refer to config ServiceCertificateThumbprints for the comma separated list of thumbprints of the remote certs that the reverse proxy can trust. ServiceCommonNameAndIssuer:  Refer to config ServiceCommonNameAndIssuer for the subject name and issuer thumbprint of the remote certs that the reverse proxy can trust. |
+|ServiceCertificateThumbprints|wstring, default is L""| |
+|CrlCheckingFlag|uint, default is 0x40000000 | Flags for application/service certificate chain validation; e.g. CRL checking 0x10000000 CERT_CHAIN_REVOCATION_CHECK_END_CERT 0x20000000 CERT_CHAIN_REVOCATION_CHECK_CHAIN 0x40000000 CERT_CHAIN_REVOCATION_CHECK_CHAIN_EXCLUDE_ROOT 0x80000000 CERT_CHAIN_REVOCATION_CHECK_CACHE_ONLY Setting to 0 disables CRL checking Full list of supported values is documented by dwFlags of CertGetCertificateChain: http://msdn.microsoft.com/en-us/library/windows/desktop/aa376078(v=vs.85).aspx  |
+|IgnoreCrlOfflineError|bool, default is TRUE|Whether to ignore CRL offline error for application/service certificate verification. |
+|SecureOnlyMode|bool, default is FALSE| SecureOnlyMode: true: Reverse Proxy will only forward to services that publish secure endpoints. false: Reverse Proxy can forward requests to secure/non-secure endpoints.  |
+|ForwardClientCertificate|bool, default is FALSE| |
+
+### Section Name: ApplicationGateway/Http/ServiceCommonNameAndIssuer
+| **Parameter** | **Allowed Values** | **Guidance or short Description** |
+| --- | --- | --- |
+|PropertyGroup|X509NameMap, default is None|  |
+
 
 ### Section Name: Management
 | **Parameter** | **Allowed Values** | **Guidance or short Description** |
@@ -324,7 +338,7 @@ Here are the Fabric settings that you can customize:
 | QueryOperationTimeout | Time in seconds, default is 60 |Specify timespan in seconds. The timeout for performing query operation. |
 | MaxCopyOperationThreads | Uint, default is 0 | The maximum number of parallel files that secondary can copy from primary. '0' == number of cores. |
 | MaxFileOperationThreads | Uint, default is 100 | The maximum number of parallel threads allowed to perform FileOperations (Copy/Move) in the primary. '0' == number of cores. |
-| MaxStoreOperations | Uint, default is 4096 |The maximum number of parallel store transcation operations allowed on primary. '0' == number of cores. |
+| MaxStoreOperations | Uint, default is 4096 |The maximum number of parallel store transaction operations allowed on primary. '0' == number of cores. |
 | MaxRequestProcessingThreads | Uint, default is 200 |The maximum number of parallel threads allowed to process requests in the primary. '0' == number of cores. |
 | MaxSecondaryFileCopyFailureThreshold | Uint, default is 25| The maximum number of file copy retries on the secondary before giving up. |
 | AnonymousAccessEnabled | Bool, default is true |Enable/Disable anonymous access to the FileStoreService shares. |
