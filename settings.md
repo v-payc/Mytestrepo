@@ -201,6 +201,21 @@ Here are the Fabric settings that you can customize:
 | QuorumLossWaitDuration |Time in seconds, default is MaxValue |Specify timespan in seconds. This is the max duration for which we allow a partition to be in a state of quorum loss. If the partition is still in quorum loss after this duration; the partition is recovered from quorum loss by considering the down replicas as lost. Note that this can potentially incur data loss. |
 | UserStandByReplicaKeepDuration |Time in seconds, default is 3600.0 * 24 * 7 |Specify timespan in seconds. When a persisted replica come back from a down state; it may have already been replaced. This timer determines how long the FM will keep the standby replica before discarding it. |
 | UserMaxStandByReplicaCount |Int, default is 1 |The default max number of StandBy replicas that the system keeps for user services. |
+| ExpectedClusterSize|int,default is 1|When the cluster is initially started up; the FM will wait for this many nodes to report themselves up before it begins placing other services; including the system services like naming.  Increasing this value increases the time it takes a cluster to start up; but prevents the early nodes from becoming overloaded and also the additional moves that will be necessary as more nodes come online.  This value should generally be set to some small fraction of the initial cluster size. |
+|ClusterPauseThreshold|int, default is 1| If the number of nodes in system go below this value then placement; load balancing; and failover is stopped. |
+|TargetReplicaSetSize|int, default is 7|This is the target number of FM replicas that Windows Fabric will maintain.  A higher number results in higher reliability of the FM data; with a small performance tradeoff. |
+|MinReplicaSetSize|int,, default is 3|This is the minimum replica set size for the FM.  If the number of active FM replicas drops below this value; the FM will reject changes to the cluster until at least the min number of replicas is recovered |
+|ReplicaRestartWaitDuration|TimeSpan,default is Common::TimeSpan::FromSeconds(60.0 * 30)|Specify timespan in seconds. This is the ReplicaRestartWaitDuration for the FMService |
+|StandByReplicaKeepDuration|Timespan, default is Common::TimeSpan::FromSeconds(3600.0 * 24 * 7)|Specify timespan in seconds. This is the StandByReplicaKeepDuration for the FMService |
+|PlacementConstraints|wstring, default is L""|Any placement constraints for the failover manager replicas |
+|ExpectedNodeFabricUpgradeDuration|TimeSpan, default is Common::TimeSpan::FromSeconds(60.0 * 30)|Specify timespan in seconds. This is the expected duration for a node to be upgraded during Windows Fabric upgrade. |
+|ExpectedReplicaUpgradeDuration|TimeSpan, default is Common::TimeSpan::FromSeconds(60.0 * 30)|Specify timespan in seconds. This is the expected duration for all the replicas to be upgraded on a node during application upgrade. |
+|ExpectedNodeDeactivationDuration|TimeSpan, default is Common::TimeSpan::FromSeconds(60.0 * 30)|Specify timespan in seconds. This is the expected duration for a node to complete deactivation in. |
+|IsSingletonReplicaMoveAllowedDuringUpgrade|bool,default is TRUE|If set to true; replicas with a target replica set size of 1 will be permitted to move during upgrpade. |
+|ReconfigurationTimeLimit|TimeSpan,default is Common::TimeSpan::FromSeconds(300)|Specify timespan in seconds. The time limit for reconfiguration; after which a warning health report will be initiated |
+|BuildReplicaTimeLimit|TimeSpan,default is Common::TimeSpan::FromSeconds(3600)|Specify timespan in seconds. The time limit for building a stateful replica; after which a warning health report will be initiated |
+|CreateInstanceTimeLimit|TimeSpan,default is Common::TimeSpan::FromSeconds(300)|Specify timespan in seconds. The time limit for creating a stateless instance; after which a warning health report will be initiated |
+|PlacementTimeLimit|TimeSpan,default is Common::TimeSpan::FromSeconds(600)|Specify timespan in seconds. The time limit for reaching target replica count; after which a warning health report will be initiated |
 
 ### Section Name: NamingService
 | **Parameter** | **Allowed Values** | **Guidance or short Description** |
@@ -330,6 +345,9 @@ Here are the Fabric settings that you can customize:
 | StoredActionCleanupIntervalInSeconds | Int, default is 3600 |This is how often the store will be cleaned up.  Only actions in a terminal state; and that completed at least CompletedActionKeepDurationInSeconds ago will be removed. |
 | CompletedActionKeepDurationInSeconds | Int, default is 604800 | This is approximately how long to keep actions that are in a terminal state.  This also depends on StoredActionCleanupIntervalInSeconds; since the work to cleanup is only done on that interval. 604800 is 7 days. |
 | StoredChaosEventCleanupIntervalInSeconds | Int, default is 3600 |This is how often the store will be audited for cleanup; if the number of events is more than 30000; the cleanup will kick in. |
+|DataLossCheckWaitDurationInSeconds|int,default is 25|The total amount of time; in seconds; that the system will wait for data loss to happen.  This is internally used when the StartPartitionDataLossAsync() api is called. |
+|DataLossCheckPollIntervalInSeconds|int,default is 5|The is the time between the checks the system performs  while waiting for data loss to happen.  The number of times the data loss number will be checked per internal iteration is DataLossCheckWaitDurationInSeconds/this. |
+|ReplicaDropWaitDurationInSeconds|int,default is 600|This parameter is used when the data loss api is called.  It controls how long the system will wait for a replica to get dropped after remove replica is internally invoked on it. |
 
 ### Section Name: FileStoreService
 | **Parameter** | **Allowed Values** | **Guidance or short Description** |
