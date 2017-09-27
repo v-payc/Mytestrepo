@@ -360,7 +360,7 @@ Here are the Fabric settings that you can customize:
 ### Section Name: ImageStoreService
 | **Parameter** | **Allowed Values** | **Guidance or short Description** |
 | --- | --- | --- |
-| Enabled |Bool, default is false |The Enabled flag for ImageStoreService. |
+| Enabled |Bool, default is false |The Enabled flag for ImageStoreService. Default: false |
 | TargetReplicaSetSize | Int, default is 7 |The TargetReplicaSetSize for ImageStoreService. |
 | MinReplicaSetSize | Int, default is 3 |The MinReplicaSetSize for ImageStoreService. |
 | ReplicaRestartWaitDuration | Time in seconds, default is 60.0 * 30 | Specify timespan in seconds. The ReplicaRestartWaitDuration for ImageStoreService. |
