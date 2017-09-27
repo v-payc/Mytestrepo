@@ -621,6 +621,12 @@ Here are the Fabric settings that you can customize:
 | --- | --- | --- |
 |PropertyGroup|KeyDoubleValueMap, default is None|Determines the number of free nodes which are needed to consider cluster defragmented by specifying either percent in range [0.0 - 1.0) or number of empty nodes as number >= 1.0 |
 
+### Section Name: DnsService
+| **Parameter** | **Allowed Values** | **Guidance or short Description** |
+| --- | --- | --- |
+|IsEnabled|bool, default is FALSE| |
+|InstanceCount|int,default is -1|  |
+
 ## Next steps
 Read these articles for more information on cluster management:
 
