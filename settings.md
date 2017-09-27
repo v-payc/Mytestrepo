@@ -303,8 +303,6 @@ Here are the Fabric settings that you can customize:
 | ConsiderWarningAsError |Bool, default is false |Cluster health evaluation policy: warnings are treated as errors. |
 | MaxPercentUnhealthyNodes | Int, default is 0 |Cluster health evaluation policy: maximum percent of unhealthy nodes allowed for the cluster to be healthy. |
 | MaxPercentUnhealthyApplications | Int, default is 0 |Cluster health evaluation policy: maximum percent of unhealthy applications allowed for the cluster to be healthy. |
-|MaxPercentDeltaUnhealthyNodes | Int, default is 10 |Cluster upgrade health evaluation policy: maximum percent of delta unhealthy nodes allowed for the cluster to be healthy. |
-|MaxPercentUpgradeDomainDeltaUnhealthyNodes | Int, default is 15 |Cluster upgrade health evaluation policy: maximum percent of delta of unhealthy nodes in an upgrade domain allowed for the cluster to be healthy.|
 
 ### Section Name: FaultAnalysisService
 | **Parameter** | **Allowed Values** | **Guidance or short Description** |
@@ -355,11 +353,6 @@ Here are the Fabric settings that you can customize:
 | QuorumLossWaitDuration | Time in seconds, default is MaxValue | Specify timespan in seconds. The QuorumLossWaitDuration for ImageStoreService. |
 | StandByReplicaKeepDuration | Time in seconds, default is 3600.0 * 2 | Specify timespan in seconds. The StandByReplicaKeepDuration for ImageStoreService. |
 | PlacementConstraints | string, default is "" | The PlacementConstraints for ImageStoreService. |
-| ClientUploadTimeout | Time in seconds, default is 1800 |Specify timespan in seconds. Timeout value for top-level upload request to Image Store Service. |
-| ClientCopyTimeout | Time in seconds, default is 1800 | Specify timespan in seconds. Timeout value for top-level copy request to Image Store Service. |
-| ClientDownloadTimeout | Time in seconds, default is 1800 | Specify timespan in seconds. Timeout value for top-level download request to Image Store Service |
-| ClientListTimeout | Time in seconds, default is 600 | Specify timespan in seconds. Timeout value for top-level list request to Image Store Service. |
-| ClientDefaultTimeout | Time in seconds, default is 180 | Specify timespan in seconds. Timeout value for all non-upload/non-download requests (e.g. exists; delete) to Image Store Service. |
 
 ### Section Name: ImageStoreClient
 | **Parameter** | **Allowed Values** | **Guidance or short Description** |
@@ -554,11 +547,6 @@ Here are the Fabric settings that you can customize:
 |PartiallyPlaceServices | Bool, default is true | Determines if all service replicas in cluster will be placed "all or nothing" given limited suitable nodes for them.|
 |InterruptBalancingForAllFailoverUnitUpdates | Bool, default is false | Determines if any type of failover unit update should interrupt fast or slow balancing run. With specified "false" balancing run will be interrupted if FailoverUnit:  is created/deleted; has missing replicas; changed primary replica location or changed number of replicas. Balancing run will NOT be interrupted in other cases - if FailoverUnit:  has extra replicas; changed any replica flag; changed only partition version or any other case. |
 
-### Section Name: Security
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-| ClusterProtectionLevel |None or EncryptAndSign |None (default) for unsecured clusters, EncryptAndSign for secure clusters. |
-
 ### Section Name: Hosting
 | **Parameter** | **Allowed Values** | **Guidance or short Description** |
 | --- | --- | --- |
@@ -567,11 +555,6 @@ Here are the Fabric settings that you can customize:
 | ActivationRetryBackoffInterval |Time in Seconds, default is 5 |Backoff interval on every activation failure; On every continuous activation failure, the system retries the activation for up to the MaxActivationFailureCount. The retry interval on every try is a product of continuous activation failure and the activation back-off interval. |
 | ActivationMaxRetryInterval |Time in seconds, default is 300 |On every continuous activation failure, the system retries the activation for up to ActivationMaxFailureCount. ActivationMaxRetryInterval specifies Wait time interval before retry after every activation failure |
 | ActivationMaxFailureCount |Whole number, default is 10 |Number of times system retries failed activation before giving up |
-
-### Section Name: FailoverManager
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-| PeriodicLoadPersistInterval |Time in seconds, default is 10 |This determines how often the FM check for new load reports |
 
 ### Section Name: Federation
 | **Parameter** | **Allowed Values** | **Guidance or short Description** |
