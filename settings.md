@@ -472,6 +472,11 @@ Here are the Fabric settings that you can customize:
 |AADClusterApplication|wstring,default is L""|Web API application name or ID representing the cluster |
 |AADClientApplication|wstring,default is L""|Native Client application name or ID representing Fabric Clients |
 |X509Folder|string,default is /var/lib/waagent|Folder where X509 certificates and private keys are located |
+|FabricHostSpn| wstring,default is L"" | Service principal name of FabricHost; when fabric runs as a single domain user (gMSA/domain user account) and FabricHost runs under machine account. It is the SPN of IPC listener for FabricHost; which by default should be left empty since FabricHost runs under machine account |
+|DisableFirewallRuleForPublicProfile| bool,default is TRUE | Indicates if firewall rule should not be enabled for public profile |
+|DisableFirewallRuleForPrivateProfile| bool,default is TRUE | Indicates if firewall rule should not be enabled for private profile | 
+|DisableFirewallRuleForDomainProfile| bool,default is TRUE | Indicates if firewall rule should not be enabled for domain profile |
+|SettingsX509StoreName| wstring,default is L"MY"| X509 certificate store used by fabric for configuration protection |
 
 ### Section Name: Security/AdminClientX509Names
 | **Parameter** | **Allowed Values** | **Guidance or short Description** |
