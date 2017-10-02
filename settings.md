@@ -753,6 +753,14 @@ PropertyGroup|X509NameMap,default is None| |
 |ResolveOption|wstring,default is L"unspecified"|Determines how FQDN are resolved.  Valid values are "unspecified/ipv4/ipv6". |
 |ConnectionOpenTimeout|TimeSpan,default is Common::TimeSpan::FromSeconds(60)|Specify timespan in seconds. Timeout for connection setup on both incoming and accepting side (including security negotiation in secure mode) |
 
+### Section Name: BackupRestoreService
+| **Parameter** | **Allowed Values** | **Guidance or short Description** |
+| --- | --- | --- |
+|UseSSL|bool, default is FALSE| This indicates if the Backup Restore service should use SSL for REST endpoint.|
+|ACLCertThumbprint|wstring,default is L""| This provides thumbprint for certificate to acl ssl port.|
+|ACLCertStoreName|wstring,default is L""| This provides certificate store name to look for certificate to acl ssl port.|
+|ACLCertStoreLocation|wstring,default is L""| This provides certificate store location to look for certificate to acl ssl port.|
+
 ## Next steps
 Read these articles for more information on cluster management:
 
