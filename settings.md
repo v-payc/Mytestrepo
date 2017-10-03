@@ -716,7 +716,8 @@ PropertyGroup|X509NameMap,default is None| |
 |MaxOperationRetryDelay |Time in seconds, default is 5| Specify timespan in seconds. The maximum delay for internal retries when failures are encountered. |
 |ReplicaSetCheckTimeoutRollbackOverride |Time in seconds, default is 1200 | Specify timespan in seconds. If ReplicaSetCheckTimeout is set to the maximum value of DWORD; then it's overridden with the value of this config for the purposes of rollback. The value used for rollforward is never overridden. |
 |ImageBuilderJobQueueThrottle |Int, default is 10 |Thread count throttle for Image Builder proxy job queue on application requests. |
-      
+|MaxExponentialOperationRetryDelay|TimeSpan,default is Common::TimeSpan::FromSeconds(30)|Specify timespan in seconds. The maximum exponential delay for internal retries when failures are encountered repeatedly |
+
 ### Section Name: DefragmentationEmptyNodeDistributionPolicy
 | **Parameter** | **Allowed Values** | **Guidance or short Description** |
 | --- | --- | --- |
