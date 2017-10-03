@@ -584,6 +584,12 @@ PropertyGroup|X509NameMap,default is None| |
 | GetNodeTransitionProgress | string, default is "Admin\|\|User" | Security configuration for getting progress on a node transition command. |
 | GetClusterConfigurationUpgradeStatus | string, default is "Admin\|\|User" | Induces GetClusterConfigurationUpgradeStatus on a partition. |
 | GetClusterConfiguration | string, default is "Admin\|\|User" | Induces GetClusterConfiguration on a partition. |
+|CreateComposeDeployment|wstring,default is L"Admin"| Creates an compose deployment described by compose files |
+|DeleteComposeDeployment|wstring,default is L"Admin"| Deletes the compose deployment |
+|UpgradeComposeDeployment|wstring,default is L"Admin"| Upgrades the compose deployment |
+|ResolveSystemService|wstring,default is L"Admin\|\|User"| Security configuration for resolving system services |
+|GetUpgradeOrchestrationServiceState|wstring,default is L"Admin"| Induces GetUpgradeOrchestrationServiceState on a partition |
+|SetUpgradeOrchestrationServiceState|wstring,default is L"Admin"| Induces SetUpgradeOrchestrationServiceState on a partition |
 
 ### Section Name: ReconfigurationAgent
 | **Parameter** | **Allowed Values** | **Guidance or short Description** |
