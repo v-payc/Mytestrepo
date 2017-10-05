@@ -337,20 +337,20 @@ Here are the Fabric settings that you can customize:
 |MaxPercentUpgradeDomainDeltaUnhealthyNodes|int,default is 15|Static|Cluster upgrade health evaluation policy: maximum percent of delta of unhealthy nodes in an upgrade domain allowed for the cluster to be healthy |
 
 ### Section Name: FaultAnalysisService
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-| TargetReplicaSetSize |Int, default is 0 |NOT_PLATFORM_UNIX_START The TargetReplicaSetSize for FaultAnalysisService. |
-| MinReplicaSetSize |Int, default is 0 |The MinReplicaSetSize for FaultAnalysisService. |
-| ReplicaRestartWaitDuration |Time in seconds, default is 60 minutes|Specify timespan in seconds. The ReplicaRestartWaitDuration for FaultAnalysisService. |
-| QuorumLossWaitDuration | Time in seconds, default is MaxValue |Specify timespan in seconds. The QuorumLossWaitDuration for FaultAnalysisService. |
-| StandByReplicaKeepDuration| Time in seconds, default is (60*24*7) minutes |Specify timespan in seconds. The StandByReplicaKeepDuration for FaultAnalysisService. |
-| PlacementConstraints | string, default is ""| The PlacementConstraints for FaultAnalysisService. |
-| StoredActionCleanupIntervalInSeconds | Int, default is 3600 |This is how often the store will be cleaned up.  Only actions in a terminal state; and that completed at least CompletedActionKeepDurationInSeconds ago will be removed. |
-| CompletedActionKeepDurationInSeconds | Int, default is 604800 | This is approximately how long to keep actions that are in a terminal state.  This also depends on StoredActionCleanupIntervalInSeconds; since the work to cleanup is only done on that interval. 604800 is 7 days. |
-| StoredChaosEventCleanupIntervalInSeconds | Int, default is 3600 |This is how often the store will be audited for cleanup; if the number of events is more than 30000; the cleanup will kick in. |
-|DataLossCheckWaitDurationInSeconds|int,default is 25|The total amount of time; in seconds; that the system will wait for data loss to happen.  This is internally used when the StartPartitionDataLossAsync() api is called. |
-|DataLossCheckPollIntervalInSeconds|int,default is 5|The is the time between the checks the system performs  while waiting for data loss to happen.  The number of times the data loss number will be checked per internal iteration is DataLossCheckWaitDurationInSeconds/this. |
-|ReplicaDropWaitDurationInSeconds|int,default is 600|This parameter is used when the data loss api is called.  It controls how long the system will wait for a replica to get dropped after remove replica is internally invoked on it. |
+| **Parameter** | **Allowed Values** | **Upgrade Policy** | **Guidance or short Description** |
+| --- | --- | --- | --- |
+| TargetReplicaSetSize |Int, default is 0 |Not Allowed|NOT_PLATFORM_UNIX_START The TargetReplicaSetSize for FaultAnalysisService. |
+| MinReplicaSetSize |Int, default is 0 |Not Allowed|The MinReplicaSetSize for FaultAnalysisService. |
+| ReplicaRestartWaitDuration |Time in seconds, default is 60 minutes|Static|Specify timespan in seconds. The ReplicaRestartWaitDuration for FaultAnalysisService. |
+| QuorumLossWaitDuration | Time in seconds, default is MaxValue |Static|Specify timespan in seconds. The QuorumLossWaitDuration for FaultAnalysisService. |
+| StandByReplicaKeepDuration| Time in seconds, default is (60*24*7) minutes |Static|Specify timespan in seconds. The StandByReplicaKeepDuration for FaultAnalysisService. |
+| PlacementConstraints | string, default is ""|Static| The PlacementConstraints for FaultAnalysisService. |
+| StoredActionCleanupIntervalInSeconds | Int, default is 3600 |Static|This is how often the store will be cleaned up.  Only actions in a terminal state; and that completed at least CompletedActionKeepDurationInSeconds ago will be removed. |
+| CompletedActionKeepDurationInSeconds | Int, default is 604800 |Static| This is approximately how long to keep actions that are in a terminal state.  This also depends on StoredActionCleanupIntervalInSeconds; since the work to cleanup is only done on that interval. 604800 is 7 days. |
+| StoredChaosEventCleanupIntervalInSeconds | Int, default is 3600 |Static|This is how often the store will be audited for cleanup; if the number of events is more than 30000; the cleanup will kick in. |
+|DataLossCheckWaitDurationInSeconds|int,default is 25|Static|The total amount of time; in seconds; that the system will wait for data loss to happen.  This is internally used when the StartPartitionDataLossAsync() api is called. |
+|DataLossCheckPollIntervalInSeconds|int,default is 5|Static|The is the time between the checks the system performs  while waiting for data loss to happen.  The number of times the data loss number will be checked per internal iteration is DataLossCheckWaitDurationInSeconds/this. |
+|ReplicaDropWaitDurationInSeconds|int,default is 600|Static|This parameter is used when the data loss api is called.  It controls how long the system will wait for a replica to get dropped after remove replica is internally invoked on it. |
 
 ### Section Name: FileStoreService
 | **Parameter** | **Allowed Values** | **Guidance or short Description** |
