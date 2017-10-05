@@ -49,175 +49,171 @@ The steps below illustrate how to add a new setting *MaxDiskQuotaInMB* to the *D
 Here are the Fabric settings that you can customize:
 
 ### Section Name: Diagnostics
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-| ConsumerInstances |String |The list of DCA consumer instances. |
-| ProducerInstances |String |The list of DCA producer instances. |
-| AppEtwTraceDeletionAgeInDays |Int, default is 3 |Number of days after which we delete old ETL files containing application ETW traces. |
-| AppDiagnosticStoreAccessRequiresImpersonation |Bool, default is true |Whether or not impersonation is required when accessing diagnostic stores on behalf of the application. |
-| MaxDiskQuotaInMB |Int, default is 65536 |Disk quota in MB for Windows Fabric log files. |
-| DiskFullSafetySpaceInMB |Int, default is 1024 |Remaining disk space in MB to protect from use by DCA. |
-| ApplicationLogsFormatVersion |Int, default is 0 |Version for application logs format. Supported values are 0 and 1. Version 1 includes more fields from the ETW event record than version 0. |
-| ClusterId |String |The unique id of the cluster. This is generated when the cluster is created. |
-| EnableTelemetry |Bool, default is true |This is going to enable or disable telemetry. |
-| EnableCircularTraceSession |Bool, default is false |Flag indicates whether circular trace sessions should be used. |
+| **Parameter** | **Allowed Values** | **Upgrade Policy** | **Guidance or short Description** |
+| --- | --- | --- | --- |
+| ConsumerInstances |String | Dynamic |The list of DCA consumer instances. |
+| ProducerInstances |String | Dynamic |The list of DCA producer instances. |
+| AppEtwTraceDeletionAgeInDays |Int, default is 3 | Dynamic |Number of days after which we delete old ETL files containing application ETW traces. |
+| AppDiagnosticStoreAccessRequiresImpersonation |Bool, default is true | Dynamic |Whether or not impersonation is required when accessing diagnostic stores on behalf of the application. |
+| MaxDiskQuotaInMB |Int, default is 65536 | Dynamic |Disk quota in MB for Windows Fabric log files. |
+| DiskFullSafetySpaceInMB |Int, default is 1024 | Dynamic |Remaining disk space in MB to protect from use by DCA. |
+| ApplicationLogsFormatVersion |Int, default is 0 | Dynamic |Version for application logs format. Supported values are 0 and 1. Version 1 includes more fields from the ETW event record than version 0. |
+| ClusterId |String | Dynamic |The unique id of the cluster. This is generated when the cluster is created. |
+| EnableTelemetry |Bool, default is true | Dynamic |This is going to enable or disable telemetry. |
+| EnableCircularTraceSession |Bool, default is false | Static |Flag indicates whether circular trace sessions should be used. |
 
 ### Section Name: Trace/Etw
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-| Level |Int, default is 4 |Trace etw level can take values 1, 2, 3, 4. To be supported you must keep the trace level at 4 |
+| **Parameter** | **Allowed Values** | **Upgrade Policy** | **Guidance or short Description** |
+| --- | --- | --- | --- |
+| Level |Int, default is 4 | Dynamic |Trace etw level can take values 1, 2, 3, 4. To be supported you must keep the trace level at 4 |
 
 ### Section Name: PerformanceCounterLocalStore
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-| IsEnabled |Bool, default is true |Flag indicates whether performance counter collection on local node is enabled. |
-| SamplingIntervalInSeconds |Int, default is 60 |Sampling interval for performance counters being collected. |
-| Counters |String |Comma-separated list of performance counters to collect. |
-| MaxCounterBinaryFileSizeInMB |Int, default is 1 |Maximum size (in MB) for each performance counter binary file. |
-| NewCounterBinaryFileCreationIntervalInMinutes |Int, default is 10 |Maximum interval (in seconds) after which a new performance counter binary file is created. |
+| **Parameter** | **Allowed Values** | **Upgrade Policy** | **Guidance or short Description** |
+| --- | --- | --- | --- |
+| IsEnabled |Bool, default is true | Dynamic |Flag indicates whether performance counter collection on local node is enabled. |
+| SamplingIntervalInSeconds |Int, default is 60 | Dynamic |Sampling interval for performance counters being collected. |
+| Counters |String | Dynamic |Comma-separated list of performance counters to collect. |
+| MaxCounterBinaryFileSizeInMB |Int, default is 1 | Dynamic |Maximum size (in MB) for each performance counter binary file. |
+| NewCounterBinaryFileCreationIntervalInMinutes |Int, default is 10 | Dynamic |Maximum interval (in seconds) after which a new performance counter binary file is created. |
 
 ### Section Name: Setup
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-| FabricDataRoot |String |Service Fabric data root directory. Default for Azure is d:\svcfab |
-| FabricLogRoot |String |Service fabric log root directory. This is where SF logs and traces are placed. |
-| ServiceRunAsAccountName |String |The account name under which to run fabric host service. |
-| SkipFirewallConfiguration |Bool, default is false |Specifies if firewall settings need to be set by the system or not. This applies only if you are using windows firewall. If you are using third party firewalls, then you must open the ports for the system and applications to use |
-|NodesToBeRemoved|string,default is ""|The nodes which should be removed as part of configuration upgrade. (Only for Standalone Deployments)|
-|ContainerNetworkSetup|bool,default is FALSE|Whether to set up a container network.|
-|ContainerNetworkName|wstring,default is L""|The network name to use when setting up a container network.|
+| **Parameter** | **Allowed Values** | **Upgrade Policy** | **Guidance or short Description** |
+| --- | --- | --- | --- |
+| FabricDataRoot |String | Not Allowed |Service Fabric data root directory. Default for Azure is d:\svcfab |
+| FabricLogRoot |String | Not Allowed |Service fabric log root directory. This is where SF logs and traces are placed. |
+| ServiceRunAsAccountName |String | Not Allowed |The account name under which to run fabric host service. |
+| SkipFirewallConfiguration |Bool, default is false | Not Allowed |Specifies if firewall settings need to be set by the system or not. This applies only if you are using windows firewall. If you are using third party firewalls, then you must open the ports for the system and applications to use |
+|NodesToBeRemoved|string,default is ""| Dynamic |The nodes which should be removed as part of configuration upgrade. (Only for Standalone Deployments)|
+|ContainerNetworkSetup|bool,default is FALSE| Static |Whether to set up a container network.|
+|ContainerNetworkName|wstring,default is L""| Static |The network name to use when setting up a container network.|
 
 ### Section Name: TransactionalReplicator
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-| MaxCopyQueueSize |Uint, default is 16384 |This is the maximum value defines the initial size for the queue which maintains replication operations. Note that it must be a power of 2. If during runtime the queue grows to this size operations will be throttled between the primary and secondary replicators. |
-| BatchAcknowledgementInterval | Time in seconds, default is 0.015 | Specify timespan in seconds. Determines the amount of time that the replicator waits after receiving an operation before sending back an acknowledgement. Other operations received during this time period will have their acknowledgements sent back in a single message-> reducing network traffic but potentially reducing the throughput of the replicator. |
-| MaxReplicationMessageSize |Uint, default is 52428800 | Maximum message size of replication operations. Default is 50MB. |
-| ReplicatorAddress |string, default is "localhost:0" | The endpoint in form of a string -'IP:Port' which is used by the Windows Fabric Replicator to establish connections with other replicas in order to send/receive operations. |
-| InitialPrimaryReplicationQueueSize |Uint, default is 64 | This value defines the initial size for the queue which maintains the replication operations on the primary. Note that it must be a power of 2.|
-| MaxPrimaryReplicationQueueSize |Uint, default is 8192 |This is the maximum number of operations that could exist in the primary replication queue. Note that it must be a power of 2. |
-| MaxPrimaryReplicationQueueMemorySize |Uint, default is 0 |This is the maximum value of the primary replication queue in bytes. |
-| InitialSecondaryReplicationQueueSize |Uint, default is 64 |This value defines the initial size for the queue which maintains the replication operations on the secondary. Note that it must be a power of 2. |
-| MaxSecondaryReplicationQueueSize |Uint, default is 16384 |This is the maximum number of operations that could exist in the secondary replication queue. Note that it must be a power of 2. |
-| MaxSecondaryReplicationQueueMemorySize |Uint, default is 0 |This is the maximum value of the secondary replication queue in bytes. |
-| SecondaryClearAcknowledgedOperations |Bool, default is false |Bool which controls if the operations on the secondary replicator are cleared once they are acknowledged to the primary(flushed to the disk). Settings this to TRUE can result in additional disk reads on the new primary, while catching up replicas after a failover. |
-| MaxMetadataSizeInKB |Int, default is 4 |Maximum size of the log stream metadata. |
-| MaxRecordSizeInKB |Uint, default is 1024 | Maximum size of a log stream record. |
-| CheckpointThresholdInMB |Int, default is 50 |A checkpoint will be initiated when the log usage exceeds this value. |
-| MaxAccumulatedBackupLogSizeInMB |Int, default is 800 |Max accumulated size (in MB) of backup logs in a given backup log chain. An incremental backup requests will fail if the incremental backup would generate a backup log that would cause the accumulated backup logs since the relevant full backup to be larger than this size. In such cases, user is required to take a full backup. |
-| MaxWriteQueueDepthInKB |Int, default is 0 | Int for maximum write queue depth that the core logger can use as specified in kilobytes for the log that is associated with this replica. This value is the maximum number of bytes that can be outstanding during core logger updates. It may be 0 for the core logger to compute an appropriate value or a multiple of 4. |
-| SharedLogId |String |Shared log identifier. This is a guid and should be unique for each shared log. |
-| SharedLogPath |String |Path to the shared log. If this value is empty then the default shared log is used. |
-| SlowApiMonitoringDuration |Time in seconds, default is 300 | Specify duration for api before warning health event is fired.|
-| MinLogSizeInMB |Int, default is 0 |Minimum size of the transactional log. The log will not be allowed to truncate to a size below this setting. 0 indicates that the replicator will determine the minimum log size according to other settings. Increasing this value increases the possibility of doing partial copies and incremental backups since chances of relevant log records being truncated is lowered. |
+| **Parameter** | **Allowed Values** | **Upgrade Policy** | **Guidance or short Description** |
+| --- | --- | --- | --- |
+| MaxCopyQueueSize |Uint, default is 16384 | Static |This is the maximum value defines the initial size for the queue which maintains replication operations. Note that it must be a power of 2. If during runtime the queue grows to this size operations will be throttled between the primary and secondary replicators. |
+| BatchAcknowledgementInterval | Time in seconds, default is 0.015 | Static | Specify timespan in seconds. Determines the amount of time that the replicator waits after receiving an operation before sending back an acknowledgement. Other operations received during this time period will have their acknowledgements sent back in a single message-> reducing network traffic but potentially reducing the throughput of the replicator. |
+| MaxReplicationMessageSize |Uint, default is 52428800 | Static | Maximum message size of replication operations. Default is 50MB. |
+| ReplicatorAddress |string, default is "localhost:0" | Static | The endpoint in form of a string -'IP:Port' which is used by the Windows Fabric Replicator to establish connections with other replicas in order to send/receive operations. |
+| InitialPrimaryReplicationQueueSize |Uint, default is 64 | Static |This value defines the initial size for the queue which maintains the replication operations on the primary. Note that it must be a power of 2.|
+| MaxPrimaryReplicationQueueSize |Uint, default is 8192 | Static |This is the maximum number of operations that could exist in the primary replication queue. Note that it must be a power of 2. |
+| MaxPrimaryReplicationQueueMemorySize |Uint, default is 0 | Static |This is the maximum value of the primary replication queue in bytes. |
+| InitialSecondaryReplicationQueueSize |Uint, default is 64 | Static |This value defines the initial size for the queue which maintains the replication operations on the secondary. Note that it must be a power of 2. |
+| MaxSecondaryReplicationQueueSize |Uint, default is 16384 | Static |This is the maximum number of operations that could exist in the secondary replication queue. Note that it must be a power of 2. |
+| MaxSecondaryReplicationQueueMemorySize |Uint, default is 0 | Static |This is the maximum value of the secondary replication queue in bytes. |
+| SecondaryClearAcknowledgedOperations |Bool, default is false | Static |Bool which controls if the operations on the secondary replicator are cleared once they are acknowledged to the primary(flushed to the disk). Settings this to TRUE can result in additional disk reads on the new primary, while catching up replicas after a failover. |
+| MaxMetadataSizeInKB |Int, default is 4 |Not Allowed|Maximum size of the log stream metadata. |
+| MaxRecordSizeInKB |Uint, default is 1024 |Not Allowed| Maximum size of a log stream record. |
+| CheckpointThresholdInMB |Int, default is 50 |Static|A checkpoint will be initiated when the log usage exceeds this value. |
+| MaxAccumulatedBackupLogSizeInMB |Int, default is 800 |Static|Max accumulated size (in MB) of backup logs in a given backup log chain. An incremental backup requests will fail if the incremental backup would generate a backup log that would cause the accumulated backup logs since the relevant full backup to be larger than this size. In such cases, user is required to take a full backup. |
+| MaxWriteQueueDepthInKB |Int, default is 0 |Not Allowed| Int for maximum write queue depth that the core logger can use as specified in kilobytes for the log that is associated with this replica. This value is the maximum number of bytes that can be outstanding during core logger updates. It may be 0 for the core logger to compute an appropriate value or a multiple of 4. |
+| SharedLogId |String |Not Allowed|Shared log identifier. This is a guid and should be unique for each shared log. |
+| SharedLogPath |String |Not Allowed|Path to the shared log. If this value is empty then the default shared log is used. |
+| SlowApiMonitoringDuration |Time in seconds, default is 300 |Static| Specify duration for api before warning health event is fired.|
+| MinLogSizeInMB |Int, default is 0 |Static|Minimum size of the transactional log. The log will not be allowed to truncate to a size below this setting. 0 indicates that the replicator will determine the minimum log size according to other settings. Increasing this value increases the possibility of doing partial copies and incremental backups since chances of relevant log records being truncated is lowered. |
 
 ### Section Name: FabricClient
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-| NodeAddresses |string, default is "" |A collection of addresses (connection strings) on different nodes that can be used to communicate with the the Naming Service. Initially the Client connects selecting one of the addresses randomly. If more than one connection string is supplied and a connection fails because of a communication or timeout error; the Client switches to use the next address sequentially. See the Naming Service Address retry section for details on retries semantics. |
-| ConnectionInitializationTimeout |Time in seconds, default is 2 |Specify timespan in seconds. Connection timeout interval for each time client tries to open a connection to the gateway. |
-| PartitionLocationCacheLimit |Int, default is 100000 |Number of partitions cached for service resolution (set to 0 for no limit). |
-| ServiceChangePollInterval |Time in seconds, default is 120 |Specify timespan in seconds. The interval between consecutive polls for service changes from the client to the gateway for registered service change notifications callbacks. |
-| KeepAliveIntervalInSeconds |Int, default is 20 |The interval at which the FabricClient transport sends keep-alive messages to the gateway. For 0; keepAlive is disabled. Must be a positive value. |
-| HealthOperationTimeout |Time in seconds, default is 120 |Specify timespan in seconds. The timeout for a report message sent to Health Manager. |
-| HealthReportSendInterval |Time in seconds, default is 30 |Specify timespan in seconds. The interval at which reporting component sends accumulated health reports to Health Manager. |
-| HealthReportRetrySendInterval |Time in seconds, default is 30 |Specify timespan in seconds. The interval at which reporting component re-sends accumulated health reports to Health Manager. |
-| RetryBackoffInterval |Time in seconds, default is 3 |Specify timespan in seconds. The back-off interval before retrying the operation. |
-| MaxFileSenderThreads |Uint, default is 10 |The max number of files that are transferred in parallel. |
+| **Parameter** | **Allowed Values** | **Upgrade Policy** | **Guidance or short Description** |
+| --- | --- | --- | --- |
+| NodeAddresses |string, default is "" |Static|A collection of addresses (connection strings) on different nodes that can be used to communicate with the the Naming Service. Initially the Client connects selecting one of the addresses randomly. If more than one connection string is supplied and a connection fails because of a communication or timeout error; the Client switches to use the next address sequentially. See the Naming Service Address retry section for details on retries semantics. |
+| ConnectionInitializationTimeout |Time in seconds, default is 2 |Dynamic|Specify timespan in seconds. Connection timeout interval for each time client tries to open a connection to the gateway. |
+| PartitionLocationCacheLimit |Int, default is 100000 |Static|Number of partitions cached for service resolution (set to 0 for no limit). |
+| ServiceChangePollInterval |Time in seconds, default is 120 |Dynamic|Specify timespan in seconds. The interval between consecutive polls for service changes from the client to the gateway for registered service change notifications callbacks. |
+| KeepAliveIntervalInSeconds |Int, default is 20 |Static|The interval at which the FabricClient transport sends keep-alive messages to the gateway. For 0; keepAlive is disabled. Must be a positive value. |
+| HealthOperationTimeout |Time in seconds, default is 120 |Dynamic|Specify timespan in seconds. The timeout for a report message sent to Health Manager. |
+| HealthReportSendInterval |Time in seconds, default is 30 |Dynamic|Specify timespan in seconds. The interval at which reporting component sends accumulated health reports to Health Manager. |
+| HealthReportRetrySendInterval |Time in seconds, default is 30 |Dynamic|Specify timespan in seconds. The interval at which reporting component re-sends accumulated health reports to Health Manager. |
+| RetryBackoffInterval |Time in seconds, default is 3 |Dynamic|Specify timespan in seconds. The back-off interval before retrying the operation. |
+| MaxFileSenderThreads |Uint, default is 10 |Static|The max number of files that are transferred in parallel. |
 
 ### Section Name: Common
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-| PerfMonitorInterval |Time in seconds, default is 1 |Specify timespan in seconds. Performance monitoring interval. Setting to 0 or negative value disables monitoring. |
+| **Parameter** | **Allowed Values** | **Upgrade Policy** | **Guidance or short Description** |
+| --- | --- | --- | --- |
+| PerfMonitorInterval |Time in seconds, default is 1 |Dynamic|Specify timespan in seconds. Performance monitoring interval. Setting to 0 or negative value disables monitoring. |
 
 ### Section Name: HealthManager
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-| EnableApplicationTypeHealthEvaluation |Bool, default is false |Cluster health evaluation policy: enable per application type health evaluation. |
-
-### Section Name: FabricNode
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-| StateTraceInterval |Time in seconds, default is 300 |Specify timespan in seconds. The interval for tracing node status on each node and up nodes on FM/FMM. |
+| **Parameter** | **Allowed Values** | **Upgrade Policy** | **Guidance or short Description** |
+| --- | --- | --- | --- |
+| EnableApplicationTypeHealthEvaluation |Bool, default is false |Static|Cluster health evaluation policy: enable per application type health evaluation. |
 
 ### Section Name: NodeDomainIds
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-| UpgradeDomainId |string, default is "" |Describes the upgrade domain a node belongs to. |
-| PropertyGroup |NodeFaultDomainIdCollection |Describes the fault domains a node belongs to. The fault domain is defined through a URI that describes the location of the node in the datacenter.  Fault Domain URIs are of the format fd:/fd/ followed by a URI path segment.|
+| **Parameter** | **Allowed Values** | **Upgrade Policy** | **Guidance or short Description** |
+| --- | --- | --- | --- |
+| UpgradeDomainId |string, default is "" |Static|Describes the upgrade domain a node belongs to. |
+| PropertyGroup |NodeFaultDomainIdCollection |Static|Describes the fault domains a node belongs to. The fault domain is defined through a URI that describes the location of the node in the datacenter.  Fault Domain URIs are of the format fd:/fd/ followed by a URI path segment.|
 
 ### Section Name: NodeProperties
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-| PropertyGroup |NodePropertyCollectionMap |A collection of string key-value pairs for node properties. |
+| **Parameter** | **Allowed Values** | **Upgrade Policy** | **Guidance or short Description** |
+| --- | --- | --- | --- |
+| PropertyGroup |NodePropertyCollectionMap |Static|A collection of string key-value pairs for node properties. |
 
 ### Section Name: NodeCapacities
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-| PropertyGroup |NodeCapacityCollectionMap |A collection of node capacities for different metrics. |
+| **Parameter** | **Allowed Values** | **Upgrade Policy** | **Guidance or short Description** |
+| --- | --- | --- | --- |
+| PropertyGroup |NodeCapacityCollectionMap |Static|A collection of node capacities for different metrics. |
 
 ### Section Name: FabricNode
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-| StartApplicationPortRange |Int, default is 0 |Start of the application ports managed by hosting subsystem. Required if EndpointFilteringEnabled is true in Hosting. |
-| EndApplicationPortRange |Int, default is 0 |End (no inclusive) of the application ports managed by hosting subsystem. Required if EndpointFilteringEnabled is true in Hosting. |
-| ClusterX509StoreName |string, default is "My" |Name of X.509 certificate store that contains cluster certificate for securing intra-cluster communication. |
-| ClusterX509FindType |string, default is "FindByThumbprint" |Indicates how to search for cluster certificate in the store specified by ClusterX509StoreName Supported values: "FindByThumbprint"; "FindBySubjectName" With "FindBySubjectName"; when there are multiple matches; the one with the furthest expiration is used. |
-| ClusterX509FindValue |string, default is "" |Search filter value used to locate cluster certificate. |
-| ClusterX509FindValueSecondary |string, default is "" |Search filter value used to locate cluster certificate. |
-| ServerAuthX509StoreName |string, default is "My" |Name of X.509 certificate store that contains server certificate for entree service. |
-| ServerAuthX509FindType |string, default is "FindByThumbprint" |Indicates how to search for server certificate in the store specified by ServerAuthX509StoreName Supported value: FindByThumbprint; FindBySubjectName. |
-| ServerAuthX509FindValue |string, default is "" |Search filter value used to locate server certificate. |
-| ServerAuthX509FindValueSecondary |string, default is "" |Search filter value used to locate server certificate. |
-| ClientAuthX509StoreName |string, default is "My" |Name of the X.509 certificate store that contains certificate for default admin role FabricClient. |
-| ClientAuthX509FindType |string, default is "FindByThumbprint" |Indicates how to search for certificate in the store specified by ClientAuthX509StoreName Supported value: FindByThumbprint; FindBySubjectName. |
-| ClientAuthX509FindValue |string, default is "" | Search filter value used to locate certificate for default admin role FabricClient. |
-| ClientAuthX509FindValueSecondary |string, default is "" |Search filter value used to locate certificate for default admin role FabricClient. |
-| UserRoleClientX509StoreName |string, default is "My" |Name of the X.509 certificate store that contains certificate for default user role FabricClient. |
-| UserRoleClientX509FindType |string, default is "FindByThumbprint" |Indicates how to search for certificate in the store specified by UserRoleClientX509StoreName Supported value: FindByThumbprint; FindBySubjectName. |
-| UserRoleClientX509FindValue |string, default is "" |Search filter value used to locate certificate for default user role FabricClient. |
-| UserRoleClientX509FindValueSecondary |string, default is "" |Search filter value used to locate certificate for default user role FabricClient. |
+| **Parameter** | **Allowed Values** | **Upgrade Policy** | **Guidance or short Description** |
+| --- | --- | --- | --- |
+| StateTraceInterval |Time in seconds, default is 300 |Static|Specify timespan in seconds. The interval for tracing node status on each node and up nodes on FM/FMM. |
+| StartApplicationPortRange |Int, default is 0 |Static|Start of the application ports managed by hosting subsystem. Required if EndpointFilteringEnabled is true in Hosting. |
+| EndApplicationPortRange |Int, default is 0 |Static|End (no inclusive) of the application ports managed by hosting subsystem. Required if EndpointFilteringEnabled is true in Hosting. |
+| ClusterX509StoreName |string, default is "My" |Dynamic|Name of X.509 certificate store that contains cluster certificate for securing intra-cluster communication. |
+| ClusterX509FindType |string, default is "FindByThumbprint" |Dynamic|Indicates how to search for cluster certificate in the store specified by ClusterX509StoreName Supported values: "FindByThumbprint"; "FindBySubjectName" With "FindBySubjectName"; when there are multiple matches; the one with the furthest expiration is used. |
+| ClusterX509FindValue |string, default is "" |Dynamic|Search filter value used to locate cluster certificate. |
+| ClusterX509FindValueSecondary |string, default is "" |Dynamic|Search filter value used to locate cluster certificate. |
+| ServerAuthX509StoreName |string, default is "My" |Dynamic|Name of X.509 certificate store that contains server certificate for entree service. |
+| ServerAuthX509FindType |string, default is "FindByThumbprint" |Dynamic|Indicates how to search for server certificate in the store specified by ServerAuthX509StoreName Supported value: FindByThumbprint; FindBySubjectName. |
+| ServerAuthX509FindValue |string, default is "" |Dynamic|Search filter value used to locate server certificate. |
+| ServerAuthX509FindValueSecondary |string, default is "" |Dynamic|Search filter value used to locate server certificate. |
+| ClientAuthX509StoreName |string, default is "My" |Dynamic|Name of the X.509 certificate store that contains certificate for default admin role FabricClient. |
+| ClientAuthX509FindType |string, default is "FindByThumbprint" |Dynamic|Indicates how to search for certificate in the store specified by ClientAuthX509StoreName Supported value: FindByThumbprint; FindBySubjectName. |
+| ClientAuthX509FindValue |string, default is "" | Dynamic|Search filter value used to locate certificate for default admin role FabricClient. |
+| ClientAuthX509FindValueSecondary |string, default is "" |Dynamic|Search filter value used to locate certificate for default admin role FabricClient. |
+| UserRoleClientX509StoreName |string, default is "My" |Dynamic|Name of the X.509 certificate store that contains certificate for default user role FabricClient. |
+| UserRoleClientX509FindType |string, default is "FindByThumbprint" |Dynamic|Indicates how to search for certificate in the store specified by UserRoleClientX509StoreName Supported value: FindByThumbprint; FindBySubjectName. |
+| UserRoleClientX509FindValue |string, default is "" |Dynamic|Search filter value used to locate certificate for default user role FabricClient. |
+| UserRoleClientX509FindValueSecondary |string, default is "" |Dynamic|Search filter value used to locate certificate for default user role FabricClient. |
 
 ### Section Name: Paas
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-| ClusterId |string, default is "" |X509 certificate store used by fabric for configuration protection. |
+| **Parameter** | **Allowed Values** | **Upgrade Policy** | **Guidance or short Description** |
+| --- | --- | --- | --- |
+| ClusterId |string, default is "" |Not Allowed|X509 certificate store used by fabric for configuration protection. |
 
 ### Section Name: FabricHost
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-| StopTimeout |Time in seconds, default is 300 |Specify timespan in seconds. The timeout for hosted service activation; deactivation and upgrade. |
-| StartTimeout |Time in seconds, default is 300 |Specify timespan in seconds. Timeout for fabricactivationmanager startup. |
-| ActivationRetryBackoffInterval |Time in seconds, default is 5 |Specify timespan in seconds. Backoff interval on every activation failure;On every continuous activation failure the system will retry the activation for up to the MaxActivationFailureCount. The retry interval on every try is a product of continuous activation failure and the activation back-off interval. |
-| ActivationMaxRetryInterval |Time in seconds, default is 300 |Specify timespan in seconds. Max retry interval for Activation. On every continuous failure the retry interval is calculated as Min( ActivationMaxRetryInterval; Continuous Failure Count * ActivationRetryBackoffInterval). |
-| ActivationMaxFailureCount |Int, default is 10 |This is the maximum count for which system will retry failed activation before giving up. |
-| EnableServiceFabricAutomaticUpdates |Bool, default is false |This is to enable fabric automatic update via Windows Update. |
-| EnableServiceFabricBaseUpgrade |Bool, default is false |This is to enable base update for server. |
-| EnableRestartManagement |Bool, default is false |This is to enable server restart. |
+| **Parameter** | **Allowed Values** | **Upgrade Policy** | **Guidance or short Description** |
+| --- | --- | --- | --- |
+| StopTimeout |Time in seconds, default is 300 |Dynamic|Specify timespan in seconds. The timeout for hosted service activation; deactivation and upgrade. |
+| StartTimeout |Time in seconds, default is 300 |Dynamic|Specify timespan in seconds. Timeout for fabricactivationmanager startup. |
+| ActivationRetryBackoffInterval |Time in seconds, default is 5 |Dynamic|Specify timespan in seconds. Backoff interval on every activation failure;On every continuous activation failure the system will retry the activation for up to the MaxActivationFailureCount. The retry interval on every try is a product of continuous activation failure and the activation back-off interval. |
+| ActivationMaxRetryInterval |Time in seconds, default is 300 |Dynamic|Specify timespan in seconds. Max retry interval for Activation. On every continuous failure the retry interval is calculated as Min( ActivationMaxRetryInterval; Continuous Failure Count * ActivationRetryBackoffInterval). |
+| ActivationMaxFailureCount |Int, default is 10 |Dynamic|This is the maximum count for which system will retry failed activation before giving up. |
+| EnableServiceFabricAutomaticUpdates |Bool, default is false |Dynamic|This is to enable fabric automatic update via Windows Update. |
+| EnableServiceFabricBaseUpgrade |Bool, default is false |Dynamic|This is to enable base update for server. |
+| EnableRestartManagement |Bool, default is false |Dynamic|This is to enable server restart. |
 
 
 ### Section Name: FailoverManager
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-| UserReplicaRestartWaitDuration |Time in seconds, default is 60.0 * 30 |Specify timespan in seconds. When a persisted replica goes down; Windows Fabric waits for this duration for the replica to come back up before creating new replacement  replicas (which would require a copy of the state). |
-| QuorumLossWaitDuration |Time in seconds, default is MaxValue |Specify timespan in seconds. This is the max duration for which we allow a partition to be in a state of quorum loss. If the partition is still in quorum loss after this duration; the partition is recovered from quorum loss by considering the down replicas as lost. Note that this can potentially incur data loss. |
-| UserStandByReplicaKeepDuration |Time in seconds, default is 3600.0 * 24 * 7 |Specify timespan in seconds. When a persisted replica come back from a down state; it may have already been replaced. This timer determines how long the FM will keep the standby replica before discarding it. |
-| UserMaxStandByReplicaCount |Int, default is 1 |The default max number of StandBy replicas that the system keeps for user services. |
-| ExpectedClusterSize|int,default is 1|When the cluster is initially started up; the FM will wait for this many nodes to report themselves up before it begins placing other services; including the system services like naming.  Increasing this value increases the time it takes a cluster to start up; but prevents the early nodes from becoming overloaded and also the additional moves that will be necessary as more nodes come online.  This value should generally be set to some small fraction of the initial cluster size. |
-|ClusterPauseThreshold|int, default is 1| If the number of nodes in system go below this value then placement; load balancing; and failover is stopped. |
-|TargetReplicaSetSize|int, default is 7|This is the target number of FM replicas that Windows Fabric will maintain.  A higher number results in higher reliability of the FM data; with a small performance tradeoff. |
-|MinReplicaSetSize|int,, default is 3|This is the minimum replica set size for the FM.  If the number of active FM replicas drops below this value; the FM will reject changes to the cluster until at least the min number of replicas is recovered |
-|ReplicaRestartWaitDuration|TimeSpan,default is Common::TimeSpan::FromSeconds(60.0 * 30)|Specify timespan in seconds. This is the ReplicaRestartWaitDuration for the FMService |
-|StandByReplicaKeepDuration|Timespan, default is Common::TimeSpan::FromSeconds(3600.0 * 24 * 7)|Specify timespan in seconds. This is the StandByReplicaKeepDuration for the FMService |
-|PlacementConstraints|wstring, default is L""|Any placement constraints for the failover manager replicas |
-|ExpectedNodeFabricUpgradeDuration|TimeSpan, default is Common::TimeSpan::FromSeconds(60.0 * 30)|Specify timespan in seconds. This is the expected duration for a node to be upgraded during Windows Fabric upgrade. |
-|ExpectedReplicaUpgradeDuration|TimeSpan, default is Common::TimeSpan::FromSeconds(60.0 * 30)|Specify timespan in seconds. This is the expected duration for all the replicas to be upgraded on a node during application upgrade. |
-|ExpectedNodeDeactivationDuration|TimeSpan, default is Common::TimeSpan::FromSeconds(60.0 * 30)|Specify timespan in seconds. This is the expected duration for a node to complete deactivation in. |
-|IsSingletonReplicaMoveAllowedDuringUpgrade|bool,default is TRUE|If set to true; replicas with a target replica set size of 1 will be permitted to move during upgrpade. |
-|ReconfigurationTimeLimit|TimeSpan,default is Common::TimeSpan::FromSeconds(300)|Specify timespan in seconds. The time limit for reconfiguration; after which a warning health report will be initiated |
-|BuildReplicaTimeLimit|TimeSpan,default is Common::TimeSpan::FromSeconds(3600)|Specify timespan in seconds. The time limit for building a stateful replica; after which a warning health report will be initiated |
-|CreateInstanceTimeLimit|TimeSpan,default is Common::TimeSpan::FromSeconds(300)|Specify timespan in seconds. The time limit for creating a stateless instance; after which a warning health report will be initiated |
-|PlacementTimeLimit|TimeSpan,default is Common::TimeSpan::FromSeconds(600)|Specify timespan in seconds. The time limit for reaching target replica count; after which a warning health report will be initiated |
+| **Parameter** | **Allowed Values** | **Upgrade Policy** | **Guidance or short Description** |
+| --- | --- | --- | --- |
+| UserReplicaRestartWaitDuration |Time in seconds, default is 60.0 * 30 |Dynamic|Specify timespan in seconds. When a persisted replica goes down; Windows Fabric waits for this duration for the replica to come back up before creating new replacement  replicas (which would require a copy of the state). |
+| QuorumLossWaitDuration |Time in seconds, default is MaxValue |Dynamic|Specify timespan in seconds. This is the max duration for which we allow a partition to be in a state of quorum loss. If the partition is still in quorum loss after this duration; the partition is recovered from quorum loss by considering the down replicas as lost. Note that this can potentially incur data loss. |
+| UserStandByReplicaKeepDuration |Time in seconds, default is 3600.0 * 24 * 7 |Dynamic|Specify timespan in seconds. When a persisted replica come back from a down state; it may have already been replaced. This timer determines how long the FM will keep the standby replica before discarding it. |
+| UserMaxStandByReplicaCount |Int, default is 1 |Dynamic|The default max number of StandBy replicas that the system keeps for user services. |
+| ExpectedClusterSize|int,default is 1|Dynamic|When the cluster is initially started up; the FM will wait for this many nodes to report themselves up before it begins placing other services; including the system services like naming.  Increasing this value increases the time it takes a cluster to start up; but prevents the early nodes from becoming overloaded and also the additional moves that will be necessary as more nodes come online.  This value should generally be set to some small fraction of the initial cluster size. |
+|ClusterPauseThreshold|int, default is 1|Dynamic|If the number of nodes in system go below this value then placement; load balancing; and failover is stopped. |
+|TargetReplicaSetSize|int, default is 7|Not Allowed|This is the target number of FM replicas that Windows Fabric will maintain.  A higher number results in higher reliability of the FM data; with a small performance tradeoff. |
+|MinReplicaSetSize|int,default is 3|Not Allowed|This is the minimum replica set size for the FM.  If the number of active FM replicas drops below this value; the FM will reject changes to the cluster until at least the min number of replicas is recovered |
+|ReplicaRestartWaitDuration|TimeSpan,default is Common::TimeSpan::FromSeconds(60.0 * 30)|Not Allowed|Specify timespan in seconds. This is the ReplicaRestartWaitDuration for the FMService |
+|StandByReplicaKeepDuration|Timespan, default is Common::TimeSpan::FromSeconds(3600.0 * 24 * 7)|Not Allowed|Specify timespan in seconds. This is the StandByReplicaKeepDuration for the FMService |
+|PlacementConstraints|wstring, default is L""|Not Allowed|Any placement constraints for the failover manager replicas |
+|ExpectedNodeFabricUpgradeDuration|TimeSpan, default is Common::TimeSpan::FromSeconds(60.0 * 30)|Dynamic|Specify timespan in seconds. This is the expected duration for a node to be upgraded during Windows Fabric upgrade. |
+|ExpectedReplicaUpgradeDuration|TimeSpan, default is Common::TimeSpan::FromSeconds(60.0 * 30)|Dynamic|Specify timespan in seconds. This is the expected duration for all the replicas to be upgraded on a node during application upgrade. |
+|ExpectedNodeDeactivationDuration|TimeSpan, default is Common::TimeSpan::FromSeconds(60.0 * 30)|Dynamic|Specify timespan in seconds. This is the expected duration for a node to complete deactivation in. |
+|IsSingletonReplicaMoveAllowedDuringUpgrade|bool,default is TRUE|Dynamic|If set to true; replicas with a target replica set size of 1 will be permitted to move during upgrpade. |
+|ReconfigurationTimeLimit|TimeSpan,default is Common::TimeSpan::FromSeconds(300)|Dynamic|Specify timespan in seconds. The time limit for reconfiguration; after which a warning health report will be initiated |
+|BuildReplicaTimeLimit|TimeSpan,default is Common::TimeSpan::FromSeconds(3600)|Dynamic|Specify timespan in seconds. The time limit for building a stateful replica; after which a warning health report will be initiated |
+|CreateInstanceTimeLimit|TimeSpan,default is Common::TimeSpan::FromSeconds(300)|Dynamic|Specify timespan in seconds. The time limit for creating a stateless instance; after which a warning health report will be initiated |
+|PlacementTimeLimit|TimeSpan,default is Common::TimeSpan::FromSeconds(600)|Dynamic|Specify timespan in seconds. The time limit for reaching target replica count; after which a warning health report will be initiated |
 
 ### Section Name: NamingService
 | **Parameter** | **Allowed Values** | **Guidance or short Description** |
