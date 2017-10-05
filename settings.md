@@ -411,16 +411,16 @@ Here are the Fabric settings that you can customize:
 | Providers |string, default is "DSTS" |Static|Comma separated list of token validation providers to enable (valid providers are: DSTS; AAD). Currently only a single provider can be enabled at any time. |
 
 ### Section Name: UpgradeOrchestrationService
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-| TargetReplicaSetSize |Int, default is 0 |The TargetReplicaSetSize for UpgradeOrchestrationService. |
-| MinReplicaSetSize |Int, default is 0 | The MinReplicaSetSize for UpgradeOrchestrationService.
-| ReplicaRestartWaitDuration | Time in seconds, default is 60 minutes| Specify timespan in seconds. The ReplicaRestartWaitDuration for UpgradeOrchestrationService. |
-| QuorumLossWaitDuration | Time in seconds, default is MaxValue | Specify timespan in seconds. The QuorumLossWaitDuration for UpgradeOrchestrationService. |
-| StandByReplicaKeepDuration | Time in seconds, default is 60*24*7 minutes | Specify timespan in seconds. The StandByReplicaKeepDuration for UpgradeOrchestrationService. |
-| PlacementConstraints | string, default is "" | The PlacementConstraints for UpgradeOrchestrationService. |
-| AutoupgradeEnabled | Bool, default is true | Automatic polling and upgrade action based on a goal-state file. |
-| UpgradeApprovalRequired | Bool, default is false | Setting to make code upgrade require administrator approval before proceeding. |
+| **Parameter** | **Allowed Values** | **Upgrade Policy** | **Guidance or short Description** |
+| --- | --- | --- | --- |
+| TargetReplicaSetSize |Int, default is 0 |Not Allowed|The TargetReplicaSetSize for UpgradeOrchestrationService. |
+| MinReplicaSetSize |Int, default is 0 |Not Allowed|The MinReplicaSetSize for UpgradeOrchestrationService.
+| ReplicaRestartWaitDuration | Time in seconds, default is 60 minutes|Static| Specify timespan in seconds. The ReplicaRestartWaitDuration for UpgradeOrchestrationService. |
+| QuorumLossWaitDuration | Time in seconds, default is MaxValue |Static| Specify timespan in seconds. The QuorumLossWaitDuration for UpgradeOrchestrationService. |
+| StandByReplicaKeepDuration | Time in seconds, default is 60*24*7 minutes |Static| Specify timespan in seconds. The StandByReplicaKeepDuration for UpgradeOrchestrationService. |
+| PlacementConstraints | string, default is "" |Static| The PlacementConstraints for UpgradeOrchestrationService. |
+| AutoupgradeEnabled | Bool, default is true |Static| Automatic polling and upgrade action based on a goal-state file. |
+| UpgradeApprovalRequired | Bool, default is false | Static|Setting to make code upgrade require administrator approval before proceeding. |
 
 ### Section Name: UpgradeService
 | **Parameter** | **Allowed Values** | **Guidance or short Description** |
