@@ -274,15 +274,15 @@ Here are the Fabric settings that you can customize:
 |HttpGatewayHealthReportSendInterval |Time in seconds, default is 30 |Static|Specify timespan in seconds. The interval at which the Http Gateway sends accumulated health reports to the Health Manager. |
 
 ### Section Name: KtlLogger
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-|AutomaticMemoryConfiguration |Int, default is 1 | Flag that indicates if the memory settings should be automatically and dynamically configured. If zero then the memory configuration settings are used directly and do not change based on system conditions. If one then the memory settings are configured automatically and may change based on system conditions. |
-|WriteBufferMemoryPoolMinimumInKB |Int, default is 8388608 |The number of KB to initially allocate for the write buffer memory pool. Use 0 to indicate no limit Default should be consistent with SharedLogSizeInMB below. |
-|WriteBufferMemoryPoolMaximumInKB | Int, default is 0 |The number of KB to allow the write buffer memory pool to grow up to. Use 0 to indicate no limit. |
-|MaximumDestagingWriteOutstandingInKB | Int, default is 0 | The number of KB to allow the shared log to advance ahead of the dedicated log. Use 0 to indicate no limit.
-|SharedLogPath |string, default is "" | Path and file name to location to place shared log container. Use "" for using default path under fabric data root. |
-|SharedLogId |string, default is "" |Unique guid for shared log container. Use "" if using default path under fabric data root. |
-|SharedLogSizeInMB |Int, default is 8192 | The number of MB to allocate in the shared log container. |
+| **Parameter** | **Allowed Values** | **Upgrade Policy** | **Guidance or short Description** |
+| --- | --- | --- | --- |
+|AutomaticMemoryConfiguration |Int, default is 1 |Dynamic|Flag that indicates if the memory settings should be automatically and dynamically configured. If zero then the memory configuration settings are used directly and do not change based on system conditions. If one then the memory settings are configured automatically and may change based on system conditions. |
+|WriteBufferMemoryPoolMinimumInKB |Int, default is 8388608 |Dynamic|The number of KB to initially allocate for the write buffer memory pool. Use 0 to indicate no limit Default should be consistent with SharedLogSizeInMB below. |
+|WriteBufferMemoryPoolMaximumInKB | Int, default is 0 |Dynamic|The number of KB to allow the write buffer memory pool to grow up to. Use 0 to indicate no limit. |
+|MaximumDestagingWriteOutstandingInKB | Int, default is 0 |Dynamic|The number of KB to allow the shared log to advance ahead of the dedicated log. Use 0 to indicate no limit.
+|SharedLogPath |string, default is "" |Static|Path and file name to location to place shared log container. Use "" for using default path under fabric data root. |
+|SharedLogId |string, default is "" |Static|Unique guid for shared log container. Use "" if using default path under fabric data root. |
+|SharedLogSizeInMB |Int, default is 8192 |Static|The number of MB to allocate in the shared log container. |
 
 ### Section Name: ApplicationGateway/Http
 | **Parameter** | **Allowed Values** | **Guidance or short Description** |
