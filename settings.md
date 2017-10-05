@@ -285,57 +285,56 @@ Here are the Fabric settings that you can customize:
 |SharedLogSizeInMB |Int, default is 8192 |Static|The number of MB to allocate in the shared log container. |
 
 ### Section Name: ApplicationGateway/Http
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-|IsEnabled |Bool, default is false | Enables/Disables the HttpApplicationGateway. HttpApplicationGateway is disabled by default and this config needs to be set to enable it. |
-|NumberOfParallelOperations | Uint, default is 5000 | Number of reads to post to the http server queue. This controls the number of concurrent requests that can be satisfied by the HttpGateway. |
-|DefaultHttpRequestTimeout |Time in seconds. default is 120 |Specify timespan in seconds.  Gives the default request timeout for the http requests being processed in the http app gateway. |
-|ResolveServiceBackoffInterval |Time in seconds, default is 5 |Specify timespan in seconds.  Gives the default back-off interval before retrying a failed resolve service operation. |
-|BodyChunkSize |Uint, default is 16384 |  Gives the size of for the chunk in bytes used to read the body. |
-|GatewayAuthCredentialType |string, default is "None" | Indicates the type of security credentials to use at the http app gateway endpoint Valid values are "None/X509. |
-|GatewayX509CertificateStoreName |string, default is "My" | Name of X.509 certificate store that contains certificate for http app gateway. |
-|GatewayX509CertificateFindType |string, default is "FindByThumbprint" | Indicates how to search for certificate in the store specified by GatewayX509CertificateStoreName Supported value: FindByThumbprint; FindBySubjectName. |
-|GatewayX509CertificateFindValue | string, default is "" | Search filter value used to locate the http app gateway certificate. This certificate is configured on the https endpoint and can also be used to verify the identity of the app if needed by the services. FindValue is looked up first; and if that doesnt exist; FindValueSecondary is looked up. |
-|GatewayX509CertificateFindValueSecondary | string, default is "" |Search filter value used to locate the http app gateway certificate. This certificate is configured on the https endpoint and can also be used to verify the identity of the app if needed by the services. FindValue is looked up first; and if that doesnt exist; FindValueSecondary is looked up.|
-|HttpRequestConnectTimeout|TimeSpan, default is Common::TimeSpan::FromSeconds(5)|Specify timespan in seconds.  Gives the connect timeout for the http requests being sent from the http app gateway.  |
-|RemoveServiceResponseHeaders|wstring, default is L"Date;Server"|Semi colon/ comma separated list of response headers that will be removed from the service response; before forwarding it to the client. If this is set to empty string; pass all the headers returned by the service as-is. i.e do not overwrite the Date and Server |
-|ApplicationCertificateValidationPolicy|wstring, default is L"None"| ApplicationCertificateValidationPolicy: None: Do not validate server certificate; succeed the request. ServiceCertificateThumbprints: Refer to config ServiceCertificateThumbprints for the comma separated list of thumbprints of the remote certs that the reverse proxy can trust. ServiceCommonNameAndIssuer:  Refer to config ServiceCommonNameAndIssuer for the subject name and issuer thumbprint of the remote certs that the reverse proxy can trust. |
-|ServiceCertificateThumbprints|wstring, default is L""| |
-|CrlCheckingFlag|uint, default is 0x40000000 | Flags for application/service certificate chain validation; e.g. CRL checking 0x10000000 CERT_CHAIN_REVOCATION_CHECK_END_CERT 0x20000000 CERT_CHAIN_REVOCATION_CHECK_CHAIN 0x40000000 CERT_CHAIN_REVOCATION_CHECK_CHAIN_EXCLUDE_ROOT 0x80000000 CERT_CHAIN_REVOCATION_CHECK_CACHE_ONLY Setting to 0 disables CRL checking Full list of supported values is documented by dwFlags of CertGetCertificateChain: http://msdn.microsoft.com/en-us/library/windows/desktop/aa376078(v=vs.85).aspx  |
-|IgnoreCrlOfflineError|bool, default is TRUE|Whether to ignore CRL offline error for application/service certificate verification. |
-|SecureOnlyMode|bool, default is FALSE| SecureOnlyMode: true: Reverse Proxy will only forward to services that publish secure endpoints. false: Reverse Proxy can forward requests to secure/non-secure endpoints.  |
-|ForwardClientCertificate|bool, default is FALSE| |
+| **Parameter** | **Allowed Values** | **Upgrade Policy** | **Guidance or short Description** |
+| --- | --- | --- | --- |
+|IsEnabled |Bool, default is false |Static| Enables/Disables the HttpApplicationGateway. HttpApplicationGateway is disabled by default and this config needs to be set to enable it. |
+|NumberOfParallelOperations | Uint, default is 5000 |Static|Number of reads to post to the http server queue. This controls the number of concurrent requests that can be satisfied by the HttpGateway. |
+|DefaultHttpRequestTimeout |Time in seconds. default is 120 |Dynamic|Specify timespan in seconds.  Gives the default request timeout for the http requests being processed in the http app gateway. |
+|ResolveServiceBackoffInterval |Time in seconds, default is 5 |Dynamic|Specify timespan in seconds.  Gives the default back-off interval before retrying a failed resolve service operation. |
+|BodyChunkSize |Uint, default is 16384 |Dynamic| Gives the size of for the chunk in bytes used to read the body. |
+|GatewayAuthCredentialType |string, default is "None" |Static| Indicates the type of security credentials to use at the http app gateway endpoint Valid values are "None/X509. |
+|GatewayX509CertificateStoreName |string, default is "My" |Dynamic| Name of X.509 certificate store that contains certificate for http app gateway. |
+|GatewayX509CertificateFindType |string, default is "FindByThumbprint" |Dynamic| Indicates how to search for certificate in the store specified by GatewayX509CertificateStoreName Supported value: FindByThumbprint; FindBySubjectName. |
+|GatewayX509CertificateFindValue | string, default is "" |Dynamic| Search filter value used to locate the http app gateway certificate. This certificate is configured on the https endpoint and can also be used to verify the identity of the app if needed by the services. FindValue is looked up first; and if that doesnt exist; FindValueSecondary is looked up. |
+|GatewayX509CertificateFindValueSecondary | string, default is "" |Dynamic|Search filter value used to locate the http app gateway certificate. This certificate is configured on the https endpoint and can also be used to verify the identity of the app if needed by the services. FindValue is looked up first; and if that doesnt exist; FindValueSecondary is looked up.|
+|HttpRequestConnectTimeout|TimeSpan, default is Common::TimeSpan::FromSeconds(5)|Dynamic|Specify timespan in seconds.  Gives the connect timeout for the http requests being sent from the http app gateway.  |
+|RemoveServiceResponseHeaders|wstring, default is L"Date;Server"|Static|Semi colon/ comma separated list of response headers that will be removed from the service response; before forwarding it to the client. If this is set to empty string; pass all the headers returned by the service as-is. i.e do not overwrite the Date and Server |
+|ApplicationCertificateValidationPolicy|wstring, default is L"None"|Static| ApplicationCertificateValidationPolicy: None: Do not validate server certificate; succeed the request. ServiceCertificateThumbprints: Refer to config ServiceCertificateThumbprints for the comma separated list of thumbprints of the remote certs that the reverse proxy can trust. ServiceCommonNameAndIssuer:  Refer to config ServiceCommonNameAndIssuer for the subject name and issuer thumbprint of the remote certs that the reverse proxy can trust. |
+|ServiceCertificateThumbprints|wstring, default is L""|Dynamic| |
+|CrlCheckingFlag|uint, default is 0x40000000 |Dynamic| Flags for application/service certificate chain validation; e.g. CRL checking 0x10000000 CERT_CHAIN_REVOCATION_CHECK_END_CERT 0x20000000 CERT_CHAIN_REVOCATION_CHECK_CHAIN 0x40000000 CERT_CHAIN_REVOCATION_CHECK_CHAIN_EXCLUDE_ROOT 0x80000000 CERT_CHAIN_REVOCATION_CHECK_CACHE_ONLY Setting to 0 disables CRL checking Full list of supported values is documented by dwFlags of CertGetCertificateChain: http://msdn.microsoft.com/en-us/library/windows/desktop/aa376078(v=vs.85).aspx  |
+|IgnoreCrlOfflineError|bool, default is TRUE|Dynamic|Whether to ignore CRL offline error for application/service certificate verification. |
+|SecureOnlyMode|bool, default is FALSE|Dynamic| SecureOnlyMode: true: Reverse Proxy will only forward to services that publish secure endpoints. false: Reverse Proxy can forward requests to secure/non-secure endpoints.  |
+|ForwardClientCertificate|bool, default is FALSE|Dynamic| |
 
 ### Section Name: ApplicationGateway/Http/ServiceCommonNameAndIssuer
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-|PropertyGroup|X509NameMap, default is None|  |
-
+| **Parameter** | **Allowed Values** | **Upgrade Policy** | **Guidance or short Description** |
+| --- | --- | --- | --- |
+|PropertyGroup|X509NameMap, default is None|Dynamic|  |
 
 ### Section Name: Management
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-| ImageStoreConnectionString |SecureString | Connection string to the Root for ImageStore. |
-| ImageStoreMinimumTransferBPS | Int, default is 1024 |The minimum transfer rate between the cluster and ImageStore. This value is used to determine the timeout when accessing the external ImageStore. Change this value only if the latency between the cluster and ImageStore is high to allow more time for the cluster to download from the external ImageStore. |
-|AzureStorageMaxWorkerThreads | Int, default is 25 | The maximum number of worker threads in parallel. |
-|AzureStorageMaxConnections | Int, default is 5000 | The maximum number of concurrent connections to azure storage. |
-|AzureStorageOperationTimeout | Time in seconds, default is 6000 | Specify timespan in seconds. Timeout for xstore operation to complete. |
-|ImageCachingEnabled | Bool, default is true | This configuration allows us to enable or disable caching. |
-|DisableChecksumValidation | Bool, default is false | This configuration allows us to enable or disable checksum validation during application provisioning. |
-|DisableServerSideCopy | Bool, default is false | This configuration enables or disables server side copy of application package on the ImageStore during application provisioning. |
+| **Parameter** | **Allowed Values** | **Upgrade Policy** | **Guidance or short Description** |
+| --- | --- | --- | --- |
+| ImageStoreConnectionString |SecureString |Static|Connection string to the Root for ImageStore. |
+| ImageStoreMinimumTransferBPS | Int, default is 1024 |Dynamic|The minimum transfer rate between the cluster and ImageStore. This value is used to determine the timeout when accessing the external ImageStore. Change this value only if the latency between the cluster and ImageStore is high to allow more time for the cluster to download from the external ImageStore. |
+|AzureStorageMaxWorkerThreads | Int, default is 25 |Dynamic|The maximum number of worker threads in parallel. |
+|AzureStorageMaxConnections | Int, default is 5000 |Dynamic|The maximum number of concurrent connections to azure storage. |
+|AzureStorageOperationTimeout | Time in seconds, default is 6000 |Dynamic|Specify timespan in seconds. Timeout for xstore operation to complete. |
+|ImageCachingEnabled | Bool, default is true |Static|This configuration allows us to enable or disable caching. |
+|DisableChecksumValidation | Bool, default is false |Static| This configuration allows us to enable or disable checksum validation during application provisioning. |
+|DisableServerSideCopy | Bool, default is false |Static|This configuration enables or disables server side copy of application package on the ImageStore during application provisioning. |
 
 ### Section Name: HealthManager/ClusterHealthPolicy
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-| ConsiderWarningAsError |Bool, default is false |Cluster health evaluation policy: warnings are treated as errors. |
-| MaxPercentUnhealthyNodes | Int, default is 0 |Cluster health evaluation policy: maximum percent of unhealthy nodes allowed for the cluster to be healthy. |
-| MaxPercentUnhealthyApplications | Int, default is 0 |Cluster health evaluation policy: maximum percent of unhealthy applications allowed for the cluster to be healthy. |
+| **Parameter** | **Allowed Values** | **Upgrade Policy** | **Guidance or short Description** |
+| --- | --- | --- | --- |
+| ConsiderWarningAsError |Bool, default is false |Static|Cluster health evaluation policy: warnings are treated as errors. |
+| MaxPercentUnhealthyNodes | Int, default is 0 |Static|Cluster health evaluation policy: maximum percent of unhealthy nodes allowed for the cluster to be healthy. |
+| MaxPercentUnhealthyApplications | Int, default is 0 |Static|Cluster health evaluation policy: maximum percent of unhealthy applications allowed for the cluster to be healthy. |
 
 ### Section Name: HealthManager/ClusterUpgradeHealthPolicy
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-|MaxPercentDeltaUnhealthyNodes|int,default is 10| Cluster upgrade health evaluation policy: maximum percent of delta unhealthy nodes allowed for the cluster to be healthy |
-|MaxPercentUpgradeDomainDeltaUnhealthyNodes|int,default is 15| Cluster upgrade health evaluation policy: maximum percent of delta of unhealthy nodes in an upgrade domain allowed for the cluster to be healthy |
+| **Parameter** | **Allowed Values** | **Upgrade Policy** | **Guidance or short Description** |
+| --- | --- | --- | --- |
+|MaxPercentDeltaUnhealthyNodes|int,default is 10|Static|Cluster upgrade health evaluation policy: maximum percent of delta unhealthy nodes allowed for the cluster to be healthy |
+|MaxPercentUpgradeDomainDeltaUnhealthyNodes|int,default is 15|Static|Cluster upgrade health evaluation policy: maximum percent of delta of unhealthy nodes in an upgrade domain allowed for the cluster to be healthy |
 
 ### Section Name: FaultAnalysisService
 | **Parameter** | **Allowed Values** | **Guidance or short Description** |
