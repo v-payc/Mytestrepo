@@ -353,62 +353,62 @@ Here are the Fabric settings that you can customize:
 |ReplicaDropWaitDurationInSeconds|int,default is 600|Static|This parameter is used when the data loss api is called.  It controls how long the system will wait for a replica to get dropped after remove replica is internally invoked on it. |
 
 ### Section Name: FileStoreService
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-| NamingOperationTimeout |Time in seconds, default is 60 |Specify timespan in seconds. The timeout for performing naming operation. |
-| QueryOperationTimeout | Time in seconds, default is 60 |Specify timespan in seconds. The timeout for performing query operation. |
-| MaxCopyOperationThreads | Uint, default is 0 | The maximum number of parallel files that secondary can copy from primary. '0' == number of cores. |
-| MaxFileOperationThreads | Uint, default is 100 | The maximum number of parallel threads allowed to perform FileOperations (Copy/Move) in the primary. '0' == number of cores. |
-| MaxStoreOperations | Uint, default is 4096 |The maximum number of parallel store transaction operations allowed on primary. '0' == number of cores. |
-| MaxRequestProcessingThreads | Uint, default is 200 |The maximum number of parallel threads allowed to process requests in the primary. '0' == number of cores. |
-| MaxSecondaryFileCopyFailureThreshold | Uint, default is 25| The maximum number of file copy retries on the secondary before giving up. |
-| AnonymousAccessEnabled | Bool, default is true |Enable/Disable anonymous access to the FileStoreService shares. |
-| PrimaryAccountType | string, default is "" |The primary AccountType of the principal to ACL the FileStoreService shares. |
-| PrimaryAccountUserName | string, default is "" |The primary account Username of the principal to ACL the FileStoreService shares. |
-| PrimaryAccountUserPassword | SecureString, default is empty |The primary account password of the principal to ACL the FileStoreService shares. |
-| FileStoreService | PrimaryAccountNTLMPasswordSecret | SecureString, default is empty | The password secret which used as seed to generated same password when using NTLM authentication. |
-| PrimaryAccountNTLMX509StoreLocation | string, default is "LocalMachine"| The store location of the X509 certificate used to generate HMAC on the PrimaryAccountNTLMPasswordSecret  when using NTLM authentication. |
-| PrimaryAccountNTLMX509StoreName | string, default is "MY"| The store name of the X509 certificate used to generate HMAC on the PrimaryAccountNTLMPasswordSecret  when using NTLM authentication. |
-| PrimaryAccountNTLMX509Thumbprint | string, default is ""|The thumbprint of the X509 certificate used to generate HMAC on the PrimaryAccountNTLMPasswordSecret  when using NTLM authentication. |
-| SecondaryAccountType | string, default is ""| The secondary AccountType of the principal to ACL the FileStoreService shares. |
-| SecondaryAccountUserName | string, default is ""| The secondary account Username of the principal to ACL the FileStoreService shares. |
-| SecondaryAccountUserPassword | SecureString, default is empty |The secondary account password of the principal to ACL the FileStoreService shares.  |
-| SecondaryAccountNTLMPasswordSecret | SecureString, default is empty | The password secret which used as seed to generated same password when using NTLM authentication. |
-| SecondaryAccountNTLMX509StoreLocation | string, default is "LocalMachine" |The store location of the X509 certificate used to generate HMAC on the SecondaryAccountNTLMPasswordSecret  when using NTLM authentication. |
-| SecondaryAccountNTLMX509StoreName | string, default is "MY" |The store name of the X509 certificate used to generate HMAC on the SecondaryAccountNTLMPasswordSecret  when using NTLM authentication. |
-| SecondaryAccountNTLMX509Thumbprint | string, default is ""| The thumbprint of the X509 certificate used to generate HMAC on the SecondaryAccountNTLMPasswordSecret  when using NTLM authentication. |
-|CommonNameNtlmPasswordSecret|SecureString,default is Common::SecureString(L"")| The password secret which used as seed to generated same password when using NTLM authentication |
-|CommonName1Ntlmx509StoreLocation|wstring,default is L"LocalMachine"|The store location of the X509 certificate used to generate HMAC on the CommonName1NtlmPasswordSecret  when using NTLM authentication |
-|CommonName1Ntlmx509StoreName|wstring,default is L"MY"| The store name of the X509 certificate used to generate HMAC on the CommonName1NtlmPasswordSecret  when using NTLM authentication |
-|CommonName1Ntlmx509CommonName|wstring,default is L""| The common name of the X509 certificate used to generate HMAC on the CommonName1NtlmPasswordSecret  when using NTLM authentication |
-|CommonName2Ntlmx509StoreLocation|wstring,default is L"LocalMachine"| The store location of the X509 certificate used to generate HMAC on the CommonName2NtlmPasswordSecret  when using NTLM authentication |
-|CommonName2Ntlmx509StoreName|wstring,default is L"MY"| The store name of the X509 certificate used to generate HMAC on the CommonName2NtlmPasswordSecret  when using NTLM authentication |
-|CommonName2Ntlmx509CommonName|wstring,default is L""|The common name of the X509 certificate used to generate HMAC on the CommonName2NtlmPasswordSecret  when using NTLM authentication |
+| **Parameter** | **Allowed Values** | **Upgrade Policy** | **Guidance or short Description** |
+| --- | --- | --- | --- |
+| NamingOperationTimeout |Time in seconds, default is 60 |Dynamic|Specify timespan in seconds. The timeout for performing naming operation. |
+| QueryOperationTimeout | Time in seconds, default is 60 |Dynamic|Specify timespan in seconds. The timeout for performing query operation. |
+| MaxCopyOperationThreads | Uint, default is 0 |Dynamic| The maximum number of parallel files that secondary can copy from primary. '0' == number of cores. |
+| MaxFileOperationThreads | Uint, default is 100 |Static| The maximum number of parallel threads allowed to perform FileOperations (Copy/Move) in the primary. '0' == number of cores. |
+| MaxStoreOperations | Uint, default is 4096 |Static|The maximum number of parallel store transaction operations allowed on primary. '0' == number of cores. |
+| MaxRequestProcessingThreads | Uint, default is 200 |Static|The maximum number of parallel threads allowed to process requests in the primary. '0' == number of cores. |
+| MaxSecondaryFileCopyFailureThreshold | Uint, default is 25|Dynamic|The maximum number of file copy retries on the secondary before giving up. |
+| AnonymousAccessEnabled | Bool, default is true |Static|Enable/Disable anonymous access to the FileStoreService shares. |
+| PrimaryAccountType | string, default is "" |Static|The primary AccountType of the principal to ACL the FileStoreService shares. |
+| PrimaryAccountUserName | string, default is "" |Static|The primary account Username of the principal to ACL the FileStoreService shares. |
+| PrimaryAccountUserPassword | SecureString, default is empty |Static|The primary account password of the principal to ACL the FileStoreService shares. |
+| PrimaryAccountNTLMPasswordSecret | SecureString, default is empty |Static| The password secret which used as seed to generated same password when using NTLM authentication. |
+| PrimaryAccountNTLMX509StoreLocation | string, default is "LocalMachine"|Static| The store location of the X509 certificate used to generate HMAC on the PrimaryAccountNTLMPasswordSecret  when using NTLM authentication. |
+| PrimaryAccountNTLMX509StoreName | string, default is "MY"|Static| The store name of the X509 certificate used to generate HMAC on the PrimaryAccountNTLMPasswordSecret  when using NTLM authentication. |
+| PrimaryAccountNTLMX509Thumbprint | string, default is ""|Static|The thumbprint of the X509 certificate used to generate HMAC on the PrimaryAccountNTLMPasswordSecret  when using NTLM authentication. |
+| SecondaryAccountType | string, default is ""|Static| The secondary AccountType of the principal to ACL the FileStoreService shares. |
+| SecondaryAccountUserName | string, default is ""| Static|The secondary account Username of the principal to ACL the FileStoreService shares. |
+| SecondaryAccountUserPassword | SecureString, default is empty |Static|The secondary account password of the principal to ACL the FileStoreService shares.  |
+| SecondaryAccountNTLMPasswordSecret | SecureString, default is empty |Static| The password secret which used as seed to generated same password when using NTLM authentication. |
+| SecondaryAccountNTLMX509StoreLocation | string, default is "LocalMachine" |Static|The store location of the X509 certificate used to generate HMAC on the SecondaryAccountNTLMPasswordSecret  when using NTLM authentication. |
+| SecondaryAccountNTLMX509StoreName | string, default is "MY" |Static|The store name of the X509 certificate used to generate HMAC on the SecondaryAccountNTLMPasswordSecret  when using NTLM authentication. |
+| SecondaryAccountNTLMX509Thumbprint | string, default is ""| Static|The thumbprint of the X509 certificate used to generate HMAC on the SecondaryAccountNTLMPasswordSecret  when using NTLM authentication. |
+|CommonNameNtlmPasswordSecret|SecureString,default is Common::SecureString(L"")| Static|The password secret which used as seed to generated same password when using NTLM authentication |
+|CommonName1Ntlmx509StoreLocation|wstring,default is L"LocalMachine"|Static|The store location of the X509 certificate used to generate HMAC on the CommonName1NtlmPasswordSecret  when using NTLM authentication |
+|CommonName1Ntlmx509StoreName|wstring,default is L"MY"| Static|The store name of the X509 certificate used to generate HMAC on the CommonName1NtlmPasswordSecret  when using NTLM authentication |
+|CommonName1Ntlmx509CommonName|wstring,default is L""|Static| The common name of the X509 certificate used to generate HMAC on the CommonName1NtlmPasswordSecret  when using NTLM authentication |
+|CommonName2Ntlmx509StoreLocation|wstring,default is L"LocalMachine"| Static|The store location of the X509 certificate used to generate HMAC on the CommonName2NtlmPasswordSecret  when using NTLM authentication |
+|CommonName2Ntlmx509StoreName|wstring,default is L"MY"|Static| The store name of the X509 certificate used to generate HMAC on the CommonName2NtlmPasswordSecret  when using NTLM authentication |
+|CommonName2Ntlmx509CommonName|wstring,default is L""|Static|The common name of the X509 certificate used to generate HMAC on the CommonName2NtlmPasswordSecret  when using NTLM authentication |
 
 ### Section Name: ImageStoreService
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-| Enabled |Bool, default is false |The Enabled flag for ImageStoreService. Default: false |
-| TargetReplicaSetSize | Int, default is 7 |The TargetReplicaSetSize for ImageStoreService. |
-| MinReplicaSetSize | Int, default is 3 |The MinReplicaSetSize for ImageStoreService. |
-| ReplicaRestartWaitDuration | Time in seconds, default is 60.0 * 30 | Specify timespan in seconds. The ReplicaRestartWaitDuration for ImageStoreService. |
-| QuorumLossWaitDuration | Time in seconds, default is MaxValue | Specify timespan in seconds. The QuorumLossWaitDuration for ImageStoreService. |
-| StandByReplicaKeepDuration | Time in seconds, default is 3600.0 * 2 | Specify timespan in seconds. The StandByReplicaKeepDuration for ImageStoreService. |
-| PlacementConstraints | string, default is "" | The PlacementConstraints for ImageStoreService. |
+| **Parameter** | **Allowed Values** | **Upgrade Policy** | **Guidance or short Description** |
+| --- | --- | --- | --- |
+| Enabled |Bool, default is false |Static|The Enabled flag for ImageStoreService. Default: false |
+| TargetReplicaSetSize | Int, default is 7 |Not Allowed|The TargetReplicaSetSize for ImageStoreService. |
+| MinReplicaSetSize | Int, default is 3 |Not Allowed|The MinReplicaSetSize for ImageStoreService. |
+| ReplicaRestartWaitDuration | Time in seconds, default is 60.0 * 30 |Static|Specify timespan in seconds. The ReplicaRestartWaitDuration for ImageStoreService. |
+| QuorumLossWaitDuration | Time in seconds, default is MaxValue |Static| Specify timespan in seconds. The QuorumLossWaitDuration for ImageStoreService. |
+| StandByReplicaKeepDuration | Time in seconds, default is 3600.0 * 2 |Static| Specify timespan in seconds. The StandByReplicaKeepDuration for ImageStoreService. |
+| PlacementConstraints | string, default is "" |Static| The PlacementConstraints for ImageStoreService. |
 
 ### Section Name: ImageStoreClient
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-| ClientUploadTimeout |Time in seconds, default is 1800 | Specify timespan in seconds. Timeout value for top-level upload request to Image Store Service. |
-| ClientCopyTimeout | Time in seconds, default is 1800 | Specify timespan in seconds. Timeout value for top-level copy request to Image Store Service. |
-|ClientDownloadTimeout | Time in seconds, default is 1800 | Specify timespan in seconds. Timeout value for top-level download request to Image Store Service. |
-|ClientListTimeout | Time in seconds, default is 600 |Specify timespan in seconds. Timeout value for top-level list request to Image Store Service. |
-|ClientDefaultTimeout | Time in seconds, default is 180 | Specify timespan in seconds. Timeout value for all non-upload/non-download requests (e.g. exists; delete) to Image Store Service. |
+| **Parameter** | **Allowed Values** | **Upgrade Policy** | **Guidance or short Description** |
+| --- | --- | --- | --- |
+| ClientUploadTimeout |Time in seconds, default is 1800 |Dynamic|Specify timespan in seconds. Timeout value for top-level upload request to Image Store Service. |
+| ClientCopyTimeout | Time in seconds, default is 1800 |Dynamic| Specify timespan in seconds. Timeout value for top-level copy request to Image Store Service. |
+|ClientDownloadTimeout | Time in seconds, default is 1800 |Dynamic| Specify timespan in seconds. Timeout value for top-level download request to Image Store Service. |
+|ClientListTimeout | Time in seconds, default is 600 |Dynamic|Specify timespan in seconds. Timeout value for top-level list request to Image Store Service. |
+|ClientDefaultTimeout | Time in seconds, default is 180 |Dynamic| Specify timespan in seconds. Timeout value for all non-upload/non-download requests (e.g. exists; delete) to Image Store Service. |
 
 ### Section Name: TokenValidationService
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-| Providers |string, default is "DSTS" |Comma separated list of token validation providers to enable (valid providers are: DSTS; AAD). Currently only a single provider can be enabled at any time. |
+| **Parameter** | **Allowed Values** | **Upgrade Policy** | **Guidance or short Description** |
+| --- | --- | --- | --- |
+| Providers |string, default is "DSTS" |Static|Comma separated list of token validation providers to enable (valid providers are: DSTS; AAD). Currently only a single provider can be enabled at any time. |
 
 ### Section Name: UpgradeOrchestrationService
 | **Parameter** | **Allowed Values** | **Guidance or short Description** |
