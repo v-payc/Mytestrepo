@@ -216,62 +216,62 @@ Here are the Fabric settings that you can customize:
 |PlacementTimeLimit|TimeSpan,default is Common::TimeSpan::FromSeconds(600)|Dynamic|Specify timespan in seconds. The time limit for reaching target replica count; after which a warning health report will be initiated |
 
 ### Section Name: NamingService
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-| TargetReplicaSetSize |Int, default is 7 |The number of replica sets for each partition of the Naming Service store. Increasing the number of replica sets increases the level of reliability for the information in the Naming Service Store; decreasing the change that the information will be lost as a result of node failures; at a cost of increased load on Windows Fabric and the amount of time it takes to perform updates to the naming data.|
-|MinReplicaSetSize | Int, default is 3 | The minimum number of Naming Service replicas required to write into to complete an update. If there are fewer replicas than this active in the system the Reliability System denies updates to the Naming Service Store until replicas are restored. This value should never be more than the TargetReplicaSetSize. |
-|ReplicaRestartWaitDuration | Time in seconds, default is (60.0 * 30)| Specify timespan in seconds. When a Naming Service replica goes down; this timer starts.  When it expires the FM will begin to replace the replicas which are down (it does not yet consider them lost). |
-|QuorumLossWaitDuration | Time in seconds, default is MaxValue | Specify timespan in seconds. When a Naming Service gets into quorum loss; this timer starts.  When it expires the FM will consider the down replicas as lost; and attempt to recover quorum. Not that this may result in data loss. |
-|StandByReplicaKeepDuration | Time in seconds, default is 3600.0 * 2 | Specify timespan in seconds. When a Naming Service replicas come back from a down state; it may have already been replaced.  This timer determines how long the FM will keep the standby replica before discarding it. |
-|PlacementConstraints | string, default is "" | Placement constraint for the Naming Service. |
-|ServiceDescriptionCacheLimit | Int, default is 0 | The maximum number of entries maintained in the LRU service description cache at the Naming Store Service (set to 0 for no limit). |
-|RepairInterval | Time in seconds, default is 5 | Specify timespan in seconds. Interval in which the naming inconsistency repair between the authority owner and name owner will start. |
-|MaxNamingServiceHealthReports | Int, default is 10 | The maximum number of slow operations that Naming store service reports unhealthy at one time. If 0; all slow operations are sent. |
-| MaxMessageSize |Int, default is 4*1024*1024 |The maximum message size for client node communication when using naming. DOS attack alleviation; default value is 4MB. |
-| MaxFileOperationTimeout |Time in seconds, default is 30 |Specify timespan in seconds. The maximum timeout allowed for file store service operation. Requests specifying a larger timeout will be rejected. |
-| MaxOperationTimeout |Time in seconds, default is 600 |Specify timespan in seconds. The maximum timeout allowed for client operations. Requests specifying a larger timeout will be rejected. |
-| MaxClientConnections |Int, default is 1000 |The maximum allowed number of client connections per gateway. |
-| ServiceNotificationTimeout |Time in seconds, default is 30 |Specify timespan in seconds. The timeout used when delivering service notifications to the client. |
-| MaxOutstandingNotificationsPerClient |Int, default is 1000 |The maximum number of outstanding notifications before a client registration is forcibly closed by the gateway. |
-| MaxIndexedEmptyPartitions |Int, default is 1000 |The maximum number of empty partitions that will remain indexed in the notification cache for synchronizing reconnecting clients. Any empty partitions above this number will be removed from the index in ascending lookup version order. Reconnecting clients can still synchronize and receive missed empty partition updates; but the synchronization protocol becomes more expensive. |
-| GatewayServiceDescriptionCacheLimit |Int, default is 0 |The maximum number of entries maintained in the LRU service description cache at the Naming Gateway (set to 0 for no limit). |
-| PartitionCount |Int, default is 3 |The number of partitions of the Naming Service store to be created. Each partition owns a single partition key that corresponds to its index; so partition keys [0; PartitionCount) exist. Increasing the number of Naming Service partitions increases the scale that the Naming Service can perform at by decreasing the average amount of data held by any backing replica set; at a cost of increased utilization of resources (since PartitionCount*ReplicaSetSize service replicas must be maintained).|
+| **Parameter** | **Allowed Values** | **Upgrade Policy** | **Guidance or short Description** |
+| --- | --- | --- | --- |
+| TargetReplicaSetSize |Int, default is 7 |Not Allowed|The number of replica sets for each partition of the Naming Service store. Increasing the number of replica sets increases the level of reliability for the information in the Naming Service Store; decreasing the change that the information will be lost as a result of node failures; at a cost of increased load on Windows Fabric and the amount of time it takes to perform updates to the naming data.|
+|MinReplicaSetSize | Int, default is 3 |Not Allowed| The minimum number of Naming Service replicas required to write into to complete an update. If there are fewer replicas than this active in the system the Reliability System denies updates to the Naming Service Store until replicas are restored. This value should never be more than the TargetReplicaSetSize. |
+|ReplicaRestartWaitDuration | Time in seconds, default is (60.0 * 30)|Not Allowed| Specify timespan in seconds. When a Naming Service replica goes down; this timer starts.  When it expires the FM will begin to replace the replicas which are down (it does not yet consider them lost). |
+|QuorumLossWaitDuration | Time in seconds, default is MaxValue |Not Allowed| Specify timespan in seconds. When a Naming Service gets into quorum loss; this timer starts.  When it expires the FM will consider the down replicas as lost; and attempt to recover quorum. Not that this may result in data loss. |
+|StandByReplicaKeepDuration | Time in seconds, default is 3600.0 * 2 |Not Allowed| Specify timespan in seconds. When a Naming Service replicas come back from a down state; it may have already been replaced.  This timer determines how long the FM will keep the standby replica before discarding it. |
+|PlacementConstraints | string, default is "" |Not Allowed| Placement constraint for the Naming Service. |
+|ServiceDescriptionCacheLimit | Int, default is 0 |Static| The maximum number of entries maintained in the LRU service description cache at the Naming Store Service (set to 0 for no limit). |
+|RepairInterval | Time in seconds, default is 5 |Static| Specify timespan in seconds. Interval in which the naming inconsistency repair between the authority owner and name owner will start. |
+|MaxNamingServiceHealthReports | Int, default is 10 |Dynamic|The maximum number of slow operations that Naming store service reports unhealthy at one time. If 0; all slow operations are sent. |
+| MaxMessageSize |Int, default is 4*1024*1024 |Static|The maximum message size for client node communication when using naming. DOS attack alleviation; default value is 4MB. |
+| MaxFileOperationTimeout |Time in seconds, default is 30 |Dynamic|Specify timespan in seconds. The maximum timeout allowed for file store service operation. Requests specifying a larger timeout will be rejected. |
+| MaxOperationTimeout |Time in seconds, default is 600 |Dynamic|Specify timespan in seconds. The maximum timeout allowed for client operations. Requests specifying a larger timeout will be rejected. |
+| MaxClientConnections |Int, default is 1000 |Dynamic|The maximum allowed number of client connections per gateway. |
+| ServiceNotificationTimeout |Time in seconds, default is 30 |Dynamic|Specify timespan in seconds. The timeout used when delivering service notifications to the client. |
+| MaxOutstandingNotificationsPerClient |Int, default is 1000 |Dynamic|The maximum number of outstanding notifications before a client registration is forcibly closed by the gateway. |
+| MaxIndexedEmptyPartitions |Int, default is 1000 |Dynamic|The maximum number of empty partitions that will remain indexed in the notification cache for synchronizing reconnecting clients. Any empty partitions above this number will be removed from the index in ascending lookup version order. Reconnecting clients can still synchronize and receive missed empty partition updates; but the synchronization protocol becomes more expensive. |
+| GatewayServiceDescriptionCacheLimit |Int, default is 0 |Static|The maximum number of entries maintained in the LRU service description cache at the Naming Gateway (set to 0 for no limit). |
+| PartitionCount |Int, default is 3 |Not Allowed|The number of partitions of the Naming Service store to be created. Each partition owns a single partition key that corresponds to its index; so partition keys [0; PartitionCount) exist. Increasing the number of Naming Service partitions increases the scale that the Naming Service can perform at by decreasing the average amount of data held by any backing replica set; at a cost of increased utilization of resources (since PartitionCount*ReplicaSetSize service replicas must be maintained).|
 
 ### Section Name: RunAs
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-| RunAsAccountName |string, default is "" |Indicates the RunAs account name. This is only needed for "DomainUser" or "ManagedServiceAccount" account type. Valid values are "domain\user" or "user@domain". |
-|RunAsAccountType|string, default is "" |Indicates the RunAs account type. This is needed for any RunAs section Valid values are "DomainUser/NetworkService/ManagedServiceAccount/LocalSystem".|
-|RunAsPassword|string, default is "" |Indicates the RunAs account password. This is only needed for "DomainUser" account type. |
+| **Parameter** | **Allowed Values** | **Upgrade Policy** | **Guidance or short Description** |
+| --- | --- | --- | --- |
+| RunAsAccountName |string, default is "" |Dynamic|Indicates the RunAs account name. This is only needed for "DomainUser" or "ManagedServiceAccount" account type. Valid values are "domain\user" or "user@domain". |
+|RunAsAccountType|string, default is "" |Dynamic|Indicates the RunAs account type. This is needed for any RunAs section Valid values are "DomainUser/NetworkService/ManagedServiceAccount/LocalSystem".|
+|RunAsPassword|string, default is "" |Dynamic|Indicates the RunAs account password. This is only needed for "DomainUser" account type. |
 
 ### Section Name: RunAs_Fabric
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-| RunAsAccountName |string, default is "" |Indicates the RunAs account name. This is only needed for "DomainUser" or "ManagedServiceAccount" account type. Valid values are "domain\user" or "user@domain". |
-|RunAsAccountType|string, default is "" |Indicates the RunAs account type. This is needed for any RunAs section Valid values are "LocalUser/DomainUser/NetworkService/ManagedServiceAccount/LocalSystem". |
-|RunAsPassword|string, default is "" |Indicates the RunAs account password. This is only needed for "DomainUser" account type. |
+| **Parameter** | **Allowed Values** | **Upgrade Policy** | **Guidance or short Description** |
+| --- | --- | --- | --- |
+| RunAsAccountName |string, default is "" |Dynamic|Indicates the RunAs account name. This is only needed for "DomainUser" or "ManagedServiceAccount" account type. Valid values are "domain\user" or "user@domain". |
+|RunAsAccountType|string, default is "" |Dynamic|Indicates the RunAs account type. This is needed for any RunAs section Valid values are "LocalUser/DomainUser/NetworkService/ManagedServiceAccount/LocalSystem". |
+|RunAsPassword|string, default is "" |Dynamic|Indicates the RunAs account password. This is only needed for "DomainUser" account type. |
 
 ### Section Name: RunAs_HttpGateway
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-| RunAsAccountName |string, default is "" |Indicates the RunAs account name. This is only needed for "DomainUser" or "ManagedServiceAccount" account type. Valid values are "domain\user" or "user@domain". |
-|RunAsAccountType|string, default is "" |Indicates the RunAs account type. This is needed for any RunAs section Valid values are "LocalUser/DomainUser/NetworkService/ManagedServiceAccount/LocalSystem". |
-|RunAsPassword|string, default is "" |Indicates the RunAs account password. This is only needed for "DomainUser" account type. |
+| **Parameter** | **Allowed Values** | **Upgrade Policy** | **Guidance or short Description** |
+| --- | --- | --- | --- |
+| RunAsAccountName |string, default is "" |Dynamic|Indicates the RunAs account name. This is only needed for "DomainUser" or "ManagedServiceAccount" account type. Valid values are "domain\user" or "user@domain". |
+|RunAsAccountType|string, default is "" |Dynamic|Indicates the RunAs account type. This is needed for any RunAs section Valid values are "LocalUser/DomainUser/NetworkService/ManagedServiceAccount/LocalSystem". |
+|RunAsPassword|string, default is "" |Dynamic|Indicates the RunAs account password. This is only needed for "DomainUser" account type. |
 
 ### Section Name: RunAs_DCA
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-| RunAsAccountName |string, default is "" |Indicates the RunAs account name. This is only needed for "DomainUser" or "ManagedServiceAccount" account type. Valid values are "domain\user" or "user@domain". |
-|RunAsAccountType|string, default is "" |Indicates the RunAs account type. This is needed for any RunAs section Valid values are "LocalUser/DomainUser/NetworkService/ManagedServiceAccount/LocalSystem". |
-|RunAsPassword|string, default is "" |Indicates the RunAs account password. This is only needed for "DomainUser" account type. |
+| **Parameter** | **Allowed Values** | **Upgrade Policy** | **Guidance or short Description** |
+| --- | --- | --- | --- |
+| RunAsAccountName |string, default is "" |Dynamic|Indicates the RunAs account name. This is only needed for "DomainUser" or "ManagedServiceAccount" account type. Valid values are "domain\user" or "user@domain". |
+|RunAsAccountType|string, default is "" |Dynamic|Indicates the RunAs account type. This is needed for any RunAs section Valid values are "LocalUser/DomainUser/NetworkService/ManagedServiceAccount/LocalSystem". |
+|RunAsPassword|string, default is "" |Dynamic|Indicates the RunAs account password. This is only needed for "DomainUser" account type. |
 
 ### Section Name: HttpGateway
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-|IsEnabled|Bool, default is false | Enables/Disables the HttpGateway. HttpGateway is disabled by default. |
-|ActiveListeners |Uint, default is 50 | Number of reads to post to the http server queue. This controls the number of concurrent requests that can be satisfied by the HttpGateway. |
-|MaxEntityBodySize |Uint, default is 4194304 |  Gives the maximum size of the body that can be expected from a http request. Default value is 4MB. Httpgateway will fail a request if it has a body of size > this value. Minimum read chunk size is 4096 bytes. So this has to be >= 4096. |
-|HttpGatewayHealthReportSendInterval |Time in seconds, default is 30 | Specify timespan in seconds. The interval at which the Http Gateway sends accumulated health reports to the Health Manager. |
+| **Parameter** | **Allowed Values** | **Upgrade Policy** | **Guidance or short Description** |
+| --- | --- | --- | --- |
+|IsEnabled|Bool, default is false |Static| Enables/Disables the HttpGateway. HttpGateway is disabled by default. |
+|ActiveListeners |Uint, default is 50 |Static| Number of reads to post to the http server queue. This controls the number of concurrent requests that can be satisfied by the HttpGateway. |
+|MaxEntityBodySize |Uint, default is 4194304 |Dynamic|Gives the maximum size of the body that can be expected from a http request. Default value is 4MB. Httpgateway will fail a request if it has a body of size > this value. Minimum read chunk size is 4096 bytes. So this has to be >= 4096. |
+|HttpGatewayHealthReportSendInterval |Time in seconds, default is 30 |Static|Specify timespan in seconds. The interval at which the Http Gateway sends accumulated health reports to the Health Manager. |
 
 ### Section Name: KtlLogger
 | **Parameter** | **Allowed Values** | **Guidance or short Description** |
