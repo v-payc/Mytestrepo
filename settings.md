@@ -423,21 +423,21 @@ Here are the Fabric settings that you can customize:
 | UpgradeApprovalRequired | Bool, default is false | Static|Setting to make code upgrade require administrator approval before proceeding. |
 
 ### Section Name: UpgradeService
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-| PlacementConstraints |string, default is "" |The PlacementConstraints for Upgrade service. |
-| TargetReplicaSetSize | Int, default is 3 | The TargetReplicaSetSize for UpgradeService. |
-| MinReplicaSetSize | Int, default is 2 | The MinReplicaSetSize for UpgradeService. |
-| CoordinatorType | string, default is "WUTest"| The CoordinatorType for UpgradeService. |
-| BaseUrl | string, default is "" |BaseUrl for UpgradeService. |
-| ClusterId | string, default is "" | ClusterId for UpgradeService. |
-| X509StoreName | string, default is "My"| X509StoreName for UpgradeService. |
-| X509StoreLocation | string, default is "" | X509StoreLocation for UpgradeService. |
-| X509FindType | string, default is ""| X509FindType for UpgradeService. |
-| X509FindValue | string, default is "" | X509FindValue for UpgradeService. |
-| X509SecondaryFindValue | string, default is "" | X509SecondaryFindValue for UpgradeService. |
-| OnlyBaseUpgrade | Bool, default is false | OnlyBaseUpgrade for UpgradeService. |
-| TestCabFolder | string, default is "" | TestCabFolder for UpgradeService. |
+| **Parameter** | **Allowed Values** | **Upgrade Policy** | **Guidance or short Description** |
+| --- | --- | --- | --- |
+| PlacementConstraints |string, default is "" |Not Allowed|The PlacementConstraints for Upgrade service. |
+| TargetReplicaSetSize | Int, default is 3 |Not Allowed| The TargetReplicaSetSize for UpgradeService. |
+| MinReplicaSetSize | Int, default is 2 |Not Allowed| The MinReplicaSetSize for UpgradeService. |
+| CoordinatorType | string, default is "WUTest"|Not Allowed|The CoordinatorType for UpgradeService. |
+| BaseUrl | string, default is "" |Static|BaseUrl for UpgradeService. |
+| ClusterId | string, default is "" |Static|ClusterId for UpgradeService. |
+| X509StoreName | string, default is "My"|Dynamic|X509StoreName for UpgradeService. |
+| X509StoreLocation | string, default is "" |Dynamic| X509StoreLocation for UpgradeService. |
+| X509FindType | string, default is ""|Dynamic| X509FindType for UpgradeService. |
+| X509FindValue | string, default is "" |Dynamic| X509FindValue for UpgradeService. |
+| X509SecondaryFindValue | string, default is "" |Dynamic| X509SecondaryFindValue for UpgradeService. |
+| OnlyBaseUpgrade | Bool, default is false |Dynamic|OnlyBaseUpgrade for UpgradeService. |
+| TestCabFolder | string, default is "" |Static| TestCabFolder for UpgradeService. |
 
 ### Section Name: Security
 | **Parameter** | **Allowed Values** | **Guidance or short Description** |
