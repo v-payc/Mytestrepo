@@ -474,24 +474,24 @@ Here are the Fabric settings that you can customize:
 |SettingsX509StoreName| wstring,default is L"MY"| X509 certificate store used by fabric for configuration protection |
 
 ### Section Name: Security/AdminClientX509Names
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-|PropertyGroup|X509NameMap,default is None| |
+| **Parameter** | **Allowed Values** | **Upgrade Policy** | **Guidance or short Description** |
+| --- | --- | --- | --- |
+|PropertyGroup|X509NameMap,default is None|Dynamic| |
 
 ### Section Name: Security/ClientX509Names
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-PropertyGroup|X509NameMap,default is None| |
+| **Parameter** | **Allowed Values** | **Upgrade Policy** | **Guidance or short Description** |
+| --- | --- | --- | --- |
+PropertyGroup|X509NameMap,default is None|Dynamic| |
 
 ### Section Name: Security/ClusterX509Names
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-PropertyGroup|X509NameMap,default is None| |
+| **Parameter** | **Allowed Values** | **Upgrade Policy** | **Guidance or short Description** |
+| --- | --- | --- | --- |
+PropertyGroup|X509NameMap,default is None|Dynamic| |
 
 ### Section Name: Security/ServerX509Names
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-PropertyGroup|X509NameMap,default is None| |
+| **Parameter** | **Allowed Values** | **Upgrade Policy** | **Guidance or short Description** |
+| --- | --- | --- | --- |
+PropertyGroup|X509NameMap,default is None|Dynamic| |
 
 ### Section Name: Security/ClientAccess
 | **Parameter** | **Allowed Values** | **Guidance or short Description** |
