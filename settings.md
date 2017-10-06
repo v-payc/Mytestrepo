@@ -744,19 +744,19 @@ PropertyGroup|X509NameMap,default is None|Dynamic| |
 |InstanceCount|int,default is -1|  |
 
 ### Section Name: MetricActivityThresholds
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-|PropertyGroup|KeyIntegerValueMap,default is None|Determines the set of MetricActivityThresholds for the metrics in the cluster. Balancing will work if maxNodeLoad is greater than MetricActivityThresholds. For deferag metrics it defines the amount of load equal to or below which Service Fabric will consider the node empty |
+| **Parameter** | **Allowed Values** |**Upgrade Policy**| **Guidance or short Description** |
+| --- | --- | --- | --- |
+|PropertyGroup|KeyIntegerValueMap,default is None|Dynamic|Determines the set of MetricActivityThresholds for the metrics in the cluster. Balancing will work if maxNodeLoad is greater than MetricActivityThresholds. For deferag metrics it defines the amount of load equal to or below which Service Fabric will consider the node empty |
 
 ### Section Name: MetricBalancingThresholds
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-|PropertyGroup|KeyDoubleValueMap,default is None|Determines the set of MetricBalancingThresholds for the metrics in the cluster. Balancing will work if maxNodeLoad/minNodeLoad is greater than MetricBalancingThresholds. Defragmentation will work if maxNodeLoad/minNodeLoad in at least one FD or UD is smaller than MetricBalancingThresholds. |
+| **Parameter** | **Allowed Values** |**Upgrade Policy**| **Guidance or short Description** |
+| --- | --- | --- | --- |
+|PropertyGroup|KeyDoubleValueMap,default is None|Dynamic|Determines the set of MetricBalancingThresholds for the metrics in the cluster. Balancing will work if maxNodeLoad/minNodeLoad is greater than MetricBalancingThresholds. Defragmentation will work if maxNodeLoad/minNodeLoad in at least one FD or UD is smaller than MetricBalancingThresholds. |
 
 ### Section Name: NodeBufferPercentage
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-|PropertyGroup|KeyDoubleValueMap,default is None|Node capacity percentage per metric name; used as a buffer in order to keep some free place on a node for the failover case. |
+| **Parameter** | **Allowed Values** |**Upgrade Policy**| **Guidance or short Description** |
+| --- | --- | --- | --- |
+|PropertyGroup|KeyDoubleValueMap,default is None|Dynamic|Node capacity percentage per metric name; used as a buffer in order to keep some free place on a node for the failover case. |
 
 ### Section Name: Replication
 | **Parameter** | **Allowed Values** | **Guidance or short Description** |
