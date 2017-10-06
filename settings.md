@@ -723,25 +723,25 @@ PropertyGroup|X509NameMap,default is None|Dynamic| |
 |MaxExponentialOperationRetryDelay|TimeSpan,default is Common::TimeSpan::FromSeconds(30)|Specify timespan in seconds. The maximum exponential delay for internal retries when failures are encountered repeatedly |
 
 ### Section Name: DefragmentationEmptyNodeDistributionPolicy
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-|PropertyGroup|KeyIntegerValueMap, default is None|Specifies the policy defragmentation follows when emptying nodes. For a given metric 0 indicates that SF should try to defragment nodes evenly across UDs and FDs; 1 indicates only that the nodes must be defragmented |
+| **Parameter** | **Allowed Values** |**Upgrade Policy**| **Guidance or short Description** |
+| --- | --- | --- | --- |
+|PropertyGroup|KeyIntegerValueMap, default is None|Dynamic|Specifies the policy defragmentation follows when emptying nodes. For a given metric 0 indicates that SF should try to defragment nodes evenly across UDs and FDs; 1 indicates only that the nodes must be defragmented |
 
 ### Section Name: DefragmentationMetrics
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-|PropertyGroup|KeyBoolValueMap, default is None|Determines the set of metrices that should be used for defragmentation and not for load balancing. |
+| **Parameter** | **Allowed Values** |**Upgrade Policy**| **Guidance or short Description** |
+| --- | --- | --- | --- |
+|PropertyGroup|KeyBoolValueMap, default is None|Dynamic|Determines the set of metrices that should be used for defragmentation and not for load balancing. |
 
 ### Section Name: DefragmentationMetricsPercentOrNumberOfEmptyNodesTriggeringThreshold
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-|PropertyGroup|KeyDoubleValueMap, default is None|Determines the number of free nodes which are needed to consider cluster defragmented by specifying either percent in range [0.0 - 1.0) or number of empty nodes as number >= 1.0 |
+| **Parameter** | **Allowed Values** |**Upgrade Policy**| **Guidance or short Description** |
+| --- | --- | --- | --- |
+|PropertyGroup|KeyDoubleValueMap, default is None|Dynamic|Determines the number of free nodes which are needed to consider cluster defragmented by specifying either percent in range [0.0 - 1.0) or number of empty nodes as number >= 1.0 |
 
 ### Section Name: DnsService
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-|IsEnabled|bool, default is FALSE| |
-|InstanceCount|int,default is -1|  |
+| **Parameter** | **Allowed Values** |**Upgrade Policy**| **Guidance or short Description** |
+| --- | --- | --- | --- |
+|IsEnabled|bool, default is FALSE|Static| |
+|InstanceCount|int,default is -1|Static|  |
 
 ### Section Name: MetricActivityThresholds
 | **Parameter** | **Allowed Values** |**Upgrade Policy**| **Guidance or short Description** |
