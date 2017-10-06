@@ -655,36 +655,36 @@ PropertyGroup|X509NameMap,default is None|Dynamic| |
 |AutoDetectAvailableResources|bool,default is TRUE|This config will trigger auto detection of available resources on node (CPU and Memory) When this config is set to true - we will read real capacities and correct them if user specified bad node capacities or didn't define them at all If this config is set to false - we will trace a warning that user specified bad node capacities; but we will not correct them; meaning that user wants to have the capacities specified as > than the node really has or if capacities are undefined; it will assume unlimited capacity |
 
 ### Section Name: Hosting
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-| ServiceTypeRegistrationTimeout |Time in Seconds, default is 300 |Maximum time allowed for the ServiceType to be  registered with fabric |
-| ServiceTypeDisableFailureThreshold |Whole number, default is 1 |This is the threshold for the failure count after which FailoverManager (FM) is notified to disable the service type on that node and try a different node for placement. |
-| ActivationRetryBackoffInterval |Time in Seconds, default is 5 |Backoff interval on every activation failure; On every continuous activation failure, the system retries the activation for up to the MaxActivationFailureCount. The retry interval on every try is a product of continuous activation failure and the activation back-off interval. |
-| ActivationMaxRetryInterval |Time in seconds, default is 300 |On every continuous activation failure, the system retries the activation for up to ActivationMaxFailureCount. ActivationMaxRetryInterval specifies Wait time interval before retry after every activation failure |
-| ActivationMaxFailureCount |Whole number, default is 10 |Number of times system retries failed activation before giving up |
-|ActivationTimeout| TimeSpan,default is Common::TimeSpan::FromSeconds(180)| Specify timespan in seconds. The timeout for application activation; deactivation and upgrade. |
-|ApplicationHostCloseTimeout| TimeSpan,default is Common::TimeSpan::FromSeconds(120)| Specify timespan in seconds. When Fabric exit is detected in a self activated processes; FabricRuntime closes all of the replicas in the user's host (applicationhost) process. This is the timeout for the that close operation. |
-|ApplicationUpgradeTimeout| TimeSpan,default is Common::TimeSpan::FromSeconds(360)| Specify timespan in seconds. The timeout for application upgrade. If the timeout is less than the "ActivationTimeout" deployer will fail. |
-|CreateFabricRuntimeTimeout|TimeSpan,default is Common::TimeSpan::FromSeconds(120)| Specify timespan in seconds. The timeout value for the sync FabricCreateRuntime call |
-|DeploymentMaxFailureCount|int,default is 20| Application deployment will be retried for DeploymentMaxFailureCount times before failing the deployment of that application on the node.| 
-|DeploymentMaxRetryInterval| TimeSpan,default is Common::TimeSpan::FromSeconds(3600)| Specify timespan in seconds. Max retry interval for the deployment. On every continuous failure the retry interval is calculated as Min( DeploymentMaxRetryInterval; Continuous Failure Count * DeploymentRetryBackoffInterval) |
-|DeploymentRetryBackoffInterval| TimeSpan,default is Common::TimeSpan::FromSeconds(10)|Specify timespan in seconds. Back-off interval for the deployment failure. On every continuous deployment failure the system will retry the deployment for up to the MaxDeploymentFailureCount. The retry interval is a product of continuous deployment failure and the deployment backoff interval. |
-|EnableActivateNoWindow| bool,default is FALSE| The activated process is created in the background without any console. |
-|EnableProcessDebugging|bool,default is FALSE| Enables launching application hosts under debugger |
-|EndpointProviderEnabled| bool,default is FALSE| Enables management of Endpoint resources by Fabric. Requires specification of start and end application port range in FabricNode. |
-|FabricContainerAppsEnabled| bool,default is FALSE| |	
-|FirewallPolicyEnabled|bool,default is FALSE| Enables opening firewall ports for Endpoint resources with explicit ports specified in ServiceManifest |
-|GetCodePackageActivationContextTimeout|TimeSpan,default is Common::TimeSpan::FromSeconds(120)|Specify timespan in seconds. The timeout value for the CodePackageActivationContext calls . This is not applicable to ad-hoc services. |
-|IPProviderEnabled|bool,default is FALSE|Enables management of IP addresses. |
-|NTLMAuthenticationEnabled|bool,default is FALSE| Enables support for using NTLM by the code packages that are running as other users so that the processes across machines can communicate securely. |
-|NTLMAuthenticationPasswordSecret|SecureString,default is Common::SecureString(L"")|Is an encrypted has that is used to generate the password for NTLM users. Has to be set if NTLMAuthenticationEnabled is true. Validated by the deployer. |
-|NTLMSecurityUsersByX509CommonNamesRefreshInterval|TimeSpan,default is Common::TimeSpan::FromMinutes(3)|Specify timespan in seconds. Environment specific settings The periodic interval at which Hosting scans for new certificates to be used for FileStoreService NTLM configuration. |
-|NTLMSecurityUsersByX509CommonNamesRefreshTimeout|TimeSpan,default is Common::TimeSpan::FromMinutes(4)| Specify timespan in seconds. The timeout for configuring NTLM users using certificate common names. The NTLM users are needed for FileStoreService shares. |
-|RegisterCodePackageHostTimeout|TimeSpan,default is Common::TimeSpan::FromSeconds(120)| Specify timespan in seconds. The timeout value for the FabricRegisterCodePackageHost sync call. This is applicable for only multi code package application hosts like FWP |
-|RequestTimeout|TimeSpan, default is Common::TimeSpan::FromSeconds(30)| Specify timespan in seconds. This represents the timeout for communication between the user's application host and Fabric process for various hosting related operations such as factory registration; runtime registration. |
-|RunAsPolicyEnabled| bool,default is FALSE| Enables running code packages as local user other than the user under which fabric process is running. In order to enable this policy Fabric must be running as SYSTEM or as user who has SeAssignPrimaryTokenPrivilege. |
-|ServiceFactoryRegistrationTimeout| TimeSpan,default is Common::TimeSpan::FromSeconds(120)|Specify timespan in seconds. The timeout value for the sync Register(Stateless/Stateful)ServiceFactory call |
-|ServiceTypeDisableGraceInterval|TimeSpan,default is Common::TimeSpan::FromSeconds(30)|Specify timespan in seconds. Time interval after which the service type can be disabled |
+| **Parameter** | **Allowed Values** | **Upgrade Policy** | **Guidance or short Description** |
+| --- | --- | --- | --- |
+| ServiceTypeRegistrationTimeout |Time in Seconds, default is 300 |Dynamic|Maximum time allowed for the ServiceType to be  registered with fabric |
+| ServiceTypeDisableFailureThreshold |Whole number, default is 1 |Dynamic|This is the threshold for the failure count after which FailoverManager (FM) is notified to disable the service type on that node and try a different node for placement. |
+| ActivationRetryBackoffInterval |Time in Seconds, default is 5 |Dynamic|Backoff interval on every activation failure; On every continuous activation failure, the system retries the activation for up to the MaxActivationFailureCount. The retry interval on every try is a product of continuous activation failure and the activation back-off interval. |
+| ActivationMaxRetryInterval |Time in seconds, default is 300 |Dynamic|On every continuous activation failure, the system retries the activation for up to ActivationMaxFailureCount. ActivationMaxRetryInterval specifies Wait time interval before retry after every activation failure |
+| ActivationMaxFailureCount |Whole number, default is 10 |Dynamic|Number of times system retries failed activation before giving up |
+|ActivationTimeout| TimeSpan,default is Common::TimeSpan::FromSeconds(180)|Dynamic| Specify timespan in seconds. The timeout for application activation; deactivation and upgrade. |
+|ApplicationHostCloseTimeout| TimeSpan,default is Common::TimeSpan::FromSeconds(120)|Dynamic| Specify timespan in seconds. When Fabric exit is detected in a self activated processes; FabricRuntime closes all of the replicas in the user's host (applicationhost) process. This is the timeout for the that close operation. |
+|ApplicationUpgradeTimeout| TimeSpan,default is Common::TimeSpan::FromSeconds(360)|Dynamic| Specify timespan in seconds. The timeout for application upgrade. If the timeout is less than the "ActivationTimeout" deployer will fail. |
+|CreateFabricRuntimeTimeout|TimeSpan,default is Common::TimeSpan::FromSeconds(120)|Dynamic| Specify timespan in seconds. The timeout value for the sync FabricCreateRuntime call |
+|DeploymentMaxFailureCount|int,default is 20| Dynamic|Application deployment will be retried for DeploymentMaxFailureCount times before failing the deployment of that application on the node.| 
+|DeploymentMaxRetryInterval| TimeSpan,default is Common::TimeSpan::FromSeconds(3600)|Dynamic| Specify timespan in seconds. Max retry interval for the deployment. On every continuous failure the retry interval is calculated as Min( DeploymentMaxRetryInterval; Continuous Failure Count * DeploymentRetryBackoffInterval) |
+|DeploymentRetryBackoffInterval| TimeSpan,default is Common::TimeSpan::FromSeconds(10)|Dynamic|Specify timespan in seconds. Back-off interval for the deployment failure. On every continuous deployment failure the system will retry the deployment for up to the MaxDeploymentFailureCount. The retry interval is a product of continuous deployment failure and the deployment backoff interval. |
+|EnableActivateNoWindow| bool,default is FALSE|Dynamic| The activated process is created in the background without any console. |
+|EnableProcessDebugging|bool,default is FALSE|Dynamic| Enables launching application hosts under debugger |
+|EndpointProviderEnabled| bool,default is FALSE|Static| Enables management of Endpoint resources by Fabric. Requires specification of start and end application port range in FabricNode. |
+|FabricContainerAppsEnabled| bool,default is FALSE|Static| |
+|FirewallPolicyEnabled|bool,default is FALSE|Static| Enables opening firewall ports for Endpoint resources with explicit ports specified in ServiceManifest |
+|GetCodePackageActivationContextTimeout|TimeSpan,default is Common::TimeSpan::FromSeconds(120)|Dynamic|Specify timespan in seconds. The timeout value for the CodePackageActivationContext calls . This is not applicable to ad-hoc services. |
+|IPProviderEnabled|bool,default is FALSE|Static|Enables management of IP addresses. |
+|NTLMAuthenticationEnabled|bool,default is FALSE|Static| Enables support for using NTLM by the code packages that are running as other users so that the processes across machines can communicate securely. |
+|NTLMAuthenticationPasswordSecret|SecureString,default is Common::SecureString(L"")|Static|Is an encrypted has that is used to generate the password for NTLM users. Has to be set if NTLMAuthenticationEnabled is true. Validated by the deployer. |
+|NTLMSecurityUsersByX509CommonNamesRefreshInterval|TimeSpan,default is Common::TimeSpan::FromMinutes(3)|Dynamic|Specify timespan in seconds. Environment specific settings The periodic interval at which Hosting scans for new certificates to be used for FileStoreService NTLM configuration. |
+|NTLMSecurityUsersByX509CommonNamesRefreshTimeout|TimeSpan,default is Common::TimeSpan::FromMinutes(4)|Dynamic| Specify timespan in seconds. The timeout for configuring NTLM users using certificate common names. The NTLM users are needed for FileStoreService shares. |
+|RegisterCodePackageHostTimeout|TimeSpan,default is Common::TimeSpan::FromSeconds(120)|Dynamic| Specify timespan in seconds. The timeout value for the FabricRegisterCodePackageHost sync call. This is applicable for only multi code package application hosts like FWP |
+|RequestTimeout|TimeSpan, default is Common::TimeSpan::FromSeconds(30)|Dynamic| Specify timespan in seconds. This represents the timeout for communication between the user's application host and Fabric process for various hosting related operations such as factory registration; runtime registration. |
+|RunAsPolicyEnabled| bool,default is FALSE|Static| Enables running code packages as local user other than the user under which fabric process is running. In order to enable this policy Fabric must be running as SYSTEM or as user who has SeAssignPrimaryTokenPrivilege. |
+|ServiceFactoryRegistrationTimeout| TimeSpan,default is Common::TimeSpan::FromSeconds(120)|Dynamic|Specify timespan in seconds. The timeout value for the sync Register(Stateless/Stateful)ServiceFactory call |
+|ServiceTypeDisableGraceInterval|TimeSpan,default is Common::TimeSpan::FromSeconds(30)|Dynamic|Specify timespan in seconds. Time interval after which the service type can be disabled |
 
 ### Section Name: Federation
 | **Parameter** | **Allowed Values** | **Upgrade Policy** | **Guidance or short Description** |
