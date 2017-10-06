@@ -587,17 +587,17 @@ PropertyGroup|X509NameMap,default is None|Dynamic| |
 |SetUpgradeOrchestrationServiceState|wstring,default is L"Admin"| Induces SetUpgradeOrchestrationServiceState on a partition |
 
 ### Section Name: ReconfigurationAgent
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-| ApplicationUpgradeMaxReplicaCloseDuration | Time in seconds, default is 900 |Specify timespan in seconds. The duration for which the system will wait before terminating service hosts that have replicas that are stuck in close during Application Upgrade.|
-| ServiceApiHealthDuration | Time in seconds, default is 30 minutes | Specify timespan in seconds. ServiceApiHealthDuration defines how long do we wait for a service API to run before we report it unhealthy. |
-| ServiceReconfigurationApiHealthDuration | Time in seconds, default is 30 | Specify timespan in seconds. ServiceReconfigurationApiHealthDuration defines how long do we wait for a service API to run before we report unhealthy. This applies to API calls that impact availability.|
-| PeriodicApiSlowTraceInterval | Time in seconds, default is 5 minutes | Specify timespan in seconds. PeriodicApiSlowTraceInterval defines the interval over which slow API calls will be retraced by the API monitor. |
-| NodeDeactivationMaxReplicaCloseDuration | Time in seconds, default is 900 | Specify timespan in seconds. The duration for which the system will wait before terminating service hosts that have replicas that are stuck in close during node deactivation. |
-| FabricUpgradeMaxReplicaCloseDuration | Time in seconds, default is 900 | Specify timespan in seconds. The duration for which the system will wait before terminating service hosts that have replicas that are stuck in close during fabric upgrade. |
-|GracefulReplicaShutdownMaxDuration|TimeSpan, default is Common::TimeSpan::FromSeconds(120)|Specify timespan in seconds. The duration for which the system will wait before terminating service hosts that have replicas that are stuck in close.|
-|ReplicaChangeRoleFailureRestartThreshold|int, default is 10| Integer. Specify the number of API failures during primary promotion after which auto-mitigation action (replica restart) will be applied. |
-|ReplicaChangeRoleFailureWarningReportThreshold|int,default is 2147483647| Integer. Specify the number of API failures during primary promotion after which warning health report will be raised.|
+| **Parameter** | **Allowed Values** | **Upgrade Policy** | **Guidance or short Description** |
+| --- | --- | --- | --- |
+| ApplicationUpgradeMaxReplicaCloseDuration | Time in seconds, default is 900 |Dynamic|Specify timespan in seconds. The duration for which the system will wait before terminating service hosts that have replicas that are stuck in close during Application Upgrade.|
+| ServiceApiHealthDuration | Time in seconds, default is 30 minutes |Dynamic| Specify timespan in seconds. ServiceApiHealthDuration defines how long do we wait for a service API to run before we report it unhealthy. |
+| ServiceReconfigurationApiHealthDuration | Time in seconds, default is 30 |Dynamic| Specify timespan in seconds. ServiceReconfigurationApiHealthDuration defines how long do we wait for a service API to run before we report unhealthy. This applies to API calls that impact availability.|
+| PeriodicApiSlowTraceInterval | Time in seconds, default is 5 minutes |Dynamic| Specify timespan in seconds. PeriodicApiSlowTraceInterval defines the interval over which slow API calls will be retraced by the API monitor. |
+| NodeDeactivationMaxReplicaCloseDuration | Time in seconds, default is 900 |Dynamic|Specify timespan in seconds. The duration for which the system will wait before terminating service hosts that have replicas that are stuck in close during node deactivation. |
+| FabricUpgradeMaxReplicaCloseDuration | Time in seconds, default is 900 |Dynamic| Specify timespan in seconds. The duration for which the system will wait before terminating service hosts that have replicas that are stuck in close during fabric upgrade. |
+|GracefulReplicaShutdownMaxDuration|TimeSpan, default is Common::TimeSpan::FromSeconds(120)|Dynamic|Specify timespan in seconds. The duration for which the system will wait before terminating service hosts that have replicas that are stuck in close.|
+|ReplicaChangeRoleFailureRestartThreshold|int, default is 10|Dynamic| Integer. Specify the number of API failures during primary promotion after which auto-mitigation action (replica restart) will be applied. |
+|ReplicaChangeRoleFailureWarningReportThreshold|int,default is 2147483647|Dynamic| Integer. Specify the number of API failures during primary promotion after which warning health report will be raised.|
 
 ### Section Name: PlacementAndLoadBalancing
 | **Parameter** | **Allowed Values** | **Guidance or short Description** |
