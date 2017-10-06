@@ -693,34 +693,34 @@ PropertyGroup|X509NameMap,default is None|Dynamic| |
 | LeaseDurationAcrossFaultDomain |Time in seconds, default is 30 |Dynamic|Duration that a lease lasts between a node and its neighbors across fault domains. |
 
 ### Section Name: ClusterManager
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-| UpgradeStatusPollInterval |Time in seconds, default is 60 |The frequency of polling for application upgrade status. This value determines the rate of update for any GetApplicationUpgradeProgress call |
-| UpgradeHealthCheckInterval |Time in seconds, default is 60 |The frequency of health status checks during a monitored application upgrades |
-| FabricUpgradeStatusPollInterval |Time in seconds, default is 60 |The frequency of polling for Fabric upgrade status. This value determines the rate of update for any GetFabricUpgradeProgress call |
-| FabricUpgradeHealthCheckInterval |Time in seconds, default is 60 |The frequency of health status check during a  monitored Fabric upgrade |
-|InfrastructureTaskProcessingInterval | Time in seconds, default is 10 |Specify timespan in seconds. The processing interval used by the infrastructure task processing state machine. |
-|TargetReplicaSetSize |Int, default is 7 |The TargetReplicaSetSize for ClusterManager. |
-|MinReplicaSetSize |Int, default is 3 |The MinReplicaSetSize for ClusterManager. |
-|ReplicaRestartWaitDuration |Time in seconds, default is (60.0 * 30)|Specify timespan in seconds. The ReplicaRestartWaitDuration for ClusterManager. |
-|QuorumLossWaitDuration |Time in seconds, default is MaxValue | Specify timespan in seconds. The QuorumLossWaitDuration for ClusterManager. |
-|StandByReplicaKeepDuration | Time in seconds, default is (3600.0 * 2)|Specify timespan in seconds. The StandByReplicaKeepDuration for ClusterManager. |
-|PlacementConstraints | string, default is "" |The PlacementConstraints for ClusterManager. |
-|SkipRollbackUpdateDefaultService | Bool, default is false |The CM will skip reverting updated default services during application upgrade rollback. |
-|EnableDefaultServicesUpgrade | Bool, default is false |Enable upgrading default services during application upgrade. Default service descriptions would be overwritten after upgrade. |
-|InfrastructureTaskHealthCheckWaitDuration |Time in seconds, default is 0| Specify timespan in seconds. The amount of time to wait before starting health checks after post-processing an infrastructure task. |
-|InfrastructureTaskHealthCheckStableDuration | Time in seconds, default is 0| Specify timespan in seconds. The amount of time to observe consecutive passed health checks before post-processing of an infrastructure task finishes successfully. Observing a failed health check will reset this timer. |
-|InfrastructureTaskHealthCheckRetryTimeout | Time in seconds, default is 60 |Specify timespan in seconds. The amount of time to spend retrying failed health checks while post-processing an infrastructure task. Observing a passed health check will reset this timer. |
-|ImageBuilderTimeoutBuffer |Time in seconds, default is 3 |Specify timespan in seconds. The amount of time to allow for Image Builder specific timeout errors to return to the client. If this buffer is too small; then the client times out before the server and gets a generic timeout error. |
-|MinOperationTimeout | Time in seconds, default is 60 |Specify timespan in seconds. The minimum global timeout for internally processing operations on ClusterManager. |
-|MaxOperationTimeout |Time in seconds, default is MaxValue | Specify timespan in seconds. The maximum global timeout for internally processing operations on ClusterManager. |
-|MaxTimeoutRetryBuffer | Time in seconds, default is 600 |Specify timespan in seconds. The maximum operation timeout when internally retrying due to timeouts is <Original Timeout> + <MaxTimeoutRetryBuffer>. Additional timeout is added in increments of MinOperationTimeout. |
-|MaxCommunicationTimeout |Time in seconds, default is 600 |Specify timespan in seconds. The maximum timeout for internal communications between ClusterManager and other system services (i.e.; Naming Service; Failover Manager and etc). This timeout should be smaller than global MaxOperationTimeout (as there might be multiple communications between system components for each client operation). |
-|MaxDataMigrationTimeout |Time in seconds, default is 600 |Specify timespan in seconds. The maximum timeout for data migration recovery operations after a Fabric upgrade has taken place. |
-|MaxOperationRetryDelay |Time in seconds, default is 5| Specify timespan in seconds. The maximum delay for internal retries when failures are encountered. |
-|ReplicaSetCheckTimeoutRollbackOverride |Time in seconds, default is 1200 | Specify timespan in seconds. If ReplicaSetCheckTimeout is set to the maximum value of DWORD; then it's overridden with the value of this config for the purposes of rollback. The value used for rollforward is never overridden. |
-|ImageBuilderJobQueueThrottle |Int, default is 10 |Thread count throttle for Image Builder proxy job queue on application requests. |
-|MaxExponentialOperationRetryDelay|TimeSpan,default is Common::TimeSpan::FromSeconds(30)|Specify timespan in seconds. The maximum exponential delay for internal retries when failures are encountered repeatedly |
+| **Parameter** | **Allowed Values** | **Upgrade Policy** | **Guidance or short Description** |
+| --- | --- | --- | --- |
+| UpgradeStatusPollInterval |Time in seconds, default is 60 |Dynamic|The frequency of polling for application upgrade status. This value determines the rate of update for any GetApplicationUpgradeProgress call |
+| UpgradeHealthCheckInterval |Time in seconds, default is 60 |Dynamic|The frequency of health status checks during a monitored application upgrades |
+| FabricUpgradeStatusPollInterval |Time in seconds, default is 60 |Dynamic|The frequency of polling for Fabric upgrade status. This value determines the rate of update for any GetFabricUpgradeProgress call |
+| FabricUpgradeHealthCheckInterval |Time in seconds, default is 60 |Dynamic|The frequency of health status check during a  monitored Fabric upgrade |
+|InfrastructureTaskProcessingInterval | Time in seconds, default is 10 |Dynamic|Specify timespan in seconds. The processing interval used by the infrastructure task processing state machine. |
+|TargetReplicaSetSize |Int, default is 7 |Not Allowed|The TargetReplicaSetSize for ClusterManager. |
+|MinReplicaSetSize |Int, default is 3 |Not Allowed|The MinReplicaSetSize for ClusterManager. |
+|ReplicaRestartWaitDuration |Time in seconds, default is (60.0 * 30)|Not Allowed|Specify timespan in seconds. The ReplicaRestartWaitDuration for ClusterManager. |
+|QuorumLossWaitDuration |Time in seconds, default is MaxValue |Not Allowed| Specify timespan in seconds. The QuorumLossWaitDuration for ClusterManager. |
+|StandByReplicaKeepDuration | Time in seconds, default is (3600.0 * 2)|Not Allowed|Specify timespan in seconds. The StandByReplicaKeepDuration for ClusterManager. |
+|PlacementConstraints | string, default is "" |Not Allowed|The PlacementConstraints for ClusterManager. |
+|SkipRollbackUpdateDefaultService | Bool, default is false |Dynamic|The CM will skip reverting updated default services during application upgrade rollback. |
+|EnableDefaultServicesUpgrade | Bool, default is false |Dynamic|Enable upgrading default services during application upgrade. Default service descriptions would be overwritten after upgrade. |
+|InfrastructureTaskHealthCheckWaitDuration |Time in seconds, default is 0|Dynamic| Specify timespan in seconds. The amount of time to wait before starting health checks after post-processing an infrastructure task. |
+|InfrastructureTaskHealthCheckStableDuration | Time in seconds, default is 0|Dynamic| Specify timespan in seconds. The amount of time to observe consecutive passed health checks before post-processing of an infrastructure task finishes successfully. Observing a failed health check will reset this timer. |
+|InfrastructureTaskHealthCheckRetryTimeout | Time in seconds, default is 60 |Dynamic|Specify timespan in seconds. The amount of time to spend retrying failed health checks while post-processing an infrastructure task. Observing a passed health check will reset this timer. |
+|ImageBuilderTimeoutBuffer |Time in seconds, default is 3 |Dynamic|Specify timespan in seconds. The amount of time to allow for Image Builder specific timeout errors to return to the client. If this buffer is too small; then the client times out before the server and gets a generic timeout error. |
+|MinOperationTimeout | Time in seconds, default is 60 |Dynamic|Specify timespan in seconds. The minimum global timeout for internally processing operations on ClusterManager. |
+|MaxOperationTimeout |Time in seconds, default is MaxValue |Dynamic| Specify timespan in seconds. The maximum global timeout for internally processing operations on ClusterManager. |
+|MaxTimeoutRetryBuffer | Time in seconds, default is 600 |Dynamic|Specify timespan in seconds. The maximum operation timeout when internally retrying due to timeouts is <Original Timeout> + <MaxTimeoutRetryBuffer>. Additional timeout is added in increments of MinOperationTimeout. |
+|MaxCommunicationTimeout |Time in seconds, default is 600 |Dynamic|Specify timespan in seconds. The maximum timeout for internal communications between ClusterManager and other system services (i.e.; Naming Service; Failover Manager and etc). This timeout should be smaller than global MaxOperationTimeout (as there might be multiple communications between system components for each client operation). |
+|MaxDataMigrationTimeout |Time in seconds, default is 600 |Dynamic|Specify timespan in seconds. The maximum timeout for data migration recovery operations after a Fabric upgrade has taken place. |
+|MaxOperationRetryDelay |Time in seconds, default is 5|Dynamic| Specify timespan in seconds. The maximum delay for internal retries when failures are encountered. |
+|ReplicaSetCheckTimeoutRollbackOverride |Time in seconds, default is 1200 |Dynamic| Specify timespan in seconds. If ReplicaSetCheckTimeout is set to the maximum value of DWORD; then it's overridden with the value of this config for the purposes of rollback. The value used for rollforward is never overridden. |
+|ImageBuilderJobQueueThrottle |Int, default is 10 |Dynamic|Thread count throttle for Image Builder proxy job queue on application requests. |
+|MaxExponentialOperationRetryDelay|TimeSpan,default is Common::TimeSpan::FromSeconds(30)|Dynamic|Specify timespan in seconds. The maximum exponential delay for internal retries when failures are encountered repeatedly |
 
 ### Section Name: DefragmentationEmptyNodeDistributionPolicy
 | **Parameter** | **Allowed Values** |**Upgrade Policy**| **Guidance or short Description** |
