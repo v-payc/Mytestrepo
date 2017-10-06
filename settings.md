@@ -687,10 +687,10 @@ PropertyGroup|X509NameMap,default is None|Dynamic| |
 |ServiceTypeDisableGraceInterval|TimeSpan,default is Common::TimeSpan::FromSeconds(30)|Specify timespan in seconds. Time interval after which the service type can be disabled |
 
 ### Section Name: Federation
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-| LeaseDuration |Time in seconds, default is 30 |Duration that a lease lasts between a node and its neighbors. |
-| LeaseDurationAcrossFaultDomain |Time in seconds, default is 30 |Duration that a lease lasts between a node and its neighbors across fault domains. |
+| **Parameter** | **Allowed Values** | **Upgrade Policy** | **Guidance or short Description** |
+| --- | --- | --- | --- |
+| LeaseDuration |Time in seconds, default is 30 |Dynamic|Duration that a lease lasts between a node and its neighbors. |
+| LeaseDurationAcrossFaultDomain |Time in seconds, default is 30 |Dynamic|Duration that a lease lasts between a node and its neighbors across fault domains. |
 
 ### Section Name: ClusterManager
 | **Parameter** | **Allowed Values** | **Guidance or short Description** |
