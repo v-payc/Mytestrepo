@@ -600,59 +600,59 @@ PropertyGroup|X509NameMap,default is None|Dynamic| |
 |ReplicaChangeRoleFailureWarningReportThreshold|int,default is 2147483647|Dynamic| Integer. Specify the number of API failures during primary promotion after which warning health report will be raised.|
 
 ### Section Name: PlacementAndLoadBalancing
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-| TraceCRMReasons |Bool, default is true |Specifies whether to trace reasons for CRM issued movements to the operational events channel. |
-| ValidatePlacementConstraint | Bool, default is true | Specifies whether or not the PlacementConstraint expression for a service is validated when a service's ServiceDescription is updated. |
-| PlacementConstraintValidationCacheSize | Int, default is 10000 | Limits the size of the table used for quick validation and caching of Placement Constraint Expressions. |
-|VerboseHealthReportLimit | Int, default is 20 | Defines the number of times a replica has to go unplaced before a health warning is reported for it (if verbose health reporting is enabled). |
-|ConstraintViolationHealthReportLimit | Int, default is 50 | Defines the number of times constraint violating replica has to be persistently unfixed before diagnostics are conducted and health reports are emitted. |
-|DetailedConstraintViolationHealthReportLimit | Int, default is 200 | Defines the number of times constraint violating replica has to be persistently unfixed before diagnostics are conducted and detailed health reports are emitted. |
-|DetailedVerboseHealthReportLimit | Int, default is 200 | Defines the number of times an unplaced replica has to be persistently unplaced before detailed health reports are emitted. |
-|ConsecutiveDroppedMovementsHealthReportLimit | Int, default is 20 | Defines the number of consecutive times that ResourceBalancer-issued Movements are dropped before diagnostics are conducted and health warnings are emitted. Negative: No Warnings Emitted under this condition. |
-|DetailedNodeListLimit | Int, default is 15 | Defines the number of nodes per constraint to include before truncation in the Unplaced Replica reports. |
-|DetailedPartitionListLimit | Int, default is 15 | Defines the number of partitions per diagnostic entry for a constraint to include before truncation in  Diagnostics. |
-|DetailedDiagnosticsInfoListLimit | Int, default is 15 | Defines the number of diagnostic entries (with detailed information) per constraint to include before truncation in  Diagnostics.|
-|PLBRefreshGap | Time in seconds, default is 1 | Specify timespan in seconds. Defines the minimum amount of time that must pass before PLB refreshes state again. |
-|MinPlacementInterval | Time in seconds, default is 1 | Specify timespan in seconds. Defines the minimum amount of time that must pass before two consecutive placement rounds. |
-|MinConstraintCheckInterval | Time in seconds, default is 1 | Specify timespan in seconds. Defines the minimum amount of time that must pass before two consecutive constraint check rounds. |
-|MinLoadBalancingInterval | Time in seconds, default is 5 | Specify timespan in seconds. Defines the minimum amount of time that must pass before two consecutive balancing rounds. |
-|BalancingDelayAfterNodeDown | Time in seconds, default is 120 |Specify timespan in seconds. Do not start balancing activities within this period after a node down event. |
-|BalancingDelayAfterNewNode | Time in seconds, default is 120 |Specify timespan in seconds. Do not start balancing activities within this period after adding a new node. |
-|ConstraintFixPartialDelayAfterNodeDown | Time in seconds, default is 120 | Specify timespan in seconds. Do not Fix FaultDomain and UpgradeDomain constraint violations within this period after a node down event. |
-|ConstraintFixPartialDelayAfterNewNode | Time in seconds, default is 120 | Specify timespan in seconds. DDo not Fix FaultDomain and UpgradeDomain constraint violations within this period after adding a new node. |
-|GlobalMovementThrottleThreshold | Uint, default is 1000 | Maximum number of movements allowed in the Balancing Phase in the past interval indicated by GlobalMovementThrottleCountingInterval. |
-|GlobalMovementThrottleThresholdForPlacement | Uint, default is 0 | Maximum number of movements allowed in Placement Phase in the past interval indicated by GlobalMovementThrottleCountingInterval.0 indicates no limit.|
-|GlobalMovementThrottleThresholdForBalancing | Uint, default is 0 | Maximum number of movements allowed in Balancing Phase in the past interval indicated by GlobalMovementThrottleCountingInterval. 0 indicates no limit. |
-|GlobalMovementThrottleCountingInterval | Time in seconds, default is 600 | Specify timespan in seconds. Indicate the length of the past interval for which to track per domain replica movements (used along with GlobalMovementThrottleThreshold). Can be set to 0 to ignore global throttling altogether. |
-|MovementPerPartitionThrottleThreshold | Uint, default is 50 | No balancing related movement will occur for a partition if the number of balancing related movements for replicas of that partition has reached or exceeded MovementPerFailoverUnitThrottleThreshold in the past interval indicated by MovementPerPartitionThrottleCountingInterval. |
-|MovementPerPartitionThrottleCountingInterval | Time in seconds, default is 600 | Specify timespan in seconds. Indicate the length of the past interval for which to track replica movements for each partition (used along with MovementPerPartitionThrottleThreshold). |
-|PlacementSearchTimeout | Time in seconds, default is 0.5 | Specify timespan in seconds. When placing services; search for at most this long before returning a result. |
-|UseMoveCostReports | Bool, default is false | Instructs the LB to ignore the cost element of the scoring function; resulting potentially large number of moves for better balanced placement. |
-|PreventTransientOvercommit | Bool, default is false | Determines should PLB immediately count on resources that will be freed up by the initiated moves. By default; PLB can initiate move out and move in on the same node which can create transient overcommit. Setting this parameter to true will prevent those kind of overcommits and on-demand defrag (aka placementWithMove) will be disabled. |
-|InBuildThrottlingEnabled | Bool, default is false | Determine whether the in-build throttling is enabled. |
-|InBuildThrottlingAssociatedMetric | string, default is "" | The associated metric name for this throttling. |
-|InBuildThrottlingGlobalMaxValue | Int, default is 0 |The maximal number of in-build replicas allowed globally. |
-|SwapPrimaryThrottlingEnabled | Bool, default is false| Determine whether the swap-primary throttling is enabled. |
-|SwapPrimaryThrottlingAssociatedMetric | string, default is ""| The associated metric name for this throttling. |
-|SwapPrimaryThrottlingGlobalMaxValue | Int, default is 0 | The maximal number of swap-primary replicas allowed globally. |
-|PlacementConstraintPriority | Int, default is 0 | Determines the priority of placement constraint: 0: Hard; 1: Soft; negative: Ignore. |
-|PreferredLocationConstraintPriority | Int, default is 2| Determines the priority of preferred location constraint: 0: Hard; 1: Soft; 2: Optimization; negative: Ignore |
-|CapacityConstraintPriority | Int, default is 0 | Determines the priority of capacity constraint: 0: Hard; 1: Soft; negative: Ignore. |
-|AffinityConstraintPriority | Int, default is 0 | Determines the priority of affinity constraint: 0: Hard; 1: Soft; negative: Ignore. |
-|FaultDomainConstraintPriority | Int, default is 0 | Determines the priority of fault domain constraint: 0: Hard; 1: Soft; negative: Ignore. |
-|UpgradeDomainConstraintPriority | Int, default is 1| Determines the priority of upgrade domain constraint: 0: Hard; 1: Soft; negative: Ignore. |
-|ScaleoutCountConstraintPriority | Int, default is 0 | Determines the priority of scaleout count constraint: 0: Hard; 1: Soft; negative: Ignore. |
-|ApplicationCapacityConstraintPriority | Int, default is 0 | Determines the priority of capacity constraint: 0: Hard; 1: Soft; negative: Ignore. |
-|MoveParentToFixAffinityViolation | Bool, default is false | Setting which determines if parent replicas can be moved to fix affinity constraints.|
-|MoveExistingReplicaForPlacement | Bool, default is true |Setting which determines if to move existing replica during placement. |
-|UseSeparateSecondaryLoad | Bool, default is true | Setting which determines if use different secondary load. |
-|PlaceChildWithoutParent | Bool, default is true | Setting which determines if child service replica can be placed if no parent replica is up. |
-|PartiallyPlaceServices | Bool, default is true | Determines if all service replicas in cluster will be placed "all or nothing" given limited suitable nodes for them.|
-|InterruptBalancingForAllFailoverUnitUpdates | Bool, default is false | Determines if any type of failover unit update should interrupt fast or slow balancing run. With specified "false" balancing run will be interrupted if FailoverUnit:  is created/deleted; has missing replicas; changed primary replica location or changed number of replicas. Balancing run will NOT be interrupted in other cases - if FailoverUnit:  has extra replicas; changed any replica flag; changed only partition version or any other case. |
-|GlobalMovementThrottleThresholdPercentage|double,default is 0|Maximum number of total movements allowed in Balancing and Placement phases (expressed as percentage of total number of replicas in the cluster) in the past interval indicated by GlobalMovementThrottleCountingInterval. 0 indicates no limit. If both this and GlobalMovementThrottleThreshold are specified; then more conservative limit is used.|
-|GlobalMovementThrottleThresholdPercentageForBalancing|double,default is 0|Maximum number of movements allowed in Balancing Phase (expressed as percentage of total number of replicas in PLB) in the past interval indicated by GlobalMovementThrottleCountingInterval. 0 indicates no limit. If both this and GlobalMovementThrottleThresholdForBalancing are specified; then more conservative limit is used.|
-|AutoDetectAvailableResources|bool,default is TRUE|This config will trigger auto detection of available resources on node (CPU and Memory) When this config is set to true - we will read real capacities and correct them if user specified bad node capacities or didn't define them at all If this config is set to false - we will trace a warning that user specified bad node capacities; but we will not correct them; meaning that user wants to have the capacities specified as > than the node really has or if capacities are undefined; it will assume unlimited capacity |
+| **Parameter** | **Allowed Values** | **Upgrade Policy** | **Guidance or short Description** |
+| --- | --- | --- | --- |
+| TraceCRMReasons |Bool, default is true |Dynamic|Specifies whether to trace reasons for CRM issued movements to the operational events channel. |
+| ValidatePlacementConstraint | Bool, default is true |Dynamic| Specifies whether or not the PlacementConstraint expression for a service is validated when a service's ServiceDescription is updated. |
+| PlacementConstraintValidationCacheSize | Int, default is 10000 |Dynamic| Limits the size of the table used for quick validation and caching of Placement Constraint Expressions. |
+|VerboseHealthReportLimit | Int, default is 20 | Dynamic|Defines the number of times a replica has to go unplaced before a health warning is reported for it (if verbose health reporting is enabled). |
+|ConstraintViolationHealthReportLimit | Int, default is 50 |Dynamic| Defines the number of times constraint violating replica has to be persistently unfixed before diagnostics are conducted and health reports are emitted. |
+|DetailedConstraintViolationHealthReportLimit | Int, default is 200 |Dynamic| Defines the number of times constraint violating replica has to be persistently unfixed before diagnostics are conducted and detailed health reports are emitted. |
+|DetailedVerboseHealthReportLimit | Int, default is 200 | Dynamic|Defines the number of times an unplaced replica has to be persistently unplaced before detailed health reports are emitted. |
+|ConsecutiveDroppedMovementsHealthReportLimit | Int, default is 20 | Dynamic|Defines the number of consecutive times that ResourceBalancer-issued Movements are dropped before diagnostics are conducted and health warnings are emitted. Negative: No Warnings Emitted under this condition. |
+|DetailedNodeListLimit | Int, default is 15 |Dynamic| Defines the number of nodes per constraint to include before truncation in the Unplaced Replica reports. |
+|DetailedPartitionListLimit | Int, default is 15 |Dynamic| Defines the number of partitions per diagnostic entry for a constraint to include before truncation in  Diagnostics. |
+|DetailedDiagnosticsInfoListLimit | Int, default is 15 |Dynamic| Defines the number of diagnostic entries (with detailed information) per constraint to include before truncation in  Diagnostics.|
+|PLBRefreshGap | Time in seconds, default is 1 |Dynamic| Specify timespan in seconds. Defines the minimum amount of time that must pass before PLB refreshes state again. |
+|MinPlacementInterval | Time in seconds, default is 1 |Dynamic| Specify timespan in seconds. Defines the minimum amount of time that must pass before two consecutive placement rounds. |
+|MinConstraintCheckInterval | Time in seconds, default is 1 |Dynamic| Specify timespan in seconds. Defines the minimum amount of time that must pass before two consecutive constraint check rounds. |
+|MinLoadBalancingInterval | Time in seconds, default is 5 |Dynamic| Specify timespan in seconds. Defines the minimum amount of time that must pass before two consecutive balancing rounds. |
+|BalancingDelayAfterNodeDown | Time in seconds, default is 120 |Dynamic|Specify timespan in seconds. Do not start balancing activities within this period after a node down event. |
+|BalancingDelayAfterNewNode | Time in seconds, default is 120 |Dynamic|Specify timespan in seconds. Do not start balancing activities within this period after adding a new node. |
+|ConstraintFixPartialDelayAfterNodeDown | Time in seconds, default is 120 |Dynamic| Specify timespan in seconds. Do not Fix FaultDomain and UpgradeDomain constraint violations within this period after a node down event. |
+|ConstraintFixPartialDelayAfterNewNode | Time in seconds, default is 120 |Dynamic| Specify timespan in seconds. DDo not Fix FaultDomain and UpgradeDomain constraint violations within this period after adding a new node. |
+|GlobalMovementThrottleThreshold | Uint, default is 1000 |Dynamic| Maximum number of movements allowed in the Balancing Phase in the past interval indicated by GlobalMovementThrottleCountingInterval. |
+|GlobalMovementThrottleThresholdForPlacement | Uint, default is 0 |Dynamic| Maximum number of movements allowed in Placement Phase in the past interval indicated by GlobalMovementThrottleCountingInterval.0 indicates no limit.|
+|GlobalMovementThrottleThresholdForBalancing | Uint, default is 0 | Dynamic|Maximum number of movements allowed in Balancing Phase in the past interval indicated by GlobalMovementThrottleCountingInterval. 0 indicates no limit. |
+|GlobalMovementThrottleCountingInterval | Time in seconds, default is 600 |Static| Specify timespan in seconds. Indicate the length of the past interval for which to track per domain replica movements (used along with GlobalMovementThrottleThreshold). Can be set to 0 to ignore global throttling altogether. |
+|MovementPerPartitionThrottleThreshold | Uint, default is 50 |Dynamic| No balancing related movement will occur for a partition if the number of balancing related movements for replicas of that partition has reached or exceeded MovementPerFailoverUnitThrottleThreshold in the past interval indicated by MovementPerPartitionThrottleCountingInterval. |
+|MovementPerPartitionThrottleCountingInterval | Time in seconds, default is 600 |Static| Specify timespan in seconds. Indicate the length of the past interval for which to track replica movements for each partition (used along with MovementPerPartitionThrottleThreshold). |
+|PlacementSearchTimeout | Time in seconds, default is 0.5 |Dynamic| Specify timespan in seconds. When placing services; search for at most this long before returning a result. |
+|UseMoveCostReports | Bool, default is false | Dynamic|Instructs the LB to ignore the cost element of the scoring function; resulting potentially large number of moves for better balanced placement. |
+|PreventTransientOvercommit | Bool, default is false | Dynamic|Determines should PLB immediately count on resources that will be freed up by the initiated moves. By default; PLB can initiate move out and move in on the same node which can create transient overcommit. Setting this parameter to true will prevent those kind of overcommits and on-demand defrag (aka placementWithMove) will be disabled. |
+|InBuildThrottlingEnabled | Bool, default is false |Dynamic| Determine whether the in-build throttling is enabled. |
+|InBuildThrottlingAssociatedMetric | string, default is "" |Static| The associated metric name for this throttling. |
+|InBuildThrottlingGlobalMaxValue | Int, default is 0 |Dynamic|The maximal number of in-build replicas allowed globally. |
+|SwapPrimaryThrottlingEnabled | Bool, default is false|Dynamic| Determine whether the swap-primary throttling is enabled. |
+|SwapPrimaryThrottlingAssociatedMetric | string, default is ""|Static| The associated metric name for this throttling. |
+|SwapPrimaryThrottlingGlobalMaxValue | Int, default is 0 |Dynamic| The maximal number of swap-primary replicas allowed globally. |
+|PlacementConstraintPriority | Int, default is 0 | Dynamic|Determines the priority of placement constraint: 0: Hard; 1: Soft; negative: Ignore. |
+|PreferredLocationConstraintPriority | Int, default is 2| Dynamic|Determines the priority of preferred location constraint: 0: Hard; 1: Soft; 2: Optimization; negative: Ignore |
+|CapacityConstraintPriority | Int, default is 0 | Dynamic|Determines the priority of capacity constraint: 0: Hard; 1: Soft; negative: Ignore. |
+|AffinityConstraintPriority | Int, default is 0 | Dynamic|Determines the priority of affinity constraint: 0: Hard; 1: Soft; negative: Ignore. |
+|FaultDomainConstraintPriority | Int, default is 0 |Dynamic| Determines the priority of fault domain constraint: 0: Hard; 1: Soft; negative: Ignore. |
+|UpgradeDomainConstraintPriority | Int, default is 1| Dynamic|Determines the priority of upgrade domain constraint: 0: Hard; 1: Soft; negative: Ignore. |
+|ScaleoutCountConstraintPriority | Int, default is 0 |Dynamic| Determines the priority of scaleout count constraint: 0: Hard; 1: Soft; negative: Ignore. |
+|ApplicationCapacityConstraintPriority | Int, default is 0 | Dynamic|Determines the priority of capacity constraint: 0: Hard; 1: Soft; negative: Ignore. |
+|MoveParentToFixAffinityViolation | Bool, default is false |Dynamic| Setting which determines if parent replicas can be moved to fix affinity constraints.|
+|MoveExistingReplicaForPlacement | Bool, default is true |Dynamic|Setting which determines if to move existing replica during placement. |
+|UseSeparateSecondaryLoad | Bool, default is true | Dynamic|Setting which determines if use different secondary load. |
+|PlaceChildWithoutParent | Bool, default is true | Dynamic|Setting which determines if child service replica can be placed if no parent replica is up. |
+|PartiallyPlaceServices | Bool, default is true |Dynamic| Determines if all service replicas in cluster will be placed "all or nothing" given limited suitable nodes for them.|
+|InterruptBalancingForAllFailoverUnitUpdates | Bool, default is false | Dynamic|Determines if any type of failover unit update should interrupt fast or slow balancing run. With specified "false" balancing run will be interrupted if FailoverUnit:  is created/deleted; has missing replicas; changed primary replica location or changed number of replicas. Balancing run will NOT be interrupted in other cases - if FailoverUnit:  has extra replicas; changed any replica flag; changed only partition version or any other case. |
+|GlobalMovementThrottleThresholdPercentage|double,default is 0|Dynamic|Maximum number of total movements allowed in Balancing and Placement phases (expressed as percentage of total number of replicas in the cluster) in the past interval indicated by GlobalMovementThrottleCountingInterval. 0 indicates no limit. If both this and GlobalMovementThrottleThreshold are specified; then more conservative limit is used.|
+|GlobalMovementThrottleThresholdPercentageForBalancing|double,default is 0|Dynamic|Maximum number of movements allowed in Balancing Phase (expressed as percentage of total number of replicas in PLB) in the past interval indicated by GlobalMovementThrottleCountingInterval. 0 indicates no limit. If both this and GlobalMovementThrottleThresholdForBalancing are specified; then more conservative limit is used.|
+|AutoDetectAvailableResources|bool,default is TRUE|Static|This config will trigger auto detection of available resources on node (CPU and Memory) When this config is set to true - we will read real capacities and correct them if user specified bad node capacities or didn't define them at all If this config is set to false - we will trace a warning that user specified bad node capacities; but we will not correct them; meaning that user wants to have the capacities specified as > than the node really has or if capacities are undefined; it will assume unlimited capacity |
 
 ### Section Name: Hosting
 | **Parameter** | **Allowed Values** | **Upgrade Policy** | **Guidance or short Description** |
