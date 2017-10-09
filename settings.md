@@ -494,97 +494,97 @@ PropertyGroup|X509NameMap,default is None|Dynamic| |
 PropertyGroup|X509NameMap,default is None|Dynamic| |
 
 ### Section Name: Security/ClientAccess
-| **Parameter** | **Allowed Values** | **Guidance or short Description** |
-| --- | --- | --- |
-| CreateName |string, default is "Admin" |Security configuration for Naming URI creation. |
-| DeleteName |string, default is "Admin" |Security configuration for Naming URI deletion. |
-| PropertyWriteBatch |string, default is "Admin" |Security configuration for Naming property write operations. |
-| CreateService |string, default is "Admin" | Security configuration for service creation. |
-| CreateServiceFromTemplate |string, default is "Admin" |Security configuration for service creation from template. |
-| UpdateService |string, default is "Admin" |Security configuration for service updates. |
-| DeleteService  |string, default is "Admin" |Security configuration for service deletion. |
-| ProvisionApplicationType |string, default is "Admin" | Security configuration for application type provisioning. |
-| CreateApplication |string, default is "Admin" | Security configuration for application creation. |
-| DeleteApplication |string, default is "Admin" | Security configuration for application deletion. |
-| UpgradeApplication |string, default is "Admin" | Security configuration for starting or interrupting application upgrades. |
-| RollbackApplicationUpgrade |string, default is "Admin" | Security configuration for rolling back application upgrades. |
-| UnprovisionApplicationType |string, default is "Admin" | Security configuration for application type unprovisioning. |
-| MoveNextUpgradeDomain |string, default is "Admin" | Security configuration for resuming application upgrades with an explicit Upgrade Domain. |
-| ReportUpgradeHealth |string, default is "Admin" | Security configuration for resuming application upgrades with the current upgrade progress. |
-| ReportHealth |string, default is "Admin" | Security configuration for reporting health. |
-| ProvisionFabric |string, default is "Admin" | Security configuration for MSI and/or Cluster Manifest provisioning. |
-| UpgradeFabric |string, default is "Admin" | Security configuration for starting cluster upgrades. |
-| RollbackFabricUpgrade |string, default is "Admin" | Security configuration for rolling back cluster upgrades. |
-| UnprovisionFabric |string, default is "Admin" | Security configuration for MSI and/or Cluster Manifest unprovisioning. |
-| MoveNextFabricUpgradeDomain |string, default is "Admin" | Security configuration for resuming cluster upgrades with an explicity Upgrade Domain. |
-| ReportFabricUpgradeHealth |string, default is "Admin" | Security configuration for resuming cluster upgrades with the current upgrade progress. |
-| StartInfrastructureTask |string, default is "Admin" | Security configuration for starting infrastructure tasks. |
-| FinishInfrastructureTask |string, default is "Admin" | Security configuration for finishing infrastructure tasks. |
-| ActivateNode |string, default is "Admin" | Security configuration for activation a node. |
-| DeactivateNode |string, default is "Admin" | Security configuration for deactivating a node. |
-| DeactivateNodesBatch |string, default is "Admin" | Security configuration for deactivating multiple nodes. |
-| RemoveNodeDeactivations |string, default is "Admin" | Security configuration for reverting deactivation on multiple nodes. |
-| GetNodeDeactivationStatus |string, default is "Admin" | Security configuration for checking deactivation status. |
-| NodeStateRemoved |string, default is "Admin" | Security configuration for reporting node state removed. |
-| RecoverPartition |string, default is "Admin" | Security configuration for recovering a partition. |
-| RecoverPartitions |string, default is "Admin" | Security configuration for recovering partitions. |
-| RecoverServicePartitions |string, default is "Admin" | Security configuration for recovering service partitions. |
-| RecoverSystemPartitions |string, default is "Admin" | Security configuration for recovering system service partitions. |
-| ReportFault |string, default is "Admin" | Security configuration for reporting fault. |
-| InvokeInfrastructureCommand |string, default is "Admin" | Security configuration for infrastructure task management commands. |
-| FileContent |string, default is "Admin" | Security configuration for image store client file transfer (external to cluster). |
-| FileDownload |string, default is "Admin" | Security configuration for image store client file download initiation (external to cluster). |
-| InternalList |string, default is "Admin" | Security configuration for image store client file list operation (internal). |
-| Delete |string, default is "Admin" | Security configuration for image store client delete operation. |
-| Upload |string, default is "Admin" | Security configuration for image store client upload operation. |
-| GetStagingLocation |string, default is "Admin" | Security configuration for image store client staging location retrieval. |
-| GetStoreLocation |string, default is "Admin" | Security configuration for image store client store location retrieval. |
-| NodeControl |string, default is "Admin" | Security configuration for starting; stopping; and restarting nodes. |
-| CodePackageControl |string, default is "Admin" | Security configuration for restarting code packages. |
-| UnreliableTransportControl |string, default is "Admin" | Unreliable Transport for adding and removing behaviors. |
-| MoveReplicaControl |string, default is "Admin" | Move replica. |
-| PredeployPackageToNode |string, default is "Admin" | Predeployment api. |
-| StartPartitionDataLoss |string, default is "Admin" | Induces data loss on a partition. |
-| StartPartitionQuorumLoss |string, default is "Admin" | Induces quorum loss on a partition. |
-| StartPartitionRestart |string, default is "Admin" | Simultaneously restarts some or all the replicas of a partition. |
-| CancelTestCommand |string, default is "Admin" | Cancels a specific TestCommand - if it is in flight. |
-| StartChaos |string, default is "Admin" | Starts Chaos - if it is not already started. |
-| StopChaos |string, default is "Admin" | Stops Chaos - if it has been started. |
-| StartNodeTransition |string, default is "Admin" | Security configuration for starting a node transition. |
-| StartClusterConfigurationUpgrade |string, default is "Admin" | Induces StartClusterConfigurationUpgrade on a partition. |
-| GetUpgradesPendingApproval |string, default is "Admin" | Induces GetUpgradesPendingApproval on a partition. |
-| StartApprovedUpgrades |string, default is "Admin" | Induces StartApprovedUpgrades on a partition. |
-| Ping |string, default is "Admin\|\|User" | Security configuration for client pings. |
-| Query |string, default is "Admin\|\|User" | Security configuration for queries. |
-| NameExists |string, default is "Admin\|\|User" | Security configuration for Naming URI existence checks. |
-| EnumerateSubnames |string, default is "Admin\|\|User" | Security configuration for Naming URI enumeration. |
-| EnumerateProperties |string, default is "Admin\|\|User" | Security configuration for Naming property enumeration. |
-| PropertyReadBatch |string, default is "Admin\|\|User" | Security configuration for Naming property read operations. |
-| GetServiceDescription |string, default is "Admin\|\|User" | Security configuration for long-poll service notifications and reading service descriptions. |
-| ResolveService |string, default is "Admin\|\|User" | Security configuration for complaint-based service resolution. |
-| ResolveNameOwner |string, default is "Admin\|\|User" | Security configuration for resolving Naming URI owner. |
-| ResolvePartition |string, default is "Admin\|\|User" | Security configuration for resolving system services. |
-| ServiceNotifications |string, default is "Admin\|\|User" | Security configuration for event-based service notifications. |
-| PrefixResolveService |string, default is "Admin\|\|User" | Security configuration for complaint-based service prefix resolution. |
-| GetUpgradeStatus |string, default is "Admin\|\|User" | Security configuration for polling application upgrade status. |
-| GetFabricUpgradeStatus |string, default is "Admin\|\|User" | Security configuration for polling cluster upgrade status. |
-| InvokeInfrastructureQuery |string, default is "Admin\|\|User" | Security configuration for querying infrastructure tasks. |
-| List |string, default is "Admin\|\|User" | Security configuration for image store client file list operation. |
-| ResetPartitionLoad |string, default is "Admin\|\|User" | Security configuration for reset load for a failoverUnit. |
-| ToggleVerboseServicePlacementHealthReporting | string, default is "Admin\|\|User" | Security configuration for Toggling Verbose ServicePlacement HealthReporting. |
-| GetPartitionDataLossProgress | string, default is "Admin\|\|User" | Fetches the progress for an invoke data loss api call. |
-| GetPartitionQuorumLossProgress | string, default is "Admin\|\|User" | Fetches the progress for an invoke quorum loss api call. |
-| GetPartitionRestartProgress | string, default is "Admin\|\|User" | Fetches the progress for a restart partition api call. |
-| GetChaosReport | string, default is "Admin\|\|User" | Fetches the status of Chaos within a given time range. |
-| GetNodeTransitionProgress | string, default is "Admin\|\|User" | Security configuration for getting progress on a node transition command. |
-| GetClusterConfigurationUpgradeStatus | string, default is "Admin\|\|User" | Induces GetClusterConfigurationUpgradeStatus on a partition. |
-| GetClusterConfiguration | string, default is "Admin\|\|User" | Induces GetClusterConfiguration on a partition. |
-|CreateComposeDeployment|wstring,default is L"Admin"| Creates an compose deployment described by compose files |
-|DeleteComposeDeployment|wstring,default is L"Admin"| Deletes the compose deployment |
-|UpgradeComposeDeployment|wstring,default is L"Admin"| Upgrades the compose deployment |
-|ResolveSystemService|wstring,default is L"Admin\|\|User"| Security configuration for resolving system services |
-|GetUpgradeOrchestrationServiceState|wstring,default is L"Admin"| Induces GetUpgradeOrchestrationServiceState on a partition |
-|SetUpgradeOrchestrationServiceState|wstring,default is L"Admin"| Induces SetUpgradeOrchestrationServiceState on a partition |
+| **Parameter** | **Allowed Values** | **Upgrade Policy** | **Guidance or short Description** |
+| --- | --- | --- | --- |
+| CreateName |string, default is "Admin" |Dynamic|Security configuration for Naming URI creation. |
+| DeleteName |string, default is "Admin" |Dynamic|Security configuration for Naming URI deletion. |
+| PropertyWriteBatch |string, default is "Admin" |Dynamic|Security configuration for Naming property write operations. |
+| CreateService |string, default is "Admin" |Dynamic| Security configuration for service creation. |
+| CreateServiceFromTemplate |string, default is "Admin" |Dynamic|Security configuration for service creation from template. |
+| UpdateService |string, default is "Admin" |Dynamic|Security configuration for service updates. |
+| DeleteService  |string, default is "Admin" |Dynamic|Security configuration for service deletion. |
+| ProvisionApplicationType |string, default is "Admin" |Dynamic| Security configuration for application type provisioning. |
+| CreateApplication |string, default is "Admin" | Dynamic|Security configuration for application creation. |
+| DeleteApplication |string, default is "Admin" |Dynamic| Security configuration for application deletion. |
+| UpgradeApplication |string, default is "Admin" |Dynamic| Security configuration for starting or interrupting application upgrades. |
+| RollbackApplicationUpgrade |string, default is "Admin" |Dynamic| Security configuration for rolling back application upgrades. |
+| UnprovisionApplicationType |string, default is "Admin" |Dynamic| Security configuration for application type unprovisioning. |
+| MoveNextUpgradeDomain |string, default is "Admin" |Dynamic| Security configuration for resuming application upgrades with an explicit Upgrade Domain. |
+| ReportUpgradeHealth |string, default is "Admin" |Dynamic| Security configuration for resuming application upgrades with the current upgrade progress. |
+| ReportHealth |string, default is "Admin" |Dynamic| Security configuration for reporting health. |
+| ProvisionFabric |string, default is "Admin" |Dynamic| Security configuration for MSI and/or Cluster Manifest provisioning. |
+| UpgradeFabric |string, default is "Admin" |Dynamic| Security configuration for starting cluster upgrades. |
+| RollbackFabricUpgrade |string, default is "Admin" |Dynamic| Security configuration for rolling back cluster upgrades. |
+| UnprovisionFabric |string, default is "Admin" |Dynamic| Security configuration for MSI and/or Cluster Manifest unprovisioning. |
+| MoveNextFabricUpgradeDomain |string, default is "Admin" |Dynamic| Security configuration for resuming cluster upgrades with an explicity Upgrade Domain. |
+| ReportFabricUpgradeHealth |string, default is "Admin" |Dynamic| Security configuration for resuming cluster upgrades with the current upgrade progress. |
+| StartInfrastructureTask |string, default is "Admin" | Dynamic|Security configuration for starting infrastructure tasks. |
+| FinishInfrastructureTask |string, default is "Admin" |Dynamic| Security configuration for finishing infrastructure tasks. |
+| ActivateNode |string, default is "Admin" |Dynamic| Security configuration for activation a node. |
+| DeactivateNode |string, default is "Admin" |Dynamic| Security configuration for deactivating a node. |
+| DeactivateNodesBatch |string, default is "Admin" |Dynamic| Security configuration for deactivating multiple nodes. |
+| RemoveNodeDeactivations |string, default is "Admin" |Dynamic| Security configuration for reverting deactivation on multiple nodes. |
+| GetNodeDeactivationStatus |string, default is "Admin" |Dynamic| Security configuration for checking deactivation status. |
+| NodeStateRemoved |string, default is "Admin" |Dynamic| Security configuration for reporting node state removed. |
+| RecoverPartition |string, default is "Admin" | Dynamic|Security configuration for recovering a partition. |
+| RecoverPartitions |string, default is "Admin" | Dynamic|Security configuration for recovering partitions. |
+| RecoverServicePartitions |string, default is "Admin" |Dynamic| Security configuration for recovering service partitions. |
+| RecoverSystemPartitions |string, default is "Admin" |Dynamic| Security configuration for recovering system service partitions. |
+| ReportFault |string, default is "Admin" |Dynamic| Security configuration for reporting fault. |
+| InvokeInfrastructureCommand |string, default is "Admin" |Dynamic| Security configuration for infrastructure task management commands. |
+| FileContent |string, default is "Admin" |Dynamic| Security configuration for image store client file transfer (external to cluster). |
+| FileDownload |string, default is "Admin" |Dynamic| Security configuration for image store client file download initiation (external to cluster). |
+| InternalList |string, default is "Admin" | Dynamic|Security configuration for image store client file list operation (internal). |
+| Delete |string, default is "Admin" |Dynamic| Security configuration for image store client delete operation. |
+| Upload |string, default is "Admin" | Dynamic|Security configuration for image store client upload operation. |
+| GetStagingLocation |string, default is "Admin" |Dynamic| Security configuration for image store client staging location retrieval. |
+| GetStoreLocation |string, default is "Admin" |Dynamic| Security configuration for image store client store location retrieval. |
+| NodeControl |string, default is "Admin" |Dynamic| Security configuration for starting; stopping; and restarting nodes. |
+| CodePackageControl |string, default is "Admin" |Dynamic| Security configuration for restarting code packages. |
+| UnreliableTransportControl |string, default is "Admin" |Dynamic| Unreliable Transport for adding and removing behaviors. |
+| MoveReplicaControl |string, default is "Admin" | Dynamic|Move replica. |
+| PredeployPackageToNode |string, default is "Admin" |Dynamic| Predeployment api. |
+| StartPartitionDataLoss |string, default is "Admin" |Dynamic| Induces data loss on a partition. |
+| StartPartitionQuorumLoss |string, default is "Admin" |Dynamic| Induces quorum loss on a partition. |
+| StartPartitionRestart |string, default is "Admin" |Dynamic| Simultaneously restarts some or all the replicas of a partition. |
+| CancelTestCommand |string, default is "Admin" |Dynamic| Cancels a specific TestCommand - if it is in flight. |
+| StartChaos |string, default is "Admin" |Dynamic| Starts Chaos - if it is not already started. |
+| StopChaos |string, default is "Admin" |Dynamic| Stops Chaos - if it has been started. |
+| StartNodeTransition |string, default is "Admin" |Dynamic| Security configuration for starting a node transition. |
+| StartClusterConfigurationUpgrade |string, default is "Admin" |Dynamic| Induces StartClusterConfigurationUpgrade on a partition. |
+| GetUpgradesPendingApproval |string, default is "Admin" |Dynamic| Induces GetUpgradesPendingApproval on a partition. |
+| StartApprovedUpgrades |string, default is "Admin" |Dynamic| Induces StartApprovedUpgrades on a partition. |
+| Ping |string, default is "Admin\|\|User" |Dynamic| Security configuration for client pings. |
+| Query |string, default is "Admin\|\|User" |Dynamic| Security configuration for queries. |
+| NameExists |string, default is "Admin\|\|User" | Dynamic|Security configuration for Naming URI existence checks. |
+| EnumerateSubnames |string, default is "Admin\|\|User" |Dynamic| Security configuration for Naming URI enumeration. |
+| EnumerateProperties |string, default is "Admin\|\|User" | Dynamic|Security configuration for Naming property enumeration. |
+| PropertyReadBatch |string, default is "Admin\|\|User" |Dynamic| Security configuration for Naming property read operations. |
+| GetServiceDescription |string, default is "Admin\|\|User" |Dynamic| Security configuration for long-poll service notifications and reading service descriptions. |
+| ResolveService |string, default is "Admin\|\|User" |Dynamic| Security configuration for complaint-based service resolution. |
+| ResolveNameOwner |string, default is "Admin\|\|User" | Dynamic|Security configuration for resolving Naming URI owner. |
+| ResolvePartition |string, default is "Admin\|\|User" | Dynamic|Security configuration for resolving system services. |
+| ServiceNotifications |string, default is "Admin\|\|User" |Dynamic| Security configuration for event-based service notifications. |
+| PrefixResolveService |string, default is "Admin\|\|User" |Dynamic| Security configuration for complaint-based service prefix resolution. |
+| GetUpgradeStatus |string, default is "Admin\|\|User" |Dynamic| Security configuration for polling application upgrade status. |
+| GetFabricUpgradeStatus |string, default is "Admin\|\|User" |Dynamic| Security configuration for polling cluster upgrade status. |
+| InvokeInfrastructureQuery |string, default is "Admin\|\|User" | Dynamic|Security configuration for querying infrastructure tasks. |
+| List |string, default is "Admin\|\|User" | Dynamic|Security configuration for image store client file list operation. |
+| ResetPartitionLoad |string, default is "Admin\|\|User" |Dynamic| Security configuration for reset load for a failoverUnit. |
+| ToggleVerboseServicePlacementHealthReporting | string, default is "Admin\|\|User" |Dynamic| Security configuration for Toggling Verbose ServicePlacement HealthReporting. |
+| GetPartitionDataLossProgress | string, default is "Admin\|\|User" | Dynamic|Fetches the progress for an invoke data loss api call. |
+| GetPartitionQuorumLossProgress | string, default is "Admin\|\|User" |Dynamic| Fetches the progress for an invoke quorum loss api call. |
+| GetPartitionRestartProgress | string, default is "Admin\|\|User" |Dynamic| Fetches the progress for a restart partition api call. |
+| GetChaosReport | string, default is "Admin\|\|User" |Dynamic| Fetches the status of Chaos within a given time range. |
+| GetNodeTransitionProgress | string, default is "Admin\|\|User" |Dynamic| Security configuration for getting progress on a node transition command. |
+| GetClusterConfigurationUpgradeStatus | string, default is "Admin\|\|User" |Dynamic| Induces GetClusterConfigurationUpgradeStatus on a partition. |
+| GetClusterConfiguration | string, default is "Admin\|\|User" | Dynamic|Induces GetClusterConfiguration on a partition. |
+|CreateComposeDeployment|wstring,default is L"Admin"| Dynamic|Creates an compose deployment described by compose files |
+|DeleteComposeDeployment|wstring,default is L"Admin"| Dynamic|Deletes the compose deployment |
+|UpgradeComposeDeployment|wstring,default is L"Admin"| Dynamic|Upgrades the compose deployment |
+|ResolveSystemService|wstring,default is L"Admin\|\|User"|Dynamic| Security configuration for resolving system services |
+|GetUpgradeOrchestrationServiceState|wstring,default is L"Admin"| Dynamic|Induces GetUpgradeOrchestrationServiceState on a partition |
+|SetUpgradeOrchestrationServiceState|wstring,default is L"Admin"| Dynamic|Induces SetUpgradeOrchestrationServiceState on a partition |
 
 ### Section Name: ReconfigurationAgent
 | **Parameter** | **Allowed Values** | **Upgrade Policy** | **Guidance or short Description** |
